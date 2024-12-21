@@ -1,0 +1,97 @@
+name: ModInjector
+
+on:
+  # schedule:
+  #   - cron: '0 0 * * *' # Run daily at midnight UTC
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  check_version:
+    runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.check.outputs.new_version }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r check-version-requirements.txt
+
+      - name: Check for the latest version
+        id: check
+        run: |
+          python check_version.py
+      - name: Commit and push changes
+        if: needs.check_version.outputs.new_version == 'true'
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Updated version.txt
+
+  download_decrypted_ipa:
+    runs-on: ubuntu-latest
+    needs: check_version
+    if: needs.check_version.outputs.new_version == 'true'
+    steps:
+      - name: Debugging
+        run: |
+          echo "New version detected: ${{ needs.check_version.outputs.new_version }}"
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r download-ipa-requirements.txt
+        
+      - name: Decode and decrypt session file
+        run: |
+          echo "${{ secrets.ENC_SESSION_FILE }}" | base64 --decode > user_session.session.enc
+          openssl enc -aes-256-cbc -d -in user_session.session.enc -out user_session.session -k "${{ secrets.SESSION_PASSWORD }}"
+
+      - name: Download decrypted IPA
+        run: python download_ipa.py
+
+      - name: Clean up session file
+        run: rm user_session.session
+
+      - name: Upload agario.ipa as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: agario-ipa
+          path: downloads/Agario.ipa
+  inject_mods:
+    runs-on: ubuntu-latest
+    needs: download_decrypted_ipa
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Download decrypted IPA
+        uses: actions/download-artifact@v3
+        with:
+          name: agario-ipa
+          path: downloads
+
+      - name: Unpack ipa
+        run: unzip -o downloads/Agario.ipa -d downloads/Agario
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install Cyan
+        run: pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip Pillow
+        
+      - name: Inject mods
+        run: python inject_mods.py
+  
