@@ -37,18 +37,14 @@ options:
   -t                    use substitute instead of substrate
   --update              check for updates
   """
-def inject_images(mod_type, working_path, folder=None):
-    if folder is not None:
-        if not os.path.exists(f"{working_path}/Payload/agar.io.app/{folder}"):
-            os.mkdir(f"{working_path}/Payload/agar.io.app/{folder}")
-            src_string = "mods/images/{mod_type}/"+folder+"/{item}"
-    else:
-        src_string = "mods/images/{mod_type}/{item}"
-        
+def inject_images(mod_type, working_path):
     for item in os.listdir(f"mods/images/{mod_type}"):
-        src = src_string.format(mod_type=mod_type, item=item)
+        src = f"mods/images/{mod_type}/{item}"
         dst = f"{working_path}/Payload/agar.io.app/{item}"
-        shutil.copyfile(src, dst)
+        if os.path.isdir(src):
+            shutil.copytree(src, dst)
+        else:
+            shutil.copyfile(src, dst)
 
 def inject_other(mod_type, working_path):
     for item in os.listdir(f"mods/other/{mod_type}"):
@@ -57,7 +53,7 @@ def inject_other(mod_type, working_path):
         shutil.copyfile(src, dst)
 
 def inject_tweaks(name, new_unpacked_ipa_path, tweaks):
-    cmd = ["pyzule", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{new_unpacked_ipa_path}-patched", "-f"] + tweaks
+    cmd = ["pyzule", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{new_unpacked_ipa_path}-patched.ipa", "-f"] + tweaks
     subprocess.run(cmd)
 
 
@@ -101,7 +97,7 @@ def inject_xelahot_mod(base_unpacked_ipa_path):
 
     # copy necessary files into the payload
     print("Injecting files necessary for the mod to function")
-    inject_images("xelahot", new_unpacked_ipa_path, folder="xelahotimages")
+    inject_images("xelahot", new_unpacked_ipa_path)
 
     print("Repacking ipa")
     shutil.make_archive("Xelahot", "zip", new_unpacked_ipa_path)
@@ -121,7 +117,7 @@ def inject_ctrl_mod(base_unpacked_ipa_path):
 
     # copy necessary files into the payload
     print("Injecting files necessary for the mod to function")
-    inject_images("qxanarky", new_unpacked_ipa_path, folder="qxanarkyimages")
+    inject_images("qxanarky", new_unpacked_ipa_path)
 
     print("Repacking ipa")
     shutil.make_archive("Ctrl", "zip", new_unpacked_ipa_path)
