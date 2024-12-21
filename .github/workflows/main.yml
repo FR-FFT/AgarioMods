@@ -28,10 +28,11 @@ jobs:
           python check_version.py
       - name: Commit and push changes
         if: needs.check_version.outputs.new_version == 'true'
-        uses: devops-infra/action-commit-push@master
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: Updated version.txt
+          default_author: github_actions
+          message: Updated version.txt
+          add: version.txt
 
   download_decrypted_ipa:
     runs-on: ubuntu-latest
