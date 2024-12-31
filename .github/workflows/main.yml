@@ -117,13 +117,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for file in ./ModdedIPAs/*.ipa; do
-            echo "Uploading $file..."
-            curl \
-              -X POST \
-              -H "Authorization: Bearer $GITHUB_TOKEN" \
-              -H "Content-Type: application/octet-stream" \
-              --data-binary @"$file" \
-              "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename $file)"
-          done
-  
+          if compgen -G "./ModdedIPAs/*.ipa" > /dev/null; then
+            for file in ./ModdedIPAs/*.ipa; do
+              echo "Uploading $file..."
+              curl \
+                -X POST \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Content-Type: application/octet-stream" \
+                --data-binary @"$file" \
+                "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename $file)"
+            done
+          else
+            echo "No IPA files found in ./ModdedIPAs."
+    
