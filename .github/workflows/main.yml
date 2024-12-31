@@ -114,14 +114,14 @@ jobs:
           prerelease: false
 
       - name: Debug File Listing
-        run: ls -l ./ModdedIPAs
-        
+        run: ls -l ./ModifiedIPAs
+
       - name: Upload Each IPA
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if compgen -G "./ModdedIPAs/*.ipa" > /dev/null; then
-            for file in ./ModdedIPAs/*.ipa; do
+          if compgen -G "./ModifiedIPAs/*.ipa" > /dev/null; then
+            for file in ./ModifiedIPAs/*.ipa; do
               echo "Uploading $file..."
               curl \
                 -X POST \
@@ -131,6 +131,6 @@ jobs:
                 "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename $file)"
             done
           else
-            echo "No IPA files found in ./ModdedIPAs."
+            echo "No IPA files found in ./ModifiedIPAs."
           fi
     

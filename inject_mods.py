@@ -127,7 +127,7 @@ def inject_mods(base_packed_ipa_path, mod_types, name):
     print("Deleting working directory")
     shutil.rmtree("working")
     print("Moving modified ipa to ModifiedIPAs")
-    shutil.move(f"{name}.ipa", f"ModifiedIPAs/{name}.ipa")
+    
     print(f"Done creating {name}")
 
 
