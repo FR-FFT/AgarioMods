@@ -50,7 +50,7 @@ def main():
             print("New version detected! Updating...")
             write_stored_version(VERSION_FILE, latest_version)
             print("Version file updated.")
-            save_run_status(True)
+            save_run_status(latest_version)
         else:
             print("No updates detected. You're up to date!")
             save_run_status(False)

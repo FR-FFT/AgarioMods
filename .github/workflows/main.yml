@@ -27,7 +27,7 @@ jobs:
         run: |
           python check_version.py
       - name: Commit and push changes
-        if: needs.check_version.outputs.new_version == 'true'
+        if: needs.check_version.outputs.new_version != 'false'
         uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
@@ -35,6 +35,7 @@ jobs:
           add: version.txt
 
   download_decrypted_ipa:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: check_version
     if: needs.check_version.outputs.new_version == 'true'
@@ -82,8 +83,8 @@ jobs:
           name: agario-ipa
           path: downloads
 
-      - name: Unpack ipa
-        run: unzip -o downloads/Agario.ipa -d downloads/Agario
+      - name: Rename to zip
+        run: mv downloads/Agario.ipa downloads/Agario.zip
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -95,4 +96,30 @@ jobs:
         
       - name: Inject mods
         run: python inject_mods.py
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.check_version.outputs.new_version }}
+          release_name: "Agar.io ${{ needs.check_version.outputs.new_version }}"
+          body: "Agar.io mods for version ${{ needs.check_version.outputs.new_version }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload Each IPA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for file in ./ModdedIPAs/*.ipa; do
+            echo "Uploading $file..."
+            curl \
+              -X POST \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary @"$file" \
+              "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename $file)"
+          done
   

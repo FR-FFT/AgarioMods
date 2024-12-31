@@ -1,9 +1,9 @@
-UNPACKEDIPA_PATH = "downloads/Agario"
+PACKEDIPA_PATH = "downloads/Agario.zip"
 
 import os
 import subprocess
 import shutil
-import random
+import time
 
 """
 usage: pyzule [-h] [-i input] [-o output] [-z .pyzule] [-n name] [-v version] [-b bundle id] [-m minimum] [-c [level]]
@@ -37,95 +37,111 @@ options:
   -t                    use substitute instead of substrate
   --update              check for updates
   """
-def inject_images(mod_type, working_path):
-    for item in os.listdir(f"mods/images/{mod_type}"):
-        src = f"mods/images/{mod_type}/{item}"
-        dst = f"{working_path}/Payload/agar.io.app/{item}"
-        if os.path.isdir(src):
-            shutil.copytree(src, dst)
-        else:
-            shutil.copyfile(src, dst)
+def inject_files(mod_type, working_path):
+    if os.path.isdir(f"mods/{mod_type}/files"):
+        for item in os.listdir(f"mods/{mod_type}/files"):
+            src = f"mods/{mod_type}/files/{item}"
+            dst = f"{working_path}/Payload/agar.io.app/{item}"
+            if os.path.isdir(src):
+                shutil.copytree(src, dst)
+            else:
+                shutil.copyfile(src, dst)
 
-def inject_other(mod_type, working_path):
-    for item in os.listdir(f"mods/other/{mod_type}"):
-        src = f"mods/other/{mod_type}/{item}"
-        dst = f"{working_path}/Payload/agar.io.app/{item}"
-        shutil.copyfile(src, dst)
 
 def inject_tweaks(name, new_unpacked_ipa_path, tweaks):
-    cmd = ["pyzule", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{new_unpacked_ipa_path}-patched.ipa", "-f"] + tweaks
+    cmd = ["pyzule", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-f"] + tweaks
     subprocess.run(cmd)
+    os.remove(f"{name}.ipa") # unpatched version no longer necessary
+    os.sync()
+    tries = 0
+    while tries < 5:
+        try:
+            os.replace( f"{name} patched.ipa", f"{name}.ipa")
+            break
+        except PermissionError:
+            tries += 1
+            if tries >= 5:
+                raise
+            print("File locked, sleeping")
+            time.sleep(7.5)
 
 
-def prepare_files(base_unpacked_ipa_path, type):
+def prepare_files(base_packed_ipa_path, type):
     if not os.path.exists(f"working"):
         os.mkdir("working")
+    if not os.path.exists(f"working/{type}"):
+        os.mkdir(f"working/{type}")
     new_unpacked_ipa_path = f"working/{type}/Agario"
+
+    # clean up
     if os.path.exists(new_unpacked_ipa_path):
-        shutil.rmtree(new_unpacked_ipa_path) # clean up
+        shutil.rmtree(new_unpacked_ipa_path) 
+    if os.path.exists(f"{new_unpacked_ipa_path}.zip"):
+        os.remove(f"{new_unpacked_ipa_path}.zip") 
     
-    print("Copying unpacked ipa to working directory")
-    shutil.copytree(base_unpacked_ipa_path, new_unpacked_ipa_path) # just to prevent collision
+    print("Copying packed ipa to working directory")
+    shutil.copyfile(base_packed_ipa_path, f"{new_unpacked_ipa_path}.zip") # just to prevent collision
+
+    shutil.unpack_archive(f"{new_unpacked_ipa_path}.zip", new_unpacked_ipa_path)
     
+def inject_mods(base_packed_ipa_path, mod_types, name):
+    # TODO: potential improvements: separate mods more clearly, add combinations
+    assert len(mod_types) > 0
 
+    # use mods/mod_type/ to get tweaks
+    tweaks = list(set([f"mods/{mod_type}/tweaks/{f}" for mod_type in mod_types for f in os.listdir(f"mods/{mod_type}/tweaks")]))
 
-def inject_cracked_kahraba_mod(base_unpacked_ipa_path):
-    print("Creating cracked kahraba mod")
+    print(f"Creating {name}")
     
-    prepare_files(base_unpacked_ipa_path, "kahraba")
+    prepare_files(base_packed_ipa_path, name)
 
-    new_unpacked_ipa_path = "working/kahraba/Agario"
+    new_unpacked_ipa_path = f"working/{name}/Agario"
 
     # copy necessary files into the payload
     print("Injecting files necessary for the mod to function")
-    inject_images("kahraba", new_unpacked_ipa_path)
-    inject_other("kahraba", new_unpacked_ipa_path)
+    for mod_type in mod_types:
+        inject_files(mod_type, new_unpacked_ipa_path)
 
-    print("Repacking ipa")
-    shutil.make_archive("Kahraba cracked", "zip", new_unpacked_ipa_path)
-    os.rename( "Kahraba cracked.zip", "Kahraba cracked.ipa")
 
-    inject_tweaks("Kahraba cracked", new_unpacked_ipa_path, ["mods/tweaks/kahraba/AgarioTweak.dylib", "mods/tweaks/kahraba/kahraba.dylib"])
+    print("Repacking ipa") # TODO: use low compression because we're going to unpack it again
+    shutil.make_archive(name, "zip", new_unpacked_ipa_path)
+
+    os.sync()
+    tries = 0
+    while tries < 5:
+        try:
+            os.replace( f"{name}.zip", f"{name}.ipa")
+            break
+        except PermissionError:
+            tries += 1
+            if tries >= 5:
+                raise
+            print("File locked, sleeping")
+            time.sleep(7.5)
+
+
+    inject_tweaks(name, new_unpacked_ipa_path, list(set(tweaks)))
+
+
+
+    print("Deleting working directory")
     shutil.rmtree("working")
+    print("Moving modified ipa to ModifiedIPAs")
+    shutil.move(f"{name}.ipa", f"ModifiedIPAs/{name}.ipa")
+    print(f"Done creating {name}")
 
-def inject_xelahot_mod(base_unpacked_ipa_path):
-    print("Creating xelahot's mod")
-    
-    prepare_files(base_unpacked_ipa_path, "xelahot")
 
-    new_unpacked_ipa_path = "working/xelahot/Agario"
+def main():
+    os.mkdir("ModifiedIPAs")
 
-    # copy necessary files into the payload
-    print("Injecting files necessary for the mod to function")
-    inject_images("xelahot", new_unpacked_ipa_path)
+    # better?
+    # name must be unique
+    # inject_mods(PACKEDIPA_PATH, ["xelahot"], "Xelahot")
+    # inject_mods(PACKEDIPA_PATH, ["ctrl"], "Ctrl")
+    inject_mods(PACKEDIPA_PATH, ["flex"], "Flex")
+    # inject_mods(PACKEDIPA_PATH, ["shark"], "Shark")
+    # inject_mods(UNPACKEDIPA_PATH, ["ctrl", "xelahot"], "CtrlXelahot")
+    # inject_mods(UNPACKEDIPA_PATH, ["kahraba", "xelahot"], "KahrabaXelahot")
 
-    print("Repacking ipa")
-    shutil.make_archive("Xelahot", "zip", new_unpacked_ipa_path)
-    os.rename( "Xelahot.zip", "Xelahot.ipa")
-
-    inject_tweaks("Xelahot", new_unpacked_ipa_path, ["mods/tweaks/xelahot/xelahot.deb", "mods/tweaks/xelahot/images.deb"])
-
-    shutil.rmtree("working")
-    
-
-def inject_ctrl_mod(base_unpacked_ipa_path):
-    print("Creating QxAnarky's ctrl mod")
-    
-    prepare_files(base_unpacked_ipa_path, "qxanarky")
-
-    new_unpacked_ipa_path = "working/ctrl/Agario"
-
-    # copy necessary files into the payload
-    print("Injecting files necessary for the mod to function")
-    inject_images("qxanarky", new_unpacked_ipa_path)
-
-    print("Repacking ipa")
-    shutil.make_archive("Ctrl", "zip", new_unpacked_ipa_path)
-    os.rename( "Ctrl.zip", "Ctrl.ipa")
-
-    inject_tweaks("Ctrl", new_unpacked_ipa_path, ["mods/tweaks/qxanarky/ctrl.dylib", "mods/tweaks/xelahot/images.deb"])
-
-    shutil.rmtree("working")
-
-inject_cracked_kahraba_mod("downloads/Agario") # test
-
+if __name__ == "__main__":
+    main()
