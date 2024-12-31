@@ -140,10 +140,10 @@ def main():
     inject_mods(PACKEDIPA_PATH, ["ctrl"], "Ctrl")
     inject_mods(PACKEDIPA_PATH, ["flex"], "Flex debug tool (press 3 fingers to open)")
     inject_mods(PACKEDIPA_PATH, ["shark"], "Shark")
-    inject_mods(PACKEDIPA_PATH, ["ctrl", "xelahot"], "Ctrl + Xelahot")
+    inject_mods(PACKEDIPA_PATH, ["ctrl", "xelahot"], "Ctrl and Xelahot")
     inject_mods(PACKEDIPA_PATH, ["kahraba"], "Kahraba")
     inject_mods(PACKEDIPA_PATH, ["ui"], "QxAnarky")
-    inject_mods(PACKEDIPA_PATH, ["kahraba", "xelahot", "shark", "ui"], "Kahraba + Shark + Xelahot + QxAnarky")
+    inject_mods(PACKEDIPA_PATH, ["kahraba", "xelahot", "shark", "ui"], "Kahraba and Shark and Xelahot and QxAnarky")
 
 if __name__ == "__main__":
     main()
