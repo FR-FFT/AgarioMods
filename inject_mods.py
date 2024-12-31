@@ -49,7 +49,7 @@ def inject_files(mod_type, working_path):
 
 
 def inject_tweaks(name, new_unpacked_ipa_path, tweaks):
-    cmd = ["pyzule", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-f"] + tweaks
+    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-f"] + tweaks
     subprocess.run(cmd)
     os.remove(f"{name}.ipa") # unpatched version no longer necessary
     os.sync()
