@@ -101,36 +101,18 @@ jobs:
         id: read_version
         run: echo "version=$(cat version.txt)" >> $GITHUB_ENV
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.version }}
-          release_name: "Agar.io ${{ env.version }}"
-          body: "Agar.io mods for version ${{ env.version }}"
-          draft: false
-          prerelease: false
+      - name: Install PyGithub
+        run: pip install PyGithub
 
-      - name: Debug File Listing
-        run: ls -l ./ModifiedIPAs
-
-      - name: Upload Each IPA
+      - name: Upload IPAs to release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if compgen -G "./ModifiedIPAs/*.ipa" > /dev/null; then
-            for file in ./ModifiedIPAs/*.ipa; do
-              echo "Uploading \"$file\"..."
-              curl \
-                -X POST \
-                -H "Authorization: Bearer $GITHUB_TOKEN" \
-                -H "Content-Type: application/octet-stream" \
-                --data-binary @"$file" \
-                "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename "$file")"
-            done
-          else
-            echo "No IPA files found in ./ModifiedIPAs."
-          fi
+          python upload_mods.py \
+            FR-FFT/AgarioMods \
+            $GITHUB_TOKEN \
+            "v${{ env.version }}" \
+            "Agar.io Mods v${{ env.version }}" \
+            "Mods for Agar.io version ${{ env.version }}" \
+            "./ModifiedIPAs"
     
