@@ -97,15 +97,19 @@ jobs:
       - name: Inject mods
         run: python inject_mods.py
 
+      - name: Read version from file
+        id: read_version
+        run: echo "version=$(cat version.txt)" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.check_version.outputs.new_version }}
-          release_name: "Agar.io ${{ needs.check_version.outputs.new_version }}"
-          body: "Agar.io mods for version ${{ needs.check_version.outputs.new_version }}"
+          tag_name: ${{ env.version }}
+          release_name: "Agar.io ${{ env.version }}"
+          body: "Agar.io mods for version ${{ env.version }}"
           draft: false
           prerelease: false
 
