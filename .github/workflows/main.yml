@@ -122,13 +122,13 @@ jobs:
         run: |
           if compgen -G "./ModifiedIPAs/*.ipa" > /dev/null; then
             for file in ./ModifiedIPAs/*.ipa; do
-              echo "Uploading $file..."
+              echo "Uploading \"$file\"..."
               curl \
                 -X POST \
                 -H "Authorization: Bearer $GITHUB_TOKEN" \
                 -H "Content-Type: application/octet-stream" \
                 --data-binary @"$file" \
-                "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename $file)"
+                "$(echo ${{ steps.create_release.outputs.upload_url }} | sed -e 's/{?name,label}//')?name=$(basename "$file")"
             done
           else
             echo "No IPA files found in ./ModifiedIPAs."
