@@ -113,6 +113,9 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Debug File Listing
+        run: ls -l ./ModdedIPAs
+        
       - name: Upload Each IPA
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -129,4 +132,5 @@ jobs:
             done
           else
             echo "No IPA files found in ./ModdedIPAs."
+          fi
     
