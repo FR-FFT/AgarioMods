@@ -136,12 +136,14 @@ def main():
 
     # better?
     # name must be unique
-    # inject_mods(PACKEDIPA_PATH, ["xelahot"], "Xelahot")
-    # inject_mods(PACKEDIPA_PATH, ["ctrl"], "Ctrl")
-    inject_mods(PACKEDIPA_PATH, ["flex"], "Flex")
-    # inject_mods(PACKEDIPA_PATH, ["shark"], "Shark")
-    # inject_mods(UNPACKEDIPA_PATH, ["ctrl", "xelahot"], "CtrlXelahot")
-    # inject_mods(UNPACKEDIPA_PATH, ["kahraba", "xelahot"], "KahrabaXelahot")
+    inject_mods(PACKEDIPA_PATH, ["xelahot"], "Xelahot")
+    inject_mods(PACKEDIPA_PATH, ["ctrl"], "Ctrl")
+    inject_mods(PACKEDIPA_PATH, ["flex"], "Flex debug tool (press 3 fingers to open)")
+    inject_mods(PACKEDIPA_PATH, ["shark"], "Shark")
+    inject_mods(PACKEDIPA_PATH, ["ctrl", "xelahot"], "Ctrl + Xelahot")
+    inject_mods(PACKEDIPA_PATH, ["kahraba"], "Kahraba")
+    inject_mods(PACKEDIPA_PATH, ["ui"], "QxAnarky")
+    inject_mods(PACKEDIPA_PATH, ["kahraba", "xelahot", "shark", "ui"], "Kahraba + Shark + Xelahot + QxAnarky")
 
 if __name__ == "__main__":
     main()
