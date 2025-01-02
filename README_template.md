@@ -2,7 +2,8 @@
 <h1 align="center">Agario mods</h1>
 
 <p align="center"><strong>A collection of Agar.io mods, for easy sideloading with eSign, Appdb, Scarlet, AltStore, Feather. Checks once a day. Last updated: {update_date}, Agar.io version {version}</strong></p>
-<p align="center">If you want to learn how to sideload Agar.io mods (for free, with no revokes), try https://sideloadling.vercel.app</p>
+<p align="center">If you want to learn how to sideload Agar.io mods (for free, with no revokes), try [this guide](https://docs.google.com/document/d/1QseJR-ZTGJO0q99l9eh1-wsR-tldtbsM6rbsti08EDQ/edit?pli=1&tab=t.0)</p>
+<p align="center">If you want me to add any other Agar.io mods / combinations, open an issue.</p>
 
 <p align="center">
     <a href="https://github.com/FR-FFT/AgarioMods/releases/latest"><img src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/latest/total?color=%23007BFF&label=Downloads%20(Latest%20Release)" alt="Downloads (Latest Release) Badge"></a>
