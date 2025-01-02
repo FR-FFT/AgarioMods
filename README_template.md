@@ -1,7 +1,7 @@
 <!-- README.md is generated via README_template.md. Do not modify README.md manually. -->
 <h1 align="center">Agario mods</h1>
 
-<p align="center"><strong>A collection of Agar.io mods, for easy sideloading with eSign, Appdb, Scarlet, AltStore, Feather. Updates automatically once a day. Last updated: {update_date}, Agar.io version {version}</strong></p>
+<p align="center"><strong>A collection of Agar.io mods, for easy sideloading with eSign, Appdb, Scarlet, AltStore, Feather. Checks once a day. Last updated: {update_date}, Agar.io version {version}</strong></p>
 <p align="center">If you want to learn how to sideload Agar.io mods (for free, with no revokes), try https://sideloadling.vercel.app</p>
 
 <p align="center">
