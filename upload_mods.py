@@ -133,7 +133,7 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
     # Update README.md
     with open("README_template.md", "r") as f:
         readme_template = f.read()
-    modlist="\n".join([f"| {asset_upload_url.split('/')[-1].replace('.ipa', '').replace('.', ' ')} | {asset_upload_url} |" for asset_upload_url in asset_upload_urls])
+    modlist="\n".join([f"| {asset_upload_url.split('/')[-1].replace('.ipa', '').replace('.', ' ').replace('%2B', '+')} | {asset_upload_url} |" for asset_upload_url in asset_upload_urls])
 
     try:
         repo.get_contents("README.md", ref="main")
