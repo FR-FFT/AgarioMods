@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 from github import Github
@@ -17,7 +18,7 @@ def get_current_date():
 def construct_scarlet_repo_txt(asset_upload_urls, version):
     repo_name = "FR-FFT's Agar.io Mod collection"
     # repo_icon = "https://avatars.githubusercontent.com/u/136937878?v=4"
-    json = {
+    repo_json = {
         "META": {
             "repoName": repo_name,
             # "repoIcon": repo_icon,
@@ -37,12 +38,13 @@ def construct_scarlet_repo_txt(asset_upload_urls, version):
             }
         } for asset_upload_url in asset_upload_urls]
     }
+    return json.dumps(repo_json, indent=4)
 
 def construct_esign_repo_txt(asset_upload_urls, version):
 
     repo_name = "FR-FFT's Agar.io Mod collection"
     # repo_icon = "https://avatars.githubusercontent.com/u/136937878?v=4"
-    json = {
+    repo_json = {
         "name": repo_name,
         "identifier": "fr-fft.github.io",
         # "iconURL": repo_icon,
@@ -67,6 +69,7 @@ def construct_esign_repo_txt(asset_upload_urls, version):
             for asset_upload_url in asset_upload_urls
         ]
     }
+    return json.dumps(repo_json, indent=4)
 
 def upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder):
     # Authenticate with GitHub
