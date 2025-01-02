@@ -70,7 +70,7 @@ jobs:
         with:
           name: agario-ipa
           path: downloads/Agario.ipa
-  inject_mods:
+  inject_mods_and_upload:
     runs-on: ubuntu-latest
     needs: download_decrypted_ipa
     steps:
