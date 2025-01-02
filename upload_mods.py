@@ -120,15 +120,15 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
 
     scarlet_repo_txt = construct_scarlet_repo_txt(asset_upload_urls, version)
     try:
-        repo.get_contents("scarlet_repo.json", ref="main")
-        repo.update_file("scarlet_repo.json", "Updated Scarlet repo", scarlet_repo_txt, branch="main")
+        file = repo.get_contents("scarlet_repo.json", ref="main")
+        repo.update_file("scarlet_repo.json", "Updated Scarlet repo", scarlet_repo_txt, file.sha, branch="main")
     except:
         repo.create_file("scarlet_repo.json", "Created Scarlet repo", scarlet_repo_txt, branch="main")
 
     esign_repo_txt = construct_esign_repo_txt(asset_upload_urls, version)
     try:
-        repo.get_contents("esign_repo.json", ref="main")
-        repo.update_file("esign_repo.json", "Updated eSign repo", esign_repo_txt, branch="main")
+        file = repo.get_contents("esign_repo.json", ref="main")
+        repo.update_file("esign_repo.json", "Updated eSign repo", esign_repo_txt, file.sha, branch="main")
     except:
         repo.create_file("esign_repo.json", "Created eSign repo", esign_repo_txt, branch="main")
 
@@ -139,8 +139,8 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
     modlist="\n".join([f"| {asset_upload_url.split('/')[-1].replace('.ipa', '').replace('.', ' ').replace('%2B', '+')} | {format_link(asset_upload_url, 'Direct download')} / {format_link("https://fwuf.in/#/scarlet://install="+asset_upload_url, 'Scarlet')} / {format_link("https://fwuf.in/#/sideloadly:"+asset_upload_url, 'Sideloadly')} |" for asset_upload_url in asset_upload_urls])
 
     try:
-        repo.get_contents("README.md", ref="main")
-        repo.update_file("README.md", "Updated README", readme_template.format(version=version, update_date=get_current_date(), modlist=modlist), branch="main")
+        file = repo.get_contents("README.md", ref="main")
+        repo.update_file("README.md", "Updated README", readme_template.format(version=version, update_date=get_current_date(), modlist=modlist), file.sha, branch="main")
     except:
         repo.create_file("README.md", "Created README", readme_template.format(version=version, update_date=get_current_date(), modlist=modlist), branch="main")
 
