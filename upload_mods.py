@@ -5,11 +5,8 @@ import requests
 import datetime
 
 def fetch_version():
-    # return os.environ["version"] maybe?
-    # TODO: error handling / retries
-    url = "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/version.txt"
-    response = requests.get(url)
-    return response.text.strip()
+    return os.environ["version"] 
+
 
 def get_current_date():
     return datetime.datetime.now().strftime("%Y-%m-%d")
