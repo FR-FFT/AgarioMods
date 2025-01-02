@@ -89,7 +89,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.12 # needed for fstring with same quotation marks
+          python-version: 3.9
 
       - name: Install Cyan
         run: pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip Pillow
