@@ -1,8 +1,8 @@
 name: ModInjector
 
 on:
-  # schedule:
-  #   - cron: '0 0 * * *' # Run daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight UTC
   workflow_dispatch: # Allow manual runs
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: check_version
-    if: needs.check_version.outputs.new_version != 'false'
+    if: needs.check_version.outputs.new_version != 'false' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Debugging
         run: |
@@ -108,11 +108,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python upload_mods.py \
-            FR-FFT/AgarioMods \
-            $GITHUB_TOKEN \
-            "v${{ env.version }}" \
-            "Agar.io Mods v${{ env.version }}" \
-            "Mods for Agar.io version ${{ env.version }}" \
-            "./ModifiedIPAs"
-    
+          python upload_mods.py $GITHUB_TOKEN
