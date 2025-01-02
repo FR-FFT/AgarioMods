@@ -1,0 +1,99 @@
+{
+    "name": "FR-FFT's Agar.io Mod collection",
+    "identifier": "fr-fft.github.io",
+    "website": "https://github.com/FR-FFT/AgarioMods",
+    "sourceURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/esign_repo.json",
+    "apps": [
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        },
+        {
+            "name": "Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io",
+            "developerName": "",
+            "version": "2.28.9",
+            "versionDate": "2025-01-02",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.9",
+            "iconURL": "",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": []
+        }
+    ]
+}
