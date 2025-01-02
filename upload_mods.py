@@ -5,6 +5,7 @@ import requests
 import datetime
 
 def fetch_version():
+    # return os.environ["version"] maybe?
     # TODO: error handling / retries
     url = "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/version.txt"
     response = requests.get(url)
@@ -89,20 +90,25 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
 
     # Upload assets
     asset_upload_urls = []
+    existing_assets = {asset.name.replace('.ipa', '').replace('.', ' '): asset.browser_download_url for asset in release.get_assets()}
     for file_name in os.listdir(folder):
         if file_name.endswith(".ipa"):
-            file_path = os.path.join(folder, file_name)
-            print(f"Uploading {file_name}...")
-            try:
-                asset =release.upload_asset(
-                    path=file_path,
-                    name=file_name,
-                    content_type="application/octet-stream",
-                )
-                asset_upload_urls.append(asset.browser_download_url)
-                print(f"Uploaded {file_name}.")
-            except Exception as e:
-                print(f"Failed to upload {file_name}: {e}")
+            if file_name.replace('.ipa', '').replace('.', ' ') not in existing_assets:
+                file_path = os.path.join(folder, file_name)
+                print(f"Uploading {file_name}...")
+                try:
+                    asset =release.upload_asset(
+                        path=file_path,
+                        name=file_name,
+                        content_type="application/octet-stream",
+                    )
+                    asset_upload_urls.append(asset.browser_download_url)
+                    print(f"Uploaded {file_name}.")
+                except Exception as e:
+                    print(f"Failed to upload {file_name}: {e}")
+            else:
+                print(f"{file_name} already exists on the release, skipping.")
+                asset_upload_urls.append(existing_assets[file_name])
 
 
 
