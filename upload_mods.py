@@ -108,7 +108,7 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
                     print(f"Failed to upload {file_name}: {e}")
             else:
                 print(f"{file_name} already exists on the release, skipping.")
-                asset_upload_urls.append(existing_assets[file_name])
+                asset_upload_urls.append(existing_assets[file_name.replace('.ipa', '').replace('.', ' ')])
 
 
 
