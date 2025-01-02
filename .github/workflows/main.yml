@@ -71,6 +71,7 @@ jobs:
           name: agario-ipa
           path: downloads/Agario.ipa
   inject_mods_and_upload:
+    timeout-minutes: 60 # this really shouldn't freeze, but just in case, given that it is running daily
     runs-on: ubuntu-latest
     needs: download_decrypted_ipa
     steps:
