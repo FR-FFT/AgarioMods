@@ -144,6 +144,7 @@ def main():
     inject_mods(PACKEDIPA_PATH, ["kahraba"], "Kahraba")
     inject_mods(PACKEDIPA_PATH, ["ui"], "QxAnarky")
     inject_mods(PACKEDIPA_PATH, ["kahraba", "xelahot", "shark", "ui"], "Kahraba + Shark + Xelahot + QxAnarky")
+    inject_mods(PACKEDIPA_PATH, ["kahraba", "shark"], "Shark + Kahraba")
 
 if __name__ == "__main__":
     main()
