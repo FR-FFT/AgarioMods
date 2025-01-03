@@ -37,6 +37,10 @@ options:
   -t                    use substitute instead of substrate
   --update              check for updates
   """
+
+def flatten_name(name):
+    return "".join([c for c in name if c.isalpha()]).lower()
+
 def inject_files(mod_type, working_path):
     if os.path.isdir(f"mods/{mod_type}/files"):
         for item in os.listdir(f"mods/{mod_type}/files"):
@@ -49,7 +53,7 @@ def inject_files(mod_type, working_path):
 
 
 def inject_tweaks(name, new_unpacked_ipa_path, tweaks):
-    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-f"] + tweaks
+    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-f"] + tweaks
     subprocess.run(cmd)
     os.remove(f"{name}.ipa") # unpatched version no longer necessary
     os.sync()
