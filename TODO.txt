@@ -1,0 +1,5 @@
+Upload Agar.io (untouched) both for debugging without spamming Telegram, and for helping anyone who wants it
+Likewise stop repatching mods that are already patched (?) - maybe necessary
+Nicify names & description - control with config file to populate README & repos. 
+Custom app icons
+Complete mods - there are many more to add, such as enabling QxAngels one , igg, etc. etc.
