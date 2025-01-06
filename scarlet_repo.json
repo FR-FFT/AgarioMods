@@ -6,53 +6,11 @@
         {
             "name": "Agar.io",
             "version": "2.28.9",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Agar.io",
-            "version": "2.28.9",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Agar.io",
-            "version": "2.28.9",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Agar.io",
-            "version": "2.28.9",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": "com.miniclip.agar.io.qxanarky",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
@@ -66,7 +24,7 @@
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": "com.miniclip.agar.io.ctrlxelahot",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
@@ -80,21 +38,7 @@
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Agar.io",
-            "version": "2.28.9",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Flex.debug.tool.press.3.fingers.to.open.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": "com.miniclip.agar.io.sharkkahraba",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
@@ -108,7 +52,35 @@
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": "com.miniclip.agar.io.kahraba",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Agar.io",
+            "version": "2.28.9",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "Agar.io mods for version 2.28.9",
+            "bundleID": "com.miniclip.agar.io.shark",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Agar.io",
+            "version": "2.28.9",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "Agar.io mods for version 2.28.9",
+            "bundleID": "com.miniclip.agar.io.ctrl",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
@@ -122,7 +94,21 @@
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.9",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Agar.io",
+            "version": "2.28.9",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "Agar.io mods for version 2.28.9",
+            "bundleID": "com.miniclip.agar.io.xelahot",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
