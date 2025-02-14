@@ -74,7 +74,17 @@ def construct_esign_repo_txt(asset_upload_urls, version):
                 "size": 40000000,
                 "screenshotURLs": [
                     
-                ]
+                ],
+                "appPermissions": {
+                      "entitlements": [
+                        "com.apple.developer.associated-domains",
+                        "aps-environment",
+                        "com.apple.developer.applesignin"
+                      ],
+                      "privacy": {
+                        "NSUserTrackingUsage-Description": "App tracks the user."
+                      }
+                    }
                 }
             for asset_upload_url in asset_upload_urls
         ]
