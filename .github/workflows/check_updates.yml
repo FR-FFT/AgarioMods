@@ -36,7 +36,7 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/issues?state=open&labels=update-needed")
           parsed_response=$(echo "$response" | jq 'length')
           # Check if any issues are returned
-          if [[ "$parsed_resoonse" -eq 0 ]]; then
+          if [[ "$parsed_response" -eq 0 ]]; then
             echo "No existing issues found."
             echo "::set-output name=existing_issue::false"
           else
