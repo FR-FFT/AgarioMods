@@ -19,7 +19,7 @@ jobs:
 
           
           
-          if [[ "$response" -eq "tru" ]]; then
+          if [[ "$response" -ne "tru" ]]; then
             echo "Change detected!"
             echo "::set-output name=change_detected::true"
           else
