@@ -69,7 +69,7 @@ def construct_esign_repo_txt(asset_upload_urls, version):
                 "versionDate": get_current_date(),
                 "downloadURL": asset_upload_url,
                 "localizedDescription": f"Agar.io mod for version {version}",
-                "iconURL": "",
+                "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
                 "tintColor": "FF0000",
                 "size": 40000000,
                 "screenshotURLs": [
