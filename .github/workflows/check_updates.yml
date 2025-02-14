@@ -17,9 +17,9 @@ jobs:
           response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.0)  
           echo "Response: $response"
 
-          parsed_response=$(printf "$response" | jq 'length')
           
-          if [[ "$parsed_response" -eq 0 ]]; then
+          
+          if [[ "$response" -eq "tru" ]]; then
             echo "Change detected!"
             echo "::set-output name=change_detected::true"
           else
@@ -34,9 +34,9 @@ jobs:
           response=$(curl -s \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/issues?state=open&labels=update-needed")
-          
+          parsed_response=$(printf "$response" | jq 'length')
           # Check if any issues are returned
-          if [[ "$response" == "[\n\n]" ]]; then
+          if [[ "$parsed_resoonse" -eq 0 ]]; then
             echo "No existing issues found."
             echo "::set-output name=existing_issue::false"
           else
