@@ -16,8 +16,10 @@ jobs:
         run: |
           response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.0)  
           echo "Response: $response"
+
+          parsed_response=$(echo "$response" | jq 'length')
           
-          if [[ "$response" == "tru" ]]; then
+          if [[ "$parsed_response" -eq 0 ]]; then
             echo "Change detected!"
             echo "::set-output name=change_detected::true"
           else
