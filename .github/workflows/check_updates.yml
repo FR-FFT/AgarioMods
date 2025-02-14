@@ -17,7 +17,7 @@ jobs:
           response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.0)  
           echo "Response: $response"
 
-          parsed_response=$(echo "$response" | jq 'length')
+          parsed_response=$(printf "$response" | jq 'length')
           
           if [[ "$parsed_response" -eq 0 ]]; then
             echo "Change detected!"
