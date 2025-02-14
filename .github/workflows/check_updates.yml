@@ -50,5 +50,5 @@ jobs:
           # Create an issue using GitHub API if no existing issue
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"title":"Shark's mod needs updating", "body":"Please update Shark's mod to the latest version. Gracias.", "labels":["update-needed"]}' \
+            -d '{"title":"Shark\'s mod needs updating", "body":"Please update Shark\'s mod to the latest version. Gracias.", "labels":["update-needed"]}' \
             https://api.github.com/repos/${{ github.repository }}/issues
