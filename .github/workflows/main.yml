@@ -9,6 +9,8 @@ on:
         required: true
       release_description:
         required: false
+      release_tag:
+        required: true
 
 
 jobs:
@@ -177,4 +179,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python upload_mods.py $GITHUB_TOKEN ${{ github.event.inputs.release_title }} ${{ github.event.inputs.release_description }}
+          python upload_mods.py $GITHUB_TOKEN ${{ github.event.inputs.release_title }} ${{ github.event.inputs.release_description }} ${{ github.event.inputs.release_tag }}
