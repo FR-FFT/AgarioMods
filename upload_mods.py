@@ -183,9 +183,11 @@ if __name__ == "__main__":
     version = fetch_version()
     repo_name = os.environ['GITHUB_REPOSITORY']
     token = sys.argv[1]
-    tag_name =  sys.argv[4] if len(sys.argv) < 4 and sys.argv[4] else f"v{version}"
+    tag_name =  sys.argv[4] if len(sys.argv) > 4 and sys.argv[4] else f"v{version}"
     release_name = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] else f"Agar.io Mods v{version}"
     body = sys.argv[3] if len(sys.argv) > 3 and sys.argv[3] else f"Mods for Agar.io version {version}"
     folder = "./ModifiedIPAs"
-
+    print("Tag name:", tag_name)
+    print("Release name:", release_name)
+    print("Body:", body)
     upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder)
