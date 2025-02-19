@@ -6,7 +6,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -20,7 +20,21 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Xelahot.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Flex.debug.tool.press.3.fingers.to.open.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "Agar.io mods for version 2.28.10",
+            "bundleID": "com.miniclip.agar.io.flexdebugtoolpressfingerstoopen",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Agar.io",
+            "version": "2.28.10",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Xelahot.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -34,7 +48,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Ctrl.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -48,7 +62,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.%2B.Kahraba.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Shark.%2B.Kahraba.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -62,7 +76,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -76,7 +90,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Shark.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -90,7 +104,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.%2B.Xelahot.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Ctrl.%2B.Xelahot.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
@@ -104,7 +118,7 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Kahraba.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "Agar.io mods for version 2.28.10",
