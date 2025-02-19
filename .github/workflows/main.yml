@@ -86,7 +86,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
       - name: Download agario.ipa from latest release
-        run: gh release download latest --pattern 'agario.ipa' --dir downloads
+        run: gh release download latest --pattern 'Agario.ipa' --dir downloads
       - name: Upload agario.ipa as an artifact
         uses: actions/upload-artifact@v3
         with:
@@ -112,8 +112,9 @@ jobs:
           name: agario-ipa
           path: downloads
 
-      - name: Rename to zip
-        run: mv downloads/Agario.ipa downloads/Agario.zip
+      - name: Rename copy to zip
+        run: cp downloads/Agario.ipa downloads/Agario.zip
+          
 
       - name: Set up Python
         uses: actions/setup-python@v4
