@@ -1,0 +1,55 @@
+name: Check for updates
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # hourly
+  workflow_dispatch:
+
+jobs:
+  check_for_changes:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for update
+        id: check_change
+        run: |
+          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.0)  
+          echo "Response: $response"
+
+          
+          
+          if [[ "$response" != "tru" ]]; then
+            echo "Change detected!"
+            echo "change_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "No change detected."
+            echo "change_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for existing open issues
+        id: check_existing_issues
+        if: steps.check_change.outputs.change_detected == 'true'
+        run: |
+          # Search for open issues with the title "Shark's mod needs updating"
+          response=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues?state=open&labels=update-needed")
+          parsed_response=$(echo "$response" | jq 'length')
+          # Check if any issues are returned
+          if [[ "$parsed_response" -eq 0 ]]; then
+            echo "No existing issues found."
+            echo "existing_issue=false" >> $GITHUB_OUTPUT
+          else
+            echo "Existing issue found."
+            echo "existing_issue=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub issue if no existing issue
+        if: steps.check_change.outputs.change_detected == 'true' && steps.check_existing_issues.outputs.existing_issue == 'false'
+        run: |
+          # Create an issue using GitHub API if no existing issue
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{"title":"Shark mod needs updating", "body":"Please update Shark mod to the latest version. Gracias.", "labels":["update-needed"]}' \
+            https://api.github.com/repos/${{ github.repository }}/issues

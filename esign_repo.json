@@ -6,107 +6,164 @@
     "apps": [
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.xelahot",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Xelahot.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.ctrl",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.qxanarky",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.shark",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.%2B.Xelahot.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.ctrlxelahot",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.%2B.Kahraba.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         },
         {
             "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.kahraba",
             "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
+            "version": "2.28.10",
+            "versionDate": "2025-02-16",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.ipa",
+            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
-            "screenshotURLs": []
-        },
-        {
-            "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io",
-            "developerName": "",
-            "version": "2.28.9",
-            "versionDate": "2025-01-02",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.9",
-            "iconURL": "",
-            "tintColor": "FF0000",
-            "size": 40000000,
-            "screenshotURLs": []
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
         }
     ]
 }

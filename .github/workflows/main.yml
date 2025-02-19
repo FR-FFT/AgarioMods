@@ -72,7 +72,7 @@ jobs:
         run: rm user_session.session
 
       - name: Upload agario.ipa as an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: agario-ipa
           path: downloads/Agario.ipa
@@ -107,7 +107,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download decrypted IPA
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: agario-ipa
           path: downloads
@@ -137,4 +137,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+<<<<<<< HEAD
           python upload_mods.py $GITHUB_TOKEN ${{ github.event.inputs.release_title }} ${{ github.event.inputs.release_description }}
+=======
+          python upload_mods.py $GITHUB_TOKEN
+>>>>>>> 49625c8e3341fa3b8ea0fe8acef8205c75bfbd9a

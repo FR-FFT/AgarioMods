@@ -1,8 +1,9 @@
 <!-- README.md is generated via README_template.md. Do not modify README.md manually. -->
 <h1 align="center">Agario mods</h1>
 
-<p align="center"><strong>A collection of Agar.io mods, for easy sideloading with eSign, Appdb, Scarlet, AltStore, Feather. Updates automatically once a day. Last updated: 2025-01-02, Agar.io version 2.28.9</strong></p>
-<p align="center">If you want to learn how to sideload Agar.io mods (for free, with no revokes), try https://sideloading.vercel.app</p>
+<p align="center"><strong>A collection of Agar.io mods, for easy sideloading with eSign, Appdb, Scarlet, AltStore, Feather. Checks once a day. Last updated: 2025-02-16, Agar.io version 2.28.10</strong></p>
+<p align="center">If you want to learn how to sideload Agar.io mods (for free, with no revokes), try https://sideloading.vercel.app/ or <a href="https://docs.google.com/document/d/1QseJR-ZTGJO0q99l9eh1-wsR-tldtbsM6rbsti08EDQ/edit?pli=1&tab=t.0">this guide</a>.</p>
+<p align="center">If you want me to add any other Agar.io mods / combinations, open an issue.</p>
 
 <p align="center">
     <a href="https://github.com/FR-FFT/AgarioMods/releases/latest"><img src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/latest/total?color=%23007BFF&label=Downloads%20(Latest%20Release)" alt="Downloads (Latest Release) Badge"></a>
@@ -41,7 +42,7 @@
 
 
 <!-- <p align="center">
-    <a href="https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/2.28.9/AgarMod_2.28.9.ipa">
+    <a href="https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/2.28.10/AgarMod_2.28.10.ipa">
     <img src="https://img.shields.io/badge/Sideload%20with%20Sideloadly-%2016CDC4?style=for-the-badge&color=16CDC4" alt="Sideload with Sideloadly">
   </a>
 </p> -->
@@ -50,11 +51,10 @@
 
 | Mod Name | Download Link |
 |----------|---------------|
-| Xelahot | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Xelahot.ipa) |
-| QxAnarky | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/QxAnarky.ipa) |
-| Shark | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.ipa) |
-| Ctrl | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.ipa) |
-| Ctrl + Xelahot | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.%2B.Xelahot.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.%2B.Xelahot.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Ctrl.%2B.Xelahot.ipa) |
-| Shark + Kahraba | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.%2B.Kahraba.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.%2B.Kahraba.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Shark.%2B.Kahraba.ipa) |
-| Kahraba | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.ipa) |
-| Kahraba + Shark + Xelahot + QxAnarky | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.9/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) |
+| Kahraba + Shark + Xelahot + QxAnarky | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa) |
+| Xelahot | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Xelahot.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Xelahot.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Xelahot.ipa) |
+| Ctrl | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.ipa) |
+| QxAnarky | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa) |
+| Shark | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.ipa) |
+| Ctrl + Xelahot | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.%2B.Xelahot.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.%2B.Xelahot.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Ctrl.%2B.Xelahot.ipa) |
+| Kahraba | [Direct download](https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.ipa) / [Scarlet](https://fwuf.in/#/scarlet://install=https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.ipa) / [Sideloadly](https://fwuf.in/#/sideloadly:https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Kahraba.ipa) |

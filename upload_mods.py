@@ -4,9 +4,16 @@ import sys
 from github import Github
 import requests
 import datetime
+from urllib.parse import unquote
 
+def flatten_name(name):
+    return "".join([c for c in name if c.isalpha()]).lower()
+    
 def format_link(href, display):
     return f"[{display}]({href})"
+
+def parse_name(url):
+    return unquote(url.split('/')[-1].replace('.ipa', '').replace('.', ' '))
 
 def fetch_version():
     # return os.environ["version"] maybe?
@@ -33,7 +40,7 @@ def construct_scarlet_repo_txt(asset_upload_urls, version):
             "dev": "",
             "category": "Agar.io Mods",
             "description": f"Agar.io mods for version {version}",
-            "bundleID": "com.miniclip.agar.io",
+            "bundleID": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
@@ -56,18 +63,28 @@ def construct_esign_repo_txt(asset_upload_urls, version):
         "apps": [
             {
                 "name": "Agar.io",
-                "bundleIdentifier": "com.miniclip.agar.io",
+                "bundleIdentifier": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
                 "developerName": "",
                 "version": version,
                 "versionDate": get_current_date(),
                 "downloadURL": asset_upload_url,
                 "localizedDescription": f"Agar.io mod for version {version}",
-                "iconURL": "",
+                "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
                 "tintColor": "FF0000",
                 "size": 40000000,
                 "screenshotURLs": [
                     
-                ]
+                ],
+                "appPermissions": {
+                      "entitlements": [
+                        "com.apple.developer.associated-domains",
+                        "aps-environment",
+                        "com.apple.developer.applesignin"
+                      ],
+                      "privacy": {
+                        "NSUserTrackingUsage-Description": "App tracks the user."
+                      }
+                    }
                 }
             for asset_upload_url in asset_upload_urls
         ]
@@ -136,7 +153,7 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
     # Update README.md
     with open("README_template.md", "r") as f:
         readme_template = f.read()
-    modlist="\n".join([f"| {asset_upload_url.split('/')[-1].replace('.ipa', '').replace('.', ' ').replace('%2B', '+')} | {format_link(asset_upload_url, 'Direct download')} / {format_link('https://fwuf.in/#/scarlet://install='+asset_upload_url, 'Scarlet')} / {format_link('https://fwuf.in/#/sideloadly:'+asset_upload_url, 'Sideloadly')} |" for asset_upload_url in asset_upload_urls])
+    modlist="\n".join([f"| {parse_name(asset_upload_url)} | {format_link(asset_upload_url, 'Direct download')} / {format_link('https://fwuf.in/#/scarlet://install='+asset_upload_url, 'Scarlet')} / {format_link('https://fwuf.in/#/sideloadly:'+asset_upload_url, 'Sideloadly')} |" for asset_upload_url in asset_upload_urls])
 
     try:
         file = repo.get_contents("README.md", ref="main")
