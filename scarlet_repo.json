@@ -48,6 +48,20 @@
         {
             "name": "Agar.io",
             "version": "2.28.10",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/Shark.%2B.Kahraba.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "Agar.io mods for version 2.28.10",
+            "bundleID": "com.miniclip.agar.io.sharkkahraba",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Agar.io",
+            "version": "2.28.10",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10/QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
