@@ -147,14 +147,14 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
 
 if __name__ == "__main__":
     if len(sys.argv) < 1:
-        print("Usage: python upload_mods.py <token>")
+        print("Usage: python upload_mods.py <token> [<release_title> <release_body>]")
         sys.exit(1)
     version = fetch_version()
     repo_name = os.environ['GITHUB_REPOSITORY']
     token = sys.argv[1]
     tag_name = f"v{version}"
-    release_name = f"Agar.io Mods v{version}"
-    body = f"Mods for Agar.io version {version}"
+    release_name = sys.argv[2] if len(sys.argv) > 2 else f"Agar.io Mods v{version}"
+    body = sys.argv[3] if len(sys.argv) > 3 else f"Mods for Agar.io version {version}"
     folder = "./ModifiedIPAs"
 
     upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder)

@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: '0 0 * * *' # Run daily at midnight UTC
   workflow_dispatch: # Allow manual runs
+    inputs:
+      release_title:
+        required: true
+      release_description:
+        required: false
+
 
 jobs:
   check_version:
@@ -38,7 +44,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: check_version
-    if: needs.check_version.outputs.new_version != 'false' || github.event_name == 'workflow_dispatch'
+    if: needs.check_version.outputs.new_version != 'false' && github.event_name != 'workflow_dispatch'
     steps:
       - name: Debugging
         run: |
@@ -70,10 +76,32 @@ jobs:
         with:
           name: agario-ipa
           path: downloads/Agario.ipa
+      
+
+  upload_old_agario_ipa:
+    runs-on: ubuntu-latest
+    needs: check_version
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Download agario.ipa from latest release
+        run: gh release download latest --pattern 'agario.ipa' --dir downloads
+      - name: Upload agario.ipa as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: agario-ipa
+          path: downloads/Agario.ipa
+
   inject_mods_and_upload:
     timeout-minutes: 60 # this really shouldn't freeze, but just in case, given that it is running daily
     runs-on: ubuntu-latest
-    needs: download_decrypted_ipa
+    needs: [download_decrypted_ipa, upload_old_agario_ipa]
+    if: |
+      always() && (
+      needs.download_decrypted_ipa.outputs.result == 'success' ||
+      needs.upload_old_agario_ipa.outputs.result == 'success'
+      )
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -109,4 +137,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python upload_mods.py $GITHUB_TOKEN
+          python upload_mods.py $GITHUB_TOKEN ${{ github.event.inputs.release_title }} ${{ github.event.inputs.release_description }}
