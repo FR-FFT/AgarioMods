@@ -14,42 +14,99 @@ jobs:
       - name: Check for update
         id: check_change
         run: |
-          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.0)  
+          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.6.1)  
           echo "Response: $response"
 
           
           
-          if [[ "$response" != "tru" ]]; then
+          if [[ "$response" != "https://www.mediafire.com/file/txcrv6dr4j3496e/SharkMod_1.7.1.ipa/file" ]]; then
             echo "Change detected!"
-            echo "change_detected=true" >> $GITHUB_OUTPUT
+            echo "change_detected=$response" >> $GITHUB_OUTPUT
           else
             echo "No change detected."
             echo "change_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check for existing open issues
-        id: check_existing_issues
-        if: steps.check_change.outputs.change_detected == 'true'
-        run: |
-          # Search for open issues with the title "Shark's mod needs updating"
-          response=$(curl -s \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/issues?state=open&labels=update-needed")
-          parsed_response=$(echo "$response" | jq 'length')
-          # Check if any issues are returned
-          if [[ "$parsed_response" -eq 0 ]]; then
-            echo "No existing issues found."
-            echo "existing_issue=false" >> $GITHUB_OUTPUT
-          else
-            echo "Existing issue found."
-            echo "existing_issue=true" >> $GITHUB_OUTPUT
-          fi
+  download_ipa:
+    if: needs.check_for_changes.outputs.change_detected != 'false'
+    runs-on: ubuntu-latest
+    needs: check_for_changes
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10.13
 
-      - name: Create GitHub issue if no existing issue
-        if: steps.check_change.outputs.change_detected == 'true' && steps.check_existing_issues.outputs.existing_issue == 'false'
+      - name: Install mediafire_bulk_downloader
+        run: pip install git+https://github.com/NicKoehler/mediafire_bulk_downloader.git
+
+      - name: Download IPA
+        run: mediafire ${{ needs.check_for_changes.outputs.change_detected }}
+
+  extract_dylib:
+    runs-on: ubuntu-latest
+    needs: download_ipa
+    steps:
+      - name: get ipa name
+        id: get_ipa_name
         run: |
-          # Create an issue using GitHub API if no existing issue
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"title":"Shark mod needs updating", "body":"Please update Shark mod to the latest version. Gracias.", "labels":["update-needed"]}' \
-            https://api.github.com/repos/${{ github.repository }}/issues
+          ipa_name=$(ls | grep .ipa)
+          echo "name=$ipa_name" >> $GITHUB_OUTPUT
+
+      - name: unpack ipa
+        run: unzip ${{ steps.get_ipa_name.outputs.name }}
+
+      - name: extract dylib
+        run: |
+          cp Payload/agar.io.app/Frameworks/sharkmod.dylib sharkmod.dylib
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sharkmod.dylib
+          path: sharkmod.dylib
+
+      - name: Clean up workspace
+        run: rm -rf Payload
+
+  save_updated_dylib:
+    runs-on: ubuntu-latest
+    needs: extract_dylib
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: sharkmod.dylib
+          path: sharkmod.dylib
+
+      - name: Move dylib
+        run: |
+          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
+
+      - name: Update this workflow
+        run: |
+          sed -i -E "s#https://www.mediafire.com/file/[a-zA-Z0-9]+/[a-zA-Z0-9._-]+.ipa/file#${{ needs.check_for_changes.outputs.change_detected }}#" ./.github/workflows/check_updates.yml
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: Updated sharkmod.dylib
+          add: mods/shark/tweaks/sharkmod.dylib .github/workflows/check_updates.yml
+
+      - name: Trigger new release with main.yml
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ipa_name="${{ steps.get_ipa_name.outputs.name }}"
+          release_title="${ipa_name%.ipa}"
+          release_version="${release_title#SharkMod_}"
+          echo "release_title=$release_title"
+          echo "release_version=$release_version"
+          gh workflow run ModInjector -f release_title="$release_title" -f release_body="Automatically updated Shark's mod to latest version" -f release_tag="v$release_version"
+
+
+
