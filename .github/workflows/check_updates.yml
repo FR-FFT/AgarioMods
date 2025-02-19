@@ -19,7 +19,7 @@ jobs:
 
           
           
-          if [[ "$response" -ne "tru" ]]; then
+          if [[ "$response" != "tru" ]]; then
             echo "Change detected!"
             echo "change_detected=true" >> $GITHUB_OUTPUT
           else
