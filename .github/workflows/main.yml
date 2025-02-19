@@ -95,15 +95,52 @@ jobs:
           name: agario-ipa
           path: downloads/Agario.ipa
 
-  inject_mods_and_upload:
+  inject_mods_and_upload_new_release:
     timeout-minutes: 60 # this really shouldn't freeze, but just in case, given that it is running daily
     runs-on: ubuntu-latest
-    needs: [download_decrypted_ipa, upload_old_agario_ipa]
-    if: |
-      always() && (
-      needs.download_decrypted_ipa.outputs.result == 'success' ||
-      needs.upload_old_agario_ipa.outputs.result == 'success'
-      )
+    needs: download_decrypted_ipa
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Download decrypted IPA
+        uses: actions/download-artifact@v4
+        with:
+          name: agario-ipa
+          path: downloads
+
+      - name: Rename copy to zip
+        run: cp downloads/Agario.ipa downloads/Agario.zip
+          
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install Cyan
+        run: pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip Pillow
+        
+      - name: Inject mods
+        run: python inject_mods.py
+
+      - name: Read version from file
+        id: read_version
+        run: echo "version=$(cat version.txt)" >> $GITHUB_ENV
+
+      - name: Install PyGithub
+        run: pip install PyGithub
+
+      - name: Upload IPAs to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python upload_mods.py $GITHUB_TOKEN ${{ github.event.inputs.release_title }} ${{ github.event.inputs.release_description }}
+
+  inject_mods_and_upload_old_release:
+    timeout-minutes: 60 # this really shouldn't freeze, but just in case, given that it is running daily
+    runs-on: ubuntu-latest
+    needs: upload_old_agario_ipa
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
