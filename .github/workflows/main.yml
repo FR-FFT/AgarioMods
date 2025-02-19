@@ -88,7 +88,7 @@ jobs:
       - name: Download agario.ipa from latest release
         run: gh release download latest --pattern 'Agario.ipa' --dir downloads
       - name: Upload agario.ipa as an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: agario-ipa
           path: downloads/Agario.ipa
