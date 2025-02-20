@@ -37,12 +37,12 @@ def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
             # "repoIcon": repo_icon,
         },
         "Agar.io mods": [{
-            "name": mods_config[parse_name(asset_upload_url)]["app_name"],
+            "name": get_config(mods_config, asset_upload_url, 'app_name'),
             "version": version,
             "down": asset_upload_url,
-            "dev": mods_config[parse_name(asset_upload_url)]["developer"],
+            "dev": get_config(mods_config, asset_upload_url, 'developer'),
             "category": "Agar.io Mods",
-            "description": mods_config[parse_name(asset_upload_url)]["description"],
+            "description": get_config(mods_config, asset_upload_url, 'description'),
             "bundleID": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
             "appstore": "com.miniclip.agar.io",
             "contact": {
@@ -65,13 +65,13 @@ def construct_esign_repo_txt(asset_upload_urls, version, mods_config):
         "sourceURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/esign_repo.json",
         "apps": [
             {
-                "name": mods_config[parse_name(asset_upload_url)]["app_name"],
+                "name": get_config(mods_config, asset_upload_url, 'app_name'),
                 "bundleIdentifier": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
-                "developerName": mods_config[parse_name(asset_upload_url)]["developer"],
+                "developerName": get_config(mods_config, asset_upload_url, 'developer'),
                 "version": version,
                 "versionDate": get_current_date(),
                 "downloadURL": asset_upload_url,
-                "localizedDescription": mods_config[parse_name(asset_upload_url)]["description"],
+                "localizedDescription": get_config(mods_config, asset_upload_url, 'description'),
                 "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
                 "tintColor": "FF0000",
                 "size": 40000000,
