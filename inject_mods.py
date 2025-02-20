@@ -54,7 +54,11 @@ def inject_files(mod_type, working_path):
 
 
 def inject_tweaks(name, new_unpacked_ipa_path, tweaks, mod_config):
-    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-n", mod_config["app_name"], "-f"] + tweaks
+    # check if we have a custom icon
+    if os.isfile(f"icons/{name}.png"):
+        cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-k", f"icons/{name}.png", "-n", mod_config["app_name"], "-f"] + tweaks
+    else:
+        cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-n", mod_config["app_name"], "-f"] + tweaks
     subprocess.run(cmd)
     os.remove(f"{name}.ipa") # unpatched version no longer necessary
     os.sync()
