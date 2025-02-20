@@ -49,6 +49,6 @@
 
 ## Mod List
 
-| Mod Name | Download Link |
-|----------|---------------|
+| Mod Name | Download Link | Description | Developer |
+|----------|---------------|-------------|-----------|
 {modlist}
