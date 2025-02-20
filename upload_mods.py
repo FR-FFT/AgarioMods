@@ -193,5 +193,5 @@ if __name__ == "__main__":
     print("Tag name:", tag_name)
     print("Release name:", release_name)
     print("Body:", body)
-    mods_config = json.load(open("mods_config.json"))
+    mods_config = json.load(open("config.json"))
     upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder, mods_config)
