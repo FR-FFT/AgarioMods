@@ -5,13 +5,13 @@
     "sourceURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/esign_repo.json",
     "apps": [
         {
-            "name": "Agar.io",
+            "name": "KSXQ Agario",
             "bundleIdentifier": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
             "developerName": "",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "localizedDescription": "",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -28,36 +28,13 @@
             }
         },
         {
-            "name": "Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io.flexdebugtoolpressfingerstoopen",
-            "developerName": "",
-            "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Flex.debug.tool.press.3.fingers.to.open.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
-            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
-            "tintColor": "FF0000",
-            "size": 40000000,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "Agar.io",
+            "name": "XelaAgar",
             "bundleIdentifier": "com.miniclip.agar.io.xelahot",
-            "developerName": "",
+            "developerName": "Xelahot",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Xelahot.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Xelahot.ipa",
+            "localizedDescription": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -74,13 +51,13 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "CtrlAgar",
             "bundleIdentifier": "com.miniclip.agar.io.ctrl",
-            "developerName": "",
+            "developerName": "QxAnarky",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Ctrl.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Ctrl.ipa",
+            "localizedDescription": "Various UI options (e.g. claassic to burst, hide party icons).",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -97,13 +74,13 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "Sharkaba",
             "bundleIdentifier": "com.miniclip.agar.io.sharkkahraba",
             "developerName": "",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Shark.%2B.Kahraba.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Shark.%2B.Kahraba.ipa",
+            "localizedDescription": "",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -120,13 +97,13 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "QxAgar",
             "bundleIdentifier": "com.miniclip.agar.io.qxanarky",
-            "developerName": "",
+            "developerName": "QxAnarky",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/QxAnarky.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/QxAnarky.ipa",
+            "localizedDescription": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -143,13 +120,13 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "SharkMod",
             "bundleIdentifier": "com.miniclip.agar.io.shark",
-            "developerName": "",
+            "developerName": "shark.ytb",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Shark.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Shark.ipa",
+            "localizedDescription": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -166,13 +143,13 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "CtrlXelaAgar",
             "bundleIdentifier": "com.miniclip.agar.io.ctrlxelahot",
             "developerName": "",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Ctrl.%2B.Xelahot.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
@@ -189,13 +166,59 @@
             }
         },
         {
-            "name": "Agar.io",
+            "name": "Kahraba",
             "bundleIdentifier": "com.miniclip.agar.io.kahraba",
+            "developerName": "Kahraba",
+            "version": "2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Kahraba.ipa",
+            "localizedDescription": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "QCXAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.qxanarkyctrlxelahot",
             "developerName": "",
             "version": "2.28.10",
-            "versionDate": "2025-02-19",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-shark-v1.7.1/Kahraba.ipa",
-            "localizedDescription": "Agar.io mod for version 2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
+            "tintColor": "FF0000",
+            "size": 40000000,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "Flex Agario",
+            "bundleIdentifier": "com.miniclip.agar.io.flex",
+            "developerName": "FLEXTool",
+            "version": "2.28.10",
+            "versionDate": "2025-02-20",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.28.10-appnames/Flex.ipa",
+            "localizedDescription": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
             "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
             "tintColor": "FF0000",
             "size": 40000000,
