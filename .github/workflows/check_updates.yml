@@ -27,6 +27,9 @@ jobs:
             echo "change_detected=false" >> "$GITHUB_OUTPUT"
           fi
 
+    outputs:
+      change_detected: ${{ steps.check_change.outputs.change_detected }}
+
   download_ipa:
     if: needs.check_for_changes.outputs.change_detected != 'false'
     runs-on: ubuntu-latest
