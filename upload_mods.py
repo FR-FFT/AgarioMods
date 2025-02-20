@@ -25,7 +25,7 @@ def fetch_version():
 def get_current_date():
     return datetime.datetime.now().strftime("%Y-%m-%d")
 
-def construct_scarlet_repo_txt(asset_upload_urls, version):
+def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
     repo_name = "FR-FFT's Agar.io Mod collection"
     # repo_icon = "https://avatars.githubusercontent.com/u/136937878?v=4"
     repo_json = {
@@ -34,12 +34,12 @@ def construct_scarlet_repo_txt(asset_upload_urls, version):
             # "repoIcon": repo_icon,
         },
         "Agar.io mods": [{
-            "name": "Agar.io",
+            "name": mods_config[parse_name(asset_upload_url)]["app_name"],
             "version": version,
             "down": asset_upload_url,
-            "dev": "",
+            "dev": mods_config[parse_name(asset_upload_url)]["developer"],
             "category": "Agar.io Mods",
-            "description": f"Agar.io mods for version {version}",
+            "description": mods_config[parse_name(asset_upload_url)]["description"],
             "bundleID": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
             "appstore": "com.miniclip.agar.io",
             "contact": {
@@ -50,7 +50,7 @@ def construct_scarlet_repo_txt(asset_upload_urls, version):
     }
     return json.dumps(repo_json, indent=4)
 
-def construct_esign_repo_txt(asset_upload_urls, version):
+def construct_esign_repo_txt(asset_upload_urls, version, mods_config):
 
     repo_name = "FR-FFT's Agar.io Mod collection"
     # repo_icon = "https://avatars.githubusercontent.com/u/136937878?v=4"
@@ -62,13 +62,13 @@ def construct_esign_repo_txt(asset_upload_urls, version):
         "sourceURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/esign_repo.json",
         "apps": [
             {
-                "name": "Agar.io",
+                "name": mods_config[parse_name(asset_upload_url)]["app_name"],
                 "bundleIdentifier": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
-                "developerName": "",
+                "developerName": mods_config[parse_name(asset_upload_url)]["developer"],
                 "version": version,
                 "versionDate": get_current_date(),
                 "downloadURL": asset_upload_url,
-                "localizedDescription": f"Agar.io mod for version {version}",
+                "localizedDescription": mods_config[parse_name(asset_upload_url)]["description"],
                 "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
                 "tintColor": "FF0000",
                 "size": 40000000,
@@ -91,7 +91,7 @@ def construct_esign_repo_txt(asset_upload_urls, version):
     }
     return json.dumps(repo_json, indent=4)
 
-def upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder):
+def upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder, mods_config):
     # Authenticate with GitHub
     g = Github(token)
     repo = g.get_repo(repo_name)
@@ -149,19 +149,19 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
 
 
 
-    scarlet_repo_txt = construct_scarlet_repo_txt(asset_upload_urls, version)
+    scarlet_repo_txt = construct_scarlet_repo_txt(asset_upload_urls, version, mods_config)
     try:
         file = repo.get_contents("scarlet_repo.json", ref="main")
-        repo.update_file("scarlet_repo.json", "Updated Scarlet repo", scarlet_repo_txt, file.sha, branch="main")
+        repo.update_file("scarlet_repo.json", "Updated scarlet repo", scarlet_repo_txt, file.sha, branch="main")
     except:
-        repo.create_file("scarlet_repo.json", "Created Scarlet repo", scarlet_repo_txt, branch="main")
+        repo.create_file("scarlet_repo.json", "Created scarlet repo", scarlet_repo_txt, branch="main")
 
-    esign_repo_txt = construct_esign_repo_txt(asset_upload_urls, version)
+    esign_repo_txt = construct_esign_repo_txt(asset_upload_urls, version, mods_config)
     try:
         file = repo.get_contents("esign_repo.json", ref="main")
-        repo.update_file("esign_repo.json", "Updated eSign repo", esign_repo_txt, file.sha, branch="main")
+        repo.update_file("esign_repo.json", "Updated esign repo", esign_repo_txt, file.sha, branch="main")
     except:
-        repo.create_file("esign_repo.json", "Created eSign repo", esign_repo_txt, branch="main")
+        repo.create_file("esign_repo.json", "Created esign repo", esign_repo_txt, branch="main")
 
 
     # Update README.md
@@ -190,4 +190,5 @@ if __name__ == "__main__":
     print("Tag name:", tag_name)
     print("Release name:", release_name)
     print("Body:", body)
-    upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder)
+    mods_config = json.load(open("mods_config.json"))
+    upload_assets_and_update_files(repo_name, token, tag_name, release_name, body, folder, mods_config)

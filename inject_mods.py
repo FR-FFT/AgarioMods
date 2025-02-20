@@ -1,5 +1,6 @@
 PACKEDIPA_PATH = "downloads/Agario.zip"
 
+import json
 import os
 import subprocess
 import shutil
@@ -52,8 +53,8 @@ def inject_files(mod_type, working_path):
                 shutil.copyfile(src, dst)
 
 
-def inject_tweaks(name, new_unpacked_ipa_path, tweaks):
-    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-f"] + tweaks
+def inject_tweaks(name, new_unpacked_ipa_path, tweaks, mod_config):
+    cmd = ["cyan", "-uwdeg", "-i", f"{name}.ipa", "-o", f"{name} patched.ipa", "-b", f"com.miniclip.agar.io.{flatten_name(name)}", "-n", mod_config["app_name"], "-f"] + tweaks
     subprocess.run(cmd)
     os.remove(f"{name}.ipa") # unpatched version no longer necessary
     os.sync()
@@ -88,12 +89,12 @@ def prepare_files(base_packed_ipa_path, type):
 
     shutil.unpack_archive(f"{new_unpacked_ipa_path}.zip", new_unpacked_ipa_path)
     
-def inject_mods(base_packed_ipa_path, mod_types, name):
+def inject_mods(base_packed_ipa_path, mod_config, name):
     # TODO: potential improvements: separate mods more clearly, add combinations
-    assert len(mod_types) > 0
+    assert len(mod_config["mods"]) > 0
 
     # use mods/mod_type/ to get tweaks
-    tweaks = list(set([f"mods/{mod_type}/tweaks/{f}" for mod_type in mod_types for f in os.listdir(f"mods/{mod_type}/tweaks")]))
+    tweaks = list(set([f"mods/{mod_type}/tweaks/{f}" for mod_type in mod_config["mods"] for f in os.listdir(f"mods/{mod_type}/tweaks")]))
 
     print(f"Creating {name}")
     
@@ -103,7 +104,7 @@ def inject_mods(base_packed_ipa_path, mod_types, name):
 
     # copy necessary files into the payload
     print("Injecting files necessary for the mod to function")
-    for mod_type in mod_types:
+    for mod_type in mod_config["mods"]:
         inject_files(mod_type, new_unpacked_ipa_path)
 
 
@@ -124,7 +125,7 @@ def inject_mods(base_packed_ipa_path, mod_types, name):
             time.sleep(7.5)
 
 
-    inject_tweaks(name, new_unpacked_ipa_path, list(set(tweaks)))
+    inject_tweaks(name, new_unpacked_ipa_path, list(set(tweaks)), mod_config)
 
 
 
@@ -140,15 +141,10 @@ def main():
 
     # better?
     # name must be unique
-    inject_mods(PACKEDIPA_PATH, ["xelahot"], "Xelahot")
-    inject_mods(PACKEDIPA_PATH, ["ctrl"], "Ctrl")
-    inject_mods(PACKEDIPA_PATH, ["flex"], "Flex debug tool (press 3 fingers to open)")
-    inject_mods(PACKEDIPA_PATH, ["shark"], "Shark")
-    inject_mods(PACKEDIPA_PATH, ["ctrl", "xelahot"], "Ctrl + Xelahot")
-    inject_mods(PACKEDIPA_PATH, ["kahraba"], "Kahraba")
-    inject_mods(PACKEDIPA_PATH, ["ui"], "QxAnarky")
-    inject_mods(PACKEDIPA_PATH, ["kahraba", "xelahot", "shark", "ui"], "Kahraba + Shark + Xelahot + QxAnarky")
-    inject_mods(PACKEDIPA_PATH, ["kahraba", "shark"], "Shark + Kahraba")
+    config = json.load(open("config.json"))
+    for mod_type in config:
+        inject_mods(PACKEDIPA_PATH, config[mod_type], mod_type)
+
 
 if __name__ == "__main__":
     main()

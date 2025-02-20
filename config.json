@@ -1,0 +1,54 @@
+{
+    "Xelahot": {
+       "mods": ["xelahot"],
+       "app_name": "XelaAgar",
+       "description": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
+       "developer": "Xelahot"
+    },
+    "Ctrl": {
+         "mods": ["ctrl"],
+         "app_name": "CtrlAgar",
+         "description": "Various UI options (e.g. claassic to burst, hide party icons).",
+         "developer": "QxAnarky"
+    },
+    "Flex": {
+        "mods": ["flex"],
+        "app_name": "Flex Agario",
+        "description": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
+        "developer": "FLEXTool"
+    },
+    "Shark": {
+        "mods": ["shark"],
+        "app_name": "SharkMod",
+        "description": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
+        "developer": "shark.ytb"
+    },
+    "Ctrl + Xelahot": {
+        "mods": ["ctrl", "xelahot"],
+        "app_name": "CtrlXelaAgar"
+    },
+    "Kahraba": {
+        "mods": ["kahraba"],
+        "app_name": "Kahraba",
+        "description": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
+        "developer": "Kahraba"
+    },
+    "QxAnarky": {
+        "mods": ["ui"],
+        "app_name": "QxAgar",
+        "description": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
+        "developer": "QxAnarky"
+    },
+    "Kahraba + Shark + Xelahot + QxAnarky": {
+        "mods": ["kahraba", "shark", "xelahot", "ui"],
+        "app_name": "KSXQ Agario"
+    },
+    "Shark + Kahraba": {
+        "mods": ["kahraba", "shark"],
+        "app_name": "Sharkaba"
+    },
+    "QxAnarky + Ctrl + Xelahot": {
+        "mods": ["ctrl", "xelahot", "ui"],
+        "app_name": "QCXAgar"
+    }
+}
