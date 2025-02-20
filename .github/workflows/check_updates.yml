@@ -21,10 +21,10 @@ jobs:
           
           if [[ "$response" != "https://www.mediafire.com/file/txcrv6dr4j3496e/SharkMod_1.7.1.ipa/file" ]]; then
             echo "Change detected!"
-            echo "change_detected=$response" >> $GITHUB_OUTPUT
+            echo "change_detected=$response" >> "$GITHUB_OUTPUT"
           else
             echo "No change detected."
-            echo "change_detected=false" >> $GITHUB_OUTPUT
+            echo "change_detected=false" >> "$GITHUB_OUTPUT"
           fi
 
   download_ipa:
