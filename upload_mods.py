@@ -16,7 +16,7 @@ def parse_name(url):
     return unquote(url.split('/')[-1].replace('.ipa', '').replace('.', ' '))
 
 def get_config(mods_config, asset_upload_url, key):
-    return mods_config[parse_name(asset_upload_url)][key] or ""
+    return mods_config[parse_name(asset_upload_url)][key] if parse_name(asset_upload_url) in mods_config and key in mods_config[parse_name(asset_upload_url)] else ""
 
 def fetch_version():
     # return os.environ["version"] maybe?
