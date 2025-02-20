@@ -4,7 +4,7 @@ import sys
 from github import Github
 import requests
 import datetime
-from urllib.parse import unquote
+from urllib.parse import unquote, quote_plus as uriencode
 
 def flatten_name(name):
     return "".join([c for c in name if c.isalpha()]).lower()
@@ -39,6 +39,7 @@ def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
         "Agar.io mods": [{
             "name": get_config(mods_config, asset_upload_url, 'app_name'),
             "version": version,
+            "icon": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url))}.png",
             "down": asset_upload_url,
             "dev": get_config(mods_config, asset_upload_url, 'developer'),
             "category": "Agar.io Mods",
@@ -72,7 +73,7 @@ def construct_esign_repo_txt(asset_upload_urls, version, mods_config):
                 "versionDate": get_current_date(),
                 "downloadURL": asset_upload_url,
                 "localizedDescription": get_config(mods_config, asset_upload_url, 'description'),
-                "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/89/1b/8a/891b8aec-15e9-98b3-c9bd-8e1985729a91/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp",
+                "iconURL": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url))}.png",
                 "tintColor": "FF0000",
                 "size": 40000000,
                 "screenshotURLs": [
