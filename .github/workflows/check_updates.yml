@@ -35,16 +35,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_for_changes
     steps:
-      - name: Setup python
-        uses: actions/setup-python@v4
+      - name: Install cargo
+        uses: actions-rs/toolchain@v1
         with:
-          python-version: 3.10.13
+          toolchain: stable
 
-      - name: Install mediafire_bulk_downloader
-        run: pip install git+https://github.com/NicKoehler/mediafire_bulk_downloader.git
+      - name: Install mediafire_rs
+        run: cargo install mediafire_rs
 
       - name: Download IPA
-        run: mediafire ${{ needs.check_for_changes.outputs.change_detected }}
+        run: mdrs ${{ needs.check_for_changes.outputs.change_detected }}
 
   extract_dylib:
     runs-on: ubuntu-latest
