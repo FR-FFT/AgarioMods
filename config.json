@@ -50,5 +50,13 @@
     "QxAnarky + Ctrl + Xelahot": {
         "mods": ["ctrl", "xelahot", "ui"],
         "app_name": "QCXAgar"
+    },
+    "Shark + QxAnarky": {
+        "mods": ["shark", "ui"],
+        "app_name": "AnSharky"
+    },
+    "Shark + Ctrl": {
+        "mods": ["shark", "ctrl"],
+        "app_name": "SharkCtrl"
     }
 }
