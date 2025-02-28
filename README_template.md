@@ -38,6 +38,8 @@
     <a href="https://fwuf.in/#/feather://source/https://raw.githubusercontent.com/FR-FFT/AgarioMods/main/esign_repo.json">
     <img src="https://img.shields.io/badge/Add%20repo%20to%20Feather-%20blue?style=for-the-badge&color=808BF8" alt="Add repo to Feather">
   </a>
+<p align="center">
+    Or add manually: <code>https://raw.githubusercontent.com/FR-FFT/AgarioMods/main/esign_repo.json</code>
 </p>
 
 
