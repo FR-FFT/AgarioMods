@@ -74,6 +74,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: download_ipa
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        
       - uses: actions/download-artifact@v4
       - name: Download ipa
         run: ls -R
@@ -83,21 +86,15 @@ jobs:
         run: |
           ipa_name=$(ls | grep .ipa)
           echo "name=$ipa_name" >> $GITHUB_OUTPUT
-      - name: Debug
-        run: ls
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          
 
       - name: debug & unpack ipa
-        run: |
-          echo "Listing files in directory:"
-          ls -lah
-          FILE=$(ls | grep .ipa)
-          echo "Found file: '$FILE'"
-          if [[ -f "$FILE" ]]; then
-            echo "File $FILE exists."
-          else
-            echo "File $FILE NOT found!"
-          fi
-          ls | grep .ipa | xargs -I '{}' unzip {}
+        run: python unzip_ipa.py
 
       - name: extract dylib
         run: |
