@@ -83,6 +83,8 @@ jobs:
         run: |
           ipa_name=$(ls | grep .ipa)
           echo "name=$ipa_name" >> $GITHUB_OUTPUT
+      - name: Debug
+        run: ls
 
       - name: unpack ipa
         run: unzip ${{ steps.get_ipa_name.outputs.name }}
