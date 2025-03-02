@@ -96,9 +96,8 @@ jobs:
             echo "File $FILE exists."
           else
             echo "File $FILE NOT found!"
-            exit 1
           fi
-          unzip "$FILE"
+          ls | grep .ipa | xargs -I '{}' unzip {}
 
       - name: extract dylib
         run: |
