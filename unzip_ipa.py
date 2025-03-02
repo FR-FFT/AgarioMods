@@ -1,9 +1,8 @@
 import os
-import glob
 import subprocess
 
 # 🔍 Find the first .ipa file in the current directory
-ipa_files = glob.glob("*.zip")
+ipa_files = [file for file in os.listdir() if file.endswith(".zip")]
 
 if not ipa_files:
     print("❌ No .ipa files found!")
