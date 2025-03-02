@@ -77,6 +77,9 @@ jobs:
       - uses: actions/download-artifact@v4
       - name: Download ipa
         run: ls -R
+
+      - name: Move ipa
+        run: mv */* .
           
       - name: get ipa name
         id: get_ipa_name
@@ -85,32 +88,8 @@ jobs:
           echo "name=${ipa_name%.zip}" >> $GITHUB_OUTPUT
           echo $ipa_name
           
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-          
-      - name: Unzip IPA using Python
-        run: |
-          python -c "
-          import os, subprocess, shutil
-          print(os.listdir())
-          ipa_files = [ file for file in os.listdir() if file.endswith('.zip') ]
-          
-          if not ipa_files:
-              print('❌ No .ipa files found!')
-              exit(1)
-          
-          ipa_file = ipa_files[0]  # Take the first found .ipa file
-          print(f'✅ Found IPA file: {ipa_file}')
-          
-          
-          # Check file type
-          file_type = subprocess.run(['file', ipa_file], capture_output=True, text=True)
-          print(f'📂 File type: {file_type.stdout.strip()}')
-
-          shutil.unpack_archive(ipa_file)
-          "
+      - name: Unzip
+        run: unzip ${{ steps.get_ipa_name.outputs.name }}
 
       - name: extract dylib
         run: |
