@@ -63,8 +63,8 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SharkMod_v${{ env.VERSION }}.ipa
-          path: SharkMod_v${{ env.VERSION }}.ipa
+          name: SharkMod_v${{ env.IPA_VERSION }}.ipa
+          path: SharkMod_v${{ env.IPA_VERSION }}.ipa
 
 
   extract_dylib:
@@ -74,8 +74,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: SharkMod_v${{ env.VERSION }}.ipa
-          path: SharkMod_v${{ env.VERSION }}.ipa
+          name: SharkMod_v${{ env.IPA_VERSION }}.ipa
+          path: SharkMod_v${{ env.IPA_VERSION }}.ipa
           
       - name: get ipa name
         id: get_ipa_name
@@ -118,7 +118,7 @@ jobs:
 
       - name: Update this workflow
         run: |
-          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid={{ env.VERSION }}#" ./.github/workflows/check_updates.yml
+          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid={{ env.IPA_VERSION }}#" ./.github/workflows/check_updates.yml
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
