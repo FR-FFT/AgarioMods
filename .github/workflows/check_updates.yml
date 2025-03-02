@@ -73,10 +73,7 @@ jobs:
   extract_dylib:
     runs-on: ubuntu-latest
     needs: download_ipa
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
-        
+    steps:        
       - uses: actions/download-artifact@v4
       - name: Download ipa
         run: ls -R
@@ -92,7 +89,9 @@ jobs:
         with:
           python-version: 3.9
           
-
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        
       - name: debug & unpack ipa
         run: python unzip_ipa.py
 
