@@ -127,7 +127,7 @@ jobs:
 
       - name: Update this workflow
         run: |
-          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid={{ needs.download_ipa.outputs.IPA_VERSION }}#" ./.github/workflows/check_updates.yml
+          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid={{ needs.download_ipa.outputs.IPA_VERSION }}#" .github/workflows/check_updates.yml
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
@@ -145,4 +145,4 @@ jobs:
           release_version="${release_title#SharkMod_}"
           echo "release_title=$release_title"
           echo "release_version=$release_version"
-          gh workflow run ModInjector -f release_title="$release_title" -f release_body="Automatically updated Shark's mod to latest version" -f release_tag="shark-v$release_version"
+          # gh workflow run ModInjector -f release_title="$release_title" -f release_description="Automatically updated Shark's mod to latest version" -f release_tag="shark-v$release_version"
