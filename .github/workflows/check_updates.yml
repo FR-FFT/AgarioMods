@@ -93,7 +93,7 @@ jobs:
       - name: Unzip IPA using Python
         run: |
           python -c "
-          import os, subprocess
+          import os, subprocess, shutil
           print(os.listdir())
           ipa_files = [ file for file in os.listdir() if file.endswith('.zip') ]
           
@@ -108,15 +108,8 @@ jobs:
           # Check file type
           file_type = subprocess.run(['file', ipa_file], capture_output=True, text=True)
           print(f'📂 File type: {file_type.stdout.strip()}')
-          
-          # Unzip the IPA file
-          unzip_result = subprocess.run(['unzip', ipa_file], capture_output=True, text=True)
-          
-          if unzip_result.returncode == 0:
-              print('✅ Unzipped successfully!')
-          else:
-              print(f'❌ Unzip failed!\\n{unzip_result.stderr}')
-              exit(1)
+
+          shutil.unpack_archive(ipa_file)
           "
 
       - name: extract dylib
