@@ -75,7 +75,7 @@ jobs:
     needs: download_ipa
     steps:
       - uses: actions/download-artifact@v4
-      - name: Diownload ipa
+      - name: Download ipa
         run: ls -R
           
       - name: get ipa name
@@ -86,16 +86,19 @@ jobs:
       - name: Debug
         run: ls
 
-      - name: unpack ipa
+      - name: debug & unpack ipa
         run: |
+          echo "Listing files in directory:"
+          ls -lah
           FILE=$(ls | grep .ipa)
+          echo "Found file: '$FILE'"
           if [[ -f "$FILE" ]]; then
             echo "File $FILE exists."
           else
             echo "File $FILE NOT found!"
             exit 1
           fi
-          unzip $FILE
+          unzip "$FILE"
 
       - name: extract dylib
         run: |
