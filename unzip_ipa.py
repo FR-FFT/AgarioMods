@@ -3,7 +3,7 @@ import subprocess
 
 # 🔍 Find the first .ipa file in the current directory
 ipa_files = [file for file in os.listdir() if file.endswith(".zip")]
-
+print(os.listdir())
 if not ipa_files:
     print("❌ No .ipa files found!")
     exit(1)
