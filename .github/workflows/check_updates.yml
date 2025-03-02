@@ -79,7 +79,11 @@ jobs:
         run: ls -R
 
       - name: Move ipa
-        run: mv */* .
+        run: |
+          ipa_name=$(ls | grep .zip)
+          mv $ipa_name/$ipa_name temp_$ipa_name
+          rm -rf $ipa_name
+          mv temp_$ipa_name $ipa_name
           
       - name: get ipa name
         id: get_ipa_name
