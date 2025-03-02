@@ -66,8 +66,8 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SharkMod_v${{ needs.download_ipa.outputs.IPA_VERSION }}.ipa
-          path: SharkMod_v${{ needs.download_ipa.outputs.IPA_VERSION }}.ipa
+          name: SharkMod_v${{ env.IPA_VERSION }}.ipa
+          path: SharkMod_v${{ env.IPA_VERSION }}.ipa
 
 
   extract_dylib:
