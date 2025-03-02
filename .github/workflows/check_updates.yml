@@ -123,7 +123,7 @@ jobs:
 
       - name: Move dylib
         run: |
-          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
+          mv sharkmod.dylib/sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
 
       - name: Update this workflow
         run: |
