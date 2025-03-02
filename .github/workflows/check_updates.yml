@@ -61,7 +61,7 @@ jobs:
           echo "Downloading IPA from $IPA_URL..."
           curl -L -o "SharkMod v$VERSION.ipa" "$IPA_URL"
 
-          ls | grep .ipa | xargs -I '{}' mv {} SharkMod_v${{ needs.download_ipa.outputs.IPA_VERSION }}.ipa
+          ls | grep .ipa | xargs -I '{}' mv {} SharkMod_v$IPA_VERSION.ipa
 
       - name: upload artifact
         uses: actions/upload-artifact@v4
