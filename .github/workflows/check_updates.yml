@@ -84,13 +84,18 @@ jobs:
           ipa_name=$(ls | grep .ipa)
           echo "name=$ipa_name" >> $GITHUB_OUTPUT
       - name: Debug
-        run: |
-          ls
-          mv $ipa_name ${ipa_name%.ipa}.zip
-          ls
+        run: ls
 
       - name: unpack ipa
-        run: unzip ${{ steps.get_ipa_name.outputs.name }}
+        run: |
+          FILE=${{ steps.get_ipa_name.outputs.name }}
+          if [[ -f "$FILE" ]]; then
+            echo "File $FILE exists."
+          else
+            echo "File $FILE NOT found!"
+            exit 1
+          fi
+          unzip $FILE
 
       - name: extract dylib
         run: |
