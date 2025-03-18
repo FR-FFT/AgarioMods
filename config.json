@@ -44,6 +44,7 @@
         "app_name": "Bite Agar.io",
         "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
         "developer": "Bite"
+    },
     "Kahraba + Shark + Xelahot + QxAnarky": {
         "mods": ["kahraba", "shark", "xelahot", "ui"],
         "app_name": "KSXQ Agario"
