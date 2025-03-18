@@ -13,7 +13,7 @@
     },
     "Flex": {
         "mods": ["flex"],
-        "app_name": "Flex Agario",
+        "app_name": "Flex Agar.io",
         "description": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
         "developer": "FLEXTool"
     },
@@ -39,6 +39,11 @@
         "description": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
         "developer": "QxAnarky"
     },
+    "Bite": {
+        "mods": ["bite"],
+        "app_name": "Bite Agar.io",
+        "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
+        "developer": "Bite"
     "Kahraba + Shark + Xelahot + QxAnarky": {
         "mods": ["kahraba", "shark", "xelahot", "ui"],
         "app_name": "KSXQ Agario"
