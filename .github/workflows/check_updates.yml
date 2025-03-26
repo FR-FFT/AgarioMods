@@ -126,7 +126,9 @@ jobs:
           else
             echo "File sharkmod.dylib does not exist"
           fi
-          mv sharkmod.dylib ./mods/shark/tweaks/sharkmod.dylib -f
+
+          rm mods/shark/tweaks/sharkmod.dylib
+          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
 
       - name: Update this workflow
         run: |
