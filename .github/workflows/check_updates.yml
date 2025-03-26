@@ -54,7 +54,7 @@ jobs:
           echo "Found IPA: $IPA_URL"
           echo "IPA_URL=$IPA_URL" >> $GITHUB_ENV
           VERSION=$(echo "$IPA_URL" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-          echo "Version: $VERSION"
+          echo "Version: '$VERSION'"
           echo "ipa_version=${VERSION}"  >> $GITHUB_OUTPUT
           
           
