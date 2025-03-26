@@ -74,7 +74,7 @@ jobs:
         id: get_ipa_name
         run: |
           ipa_name=$(ls | grep .zip)
-          echo "name=SharkMod v${{ steps.fetch_repo_data.outputs.ipa_version }}.ipa" >> $GITHUB_OUTPUT
+          echo "name=SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip" >> $GITHUB_OUTPUT
           echo $ipa_name
           
       - name: Unzip
