@@ -33,10 +33,13 @@ jobs:
     if: needs.check_for_changes.outputs.change_detected != 'false'
     runs-on: ubuntu-latest
     needs: check_for_changes
+    outputs:
+      version: ${{ steps.fetch_repo_data.outputs.ipa_version }}
     steps:
       - name: Debug
         run: echo ${{ needs.check_for_changes.outputs.change_detected }}
       - name: Fetch repo html
+        id: fetch_repo_data
         run: |
           URL="https://ytbshark.github.io/"
           echo "Fetching HTML from $URL..."
@@ -52,8 +55,8 @@ jobs:
           echo "IPA_URL=$IPA_URL" >> $GITHUB_ENV
           VERSION=$(echo "$IPA_URL" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
           echo "Version: $VERSION"
-          echo "IPA_VERSION=$VERSION"  >> $GITHUB_OUTPUT
-          echo "IPA_VERSION=$VERSION"  >> $GITHUB_ENV
+          echo "ipa_version=$VERSION"  >> $GITHUB_OUTPUT
+          
           
       - name: Download IPA file
         run: |
@@ -65,13 +68,13 @@ jobs:
           echo "Downloading IPA from $IPA_URL..."
           curl -L -o "SharkMod v$VERSION.ipa" "$IPA_URL"
 
-          ls | grep .ipa | xargs -I '{}' mv {} SharkMod_v$IPA_VERSION.zip
+          ls | grep .ipa | xargs -I '{}' mv {} SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip
 
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SharkMod_v${{ env.IPA_VERSION }}.zip
-          path: SharkMod_v${{ env.IPA_VERSION }}.zip
+          name: SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip
+          path: SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}}.zip
 
 
   extract_dylib:
