@@ -129,6 +129,8 @@ jobs:
           else
             echo "File sharkmod.dylib does not exist"
           fi
+          sha256sum mods/shark/tweaks/sharkmod.dylib
+          sha256sum sharkmod.dylib
 
           rm mods/shark/tweaks/sharkmod.dylib
           cp sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
