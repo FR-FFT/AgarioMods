@@ -120,7 +120,7 @@ jobs:
           fi
 
       - name: List files
-        run: ls -la  # Shows repo contents
+        run:   # Shows repo contents
 
       - name: Move dylib
         run: |
@@ -131,7 +131,8 @@ jobs:
           fi
 
           rm mods/shark/tweaks/sharkmod.dylib
-          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
+          cp sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
+          ls -la
 
       - name: Update this workflow
         run: |
