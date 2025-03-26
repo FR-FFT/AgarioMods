@@ -14,7 +14,7 @@ jobs:
       - name: Check for update
         id: check_change
         run: |
-          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.2)  
+          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.3)  
           echo "Response: $response"
 
           
@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_for_changes
     steps:
+      - name: Debug
+        run: echo ${{ needs.check_for_changes.outputs.change_detected }}
       - name: Fetch repo html
         run: |
           URL="https://ytbshark.github.io/"
