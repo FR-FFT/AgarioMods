@@ -133,7 +133,7 @@ jobs:
           sha256sum sharkmod.dylib
 
           rm mods/shark/tweaks/sharkmod.dylib
-          cp sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
+          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib
           ls -la
 
       - name: Update this workflow
