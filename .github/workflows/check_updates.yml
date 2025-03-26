@@ -97,12 +97,17 @@ jobs:
 
       # - name: Clean up workspace
       #   run: rm -rf Payload
+      - name: Backup files
+        run: mkdir -p /tmp/backup && cp -R * /tmp/backup/
         
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           clean: false
-
+      
+      - name: Restore files
+        run: cp -R /tmp/backup/* ./
+      
       - name: Debug files
         run: |
           if [ -f "sharkmod.dylib" ]; then
