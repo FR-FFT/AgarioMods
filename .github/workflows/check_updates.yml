@@ -93,6 +93,7 @@ jobs:
             echo "File sharkmod.dylib exists"
           else
             echo "File sharkmod.dylib does not exist"
+          fi
 
       # - name: Clean up workspace
       #   run: rm -rf Payload
@@ -106,6 +107,7 @@ jobs:
             echo "File sharkmod.dylib exists"
           else
             echo "File sharkmod.dylib does not exist"
+          fi
 
       - name: List files
         run: ls -la  # Shows repo contents
