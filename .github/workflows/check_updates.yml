@@ -28,12 +28,12 @@ jobs:
           fi
 
   download_ipa:
-    if: needs.check_for_changes.outputs.change_detected != 'false'
+    if: needs.check_for_changes.outputs.check_change != 'false'
     runs-on: ubuntu-latest
     needs: check_for_changes
     steps:
       - name: Debug
-        run: echo ${{ needs.check_for_changes.outputs.change_detected }}
+        run: echo ${{ needs.check_for_changes.outputs.check_change }}
       - name: Fetch repo html
         run: |
           URL="https://ytbshark.github.io/"
