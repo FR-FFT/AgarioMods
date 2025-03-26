@@ -120,7 +120,7 @@ jobs:
           fi
 
       - name: List files
-        run:   # Shows repo contents
+        run: ls -la  # Shows repo contents
 
       - name: Move dylib
         run: |
