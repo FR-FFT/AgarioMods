@@ -38,9 +38,6 @@ jobs:
     steps:
       - name: Debug
         run: echo ${{ needs.check_for_changes.outputs.change_detected }}
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
         
       - name: Fetch repo html
         id: fetch_repo_data
@@ -91,11 +88,15 @@ jobs:
       - name: Clean up workspace
         run: rm -rf Payload
         
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      - name: List files
+        run: ls -la  # Shows repo contents
 
       - name: Move dylib
         run: |
-          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
+          mv sharkmod.dylib ./mods/shark/tweaks/sharkmod.dylib -f
 
       - name: Update this workflow
         run: |
