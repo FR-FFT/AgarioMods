@@ -95,8 +95,11 @@ jobs:
             echo "File sharkmod.dylib does not exist"
           fi
 
-      # - name: Clean up workspace
-      #   run: rm -rf Payload
+      - name: Clean up workspace
+        run: |
+          rm -rf Payload
+          rm  ${{ steps.get_ipa_name.outputs.name }}
+          
       - name: Backup files
         run: mkdir -p /tmp/backup && cp -R * /tmp/backup/
         
@@ -146,9 +149,6 @@ jobs:
         with:
           default_author: github_actions
           message: Updated sharkmod.dylib
-          add: |
-            - mods/shark/tweaks/sharkmod.dylib
-            - .github/workflows/check_updates.yml
 
       - name: Trigger new release with main.yml
         env:
