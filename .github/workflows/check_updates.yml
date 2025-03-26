@@ -137,7 +137,7 @@ jobs:
         with:
           default_author: github_actions
           message: Updated sharkmod.dylib
-          add: mods/shark/tweaks/sharkmod.dylib .github/workflows/check_updates.yml
+          add: ./mods/shark/tweaks/sharkmod.dylib ./.github/workflows/check_updates.yml
 
       - name: Trigger new release with main.yml
         env:
