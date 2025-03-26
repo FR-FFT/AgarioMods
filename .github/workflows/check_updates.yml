@@ -89,11 +89,23 @@ jobs:
           
           cp Payload/agar.io.app/Frameworks/sharkmod.dylib sharkmod.dylib
 
+          if [ -f "sharkmod.dylib" ]; then
+            echo "File sharkmod.dylib exists"
+          else
+            echo "File sharkmod.dylib does not exist"
+
       # - name: Clean up workspace
       #   run: rm -rf Payload
         
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Debug files
+        run: |
+          if [ -f "sharkmod.dylib" ]; then
+            echo "File sharkmod.dylib exists"
+          else
+            echo "File sharkmod.dylib does not exist"
 
       - name: List files
         run: ls -la  # Shows repo contents
@@ -102,6 +114,8 @@ jobs:
         run: |
           if [ -f "sharkmod.dylib" ]; then
             echo "File sharkmod.dylib exists"
+          else
+            echo "File sharkmod.dylib does not exist"
           fi
           mv sharkmod.dylib ./mods/shark/tweaks/sharkmod.dylib -f
 
