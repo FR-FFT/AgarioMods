@@ -89,7 +89,7 @@ jobs:
       #   run: rm -rf Payload
         
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: List files
         run: ls -la  # Shows repo contents
