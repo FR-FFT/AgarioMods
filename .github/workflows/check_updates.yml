@@ -9,6 +9,8 @@ jobs:
   check_for_changes:
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    outputs:
+          change_detected: ${{ steps.check_change.outputs.change_detected }}
 
     steps:
       - name: Check for update
@@ -28,12 +30,12 @@ jobs:
           fi
 
   download_ipa:
-    if: needs.check_for_changes.outputs.check_change != 'false'
+    if: needs.check_for_changes.outputs.change_detected != 'false'
     runs-on: ubuntu-latest
     needs: check_for_changes
     steps:
       - name: Debug
-        run: echo ${{ needs.check_for_changes.outputs.check_change }}
+        run: echo ${{ needs.check_for_changes.outputs.change_detected }}
       - name: Fetch repo html
         run: |
           URL="https://ytbshark.github.io/"
