@@ -83,6 +83,10 @@ jobs:
 
       - name: extract dylib
         run: |
+          if [ -f Payload/agar.io.app/Frameworks/sharkmod.dylib ]; then
+            echo "File Payload/agar.io.app/Frameworks/sharkmod.dylib exists"
+          fi
+          
           cp Payload/agar.io.app/Frameworks/sharkmod.dylib sharkmod.dylib
 
       # - name: Clean up workspace
@@ -96,6 +100,9 @@ jobs:
 
       - name: Move dylib
         run: |
+          if [ -f "sharkmod.dylib" ]; then
+            echo "File sharkmod.dylib exists"
+          fi
           mv sharkmod.dylib ./mods/shark/tweaks/sharkmod.dylib -f
 
       - name: Update this workflow
