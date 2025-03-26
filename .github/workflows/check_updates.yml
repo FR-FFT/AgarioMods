@@ -16,7 +16,7 @@ jobs:
       - name: Check for update
         id: check_change
         run: |
-          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.3)  
+          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.2)  
           echo "Response: $response"
 
           
