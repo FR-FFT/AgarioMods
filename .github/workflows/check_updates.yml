@@ -132,12 +132,19 @@ jobs:
         run: |
           sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid=${{ steps.fetch_repo_data.outputs.ipa_version }}#" .github/workflows/check_updates.yml
 
+      - name: Debug files
+        run: |
+          if [ -f "mods/shark/tweaks/sharkmod.dylib" ]; then
+            echo "File sharkmod.dylib exists"
+          else
+            echo "File sharkmod.dylib does not exist"
+          fi
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
-          # message: Updated sharkmod.dylib
-          # add: ./mods/shark/tweaks/sharkmod.dylib ./.github/workflows/check_updates.yml
+          message: Updated sharkmod.dylib
+          add: mods/shark/tweaks/sharkmod.dylib .github/workflows/check_updates.yml
 
       - name: Trigger new release with main.yml
         env:
