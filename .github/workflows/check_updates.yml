@@ -85,8 +85,8 @@ jobs:
         run: |
           cp Payload/agar.io.app/Frameworks/sharkmod.dylib sharkmod.dylib
 
-      - name: Clean up workspace
-        run: rm -rf Payload
+      # - name: Clean up workspace
+      #   run: rm -rf Payload
         
       - name: Checkout repository
         uses: actions/checkout@v3
