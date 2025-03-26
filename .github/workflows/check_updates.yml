@@ -66,37 +66,15 @@ jobs:
           fi
           
           echo "Downloading IPA from $IPA_URL..."
-          curl -L -o "SharkMod v$VERSION.ipa" "$IPA_URL"
+          curl -L -o "SharkMod v${{ steps.fetch_repo_data.outputs.ipa_version }}.ipa" "$IPA_URL"
 
           ls | grep .ipa | xargs -I '{}' mv {} SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip
-
-      - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip
-          path: SharkMod_v${{ steps.fetch_repo_data.outputs.ipa_version }}.zip
-
-
-  extract_dylib:
-    runs-on: ubuntu-latest
-    needs: download_ipa
-    steps:        
-      - uses: actions/download-artifact@v4
-      - name: Download ipa
-        run: ls -R
-
-      - name: Move ipa
-        run: |
-          ipa_name=$(ls | grep .zip)
-          mv $ipa_name/$ipa_name temp_$ipa_name
-          rm -rf $ipa_name
-          mv temp_$ipa_name $ipa_name
           
       - name: get ipa name
         id: get_ipa_name
         run: |
           ipa_name=$(ls | grep .zip)
-          echo "name=${ipa_name%.zip}" >> $GITHUB_OUTPUT
+          echo "name=SharkMod v${{ steps.fetch_repo_data.outputs.ipa_version }}.ipa" >> $GITHUB_OUTPUT
           echo $ipa_name
           
       - name: Unzip
@@ -106,38 +84,16 @@ jobs:
         run: |
           cp Payload/agar.io.app/Frameworks/sharkmod.dylib sharkmod.dylib
 
-      - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sharkmod.dylib
-          path: sharkmod.dylib
-
       - name: Clean up workspace
         run: rm -rf Payload
 
-  save_updated_dylib:
-    runs-on: ubuntu-latest
-    needs: extract_dylib
-    steps:
-      - name: Debug
-        run: ls -r
-    
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: sharkmod.dylib
-          path: sharkmod.dylib
-
       - name: Move dylib
         run: |
-          mv sharkmod.dylib/sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
+          mv sharkmod.dylib mods/shark/tweaks/sharkmod.dylib -f
 
       - name: Update this workflow
         run: |
-          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid={{ needs.download_ipa.outputs.IPA_VERSION }}#" .github/workflows/check_updates.yml
+          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid=${{ steps.fetch_repo_data.outputs.ipa_version }}#" .github/workflows/check_updates.yml
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
