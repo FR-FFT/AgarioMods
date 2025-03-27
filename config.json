@@ -33,6 +33,12 @@
         "description": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
         "developer": "Kahraba"
     },
+    "Kahraba2": {
+        "mods": ["kahraba2"],
+        "app_name": "Kahraba2",
+        "description": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
+        "developer": "Kahraba"
+    },
     "QxAnarky": {
         "mods": ["ui"],
         "app_name": "QxAgar",
@@ -52,6 +58,10 @@
     "Shark + Kahraba": {
         "mods": ["kahraba", "shark"],
         "app_name": "Sharkaba"
+    },
+    "Shark + Kahraba2": {
+        "mods": ["kahraba2", "shark"],
+        "app_name": "Sharkaba2"
     },
     "QxAnarky + Ctrl + Xelahot": {
         "mods": ["ctrl", "xelahot", "ui"],
