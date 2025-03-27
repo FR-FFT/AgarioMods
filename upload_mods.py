@@ -10,7 +10,7 @@ folder = "./ModifiedIPAs"
 
 
 def flatten_name(name):
-    return "".join([c for c in name if c.isalpha()]).lower()
+    return "".join([c for c in name if c.isalpha() or c.isdigit()]).lower()
     
 def format_link(href, display):
     return f"[{display}]({href})"
