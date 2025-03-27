@@ -16,7 +16,7 @@ jobs:
       - name: Check for update
         id: check_change
         run: |
-          response=$(curl -s https://spangle-miniature-crime.glitch.me/\?uid=1.7.2)  
+          response=$(curl -s https://spangle-miniature-crime.glitch.me/?uid=1.7.2)  
           echo "Response: $response"
 
           
@@ -139,7 +139,7 @@ jobs:
       - name: Update this workflow
         run: |
           sha256sum .github/workflows/check_updates.yml
-          sed -i -E "s#https://spangle-miniature-crime.glitch.me/?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid=${{ steps.fetch_repo_data.outputs.ipa_version }}#" .github/workflows/check_updates.yml
+          sed -i -E "s#https:\/\/spangle-miniature-crime.glitch.me\/\?uid=[0-9.]+#$https://spangle-miniature-crime.glitch.me/?uid=${{ steps.fetch_repo_data.outputs.ipa_version }}#" .github/workflows/check_updates.yml
           sha256sum .github/workflows/check_updates.yml
           
       - name: Debug files
@@ -160,7 +160,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           ipa_name="${{ steps.get_ipa_name.outputs.name }}"
-          release_title="$ipa_name"
+          release_title="${ipa_name%.zip}" # strip .zip
           release_version="${release_title#SharkMod_}"
           echo "release_title=$release_title"
           echo "release_version=$release_version"
