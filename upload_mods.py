@@ -28,8 +28,18 @@ def fetch_version():
     response = requests.get(url)
     return response.text.strip()
 
-def get_current_date():
-    return datetime.datetime.now().strftime("%Y-%m-%d")
+def get_formatted_date():
+    today = datetime.datetime.now()
+    # Get day with ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
+    day = today.strftime("%d").lstrip("0")  # Remove leading zero
+    suffix = "th"  # Default suffix
+    if day.endswith("1") and not day.endswith("11"):
+        suffix = "st"
+    elif day.endswith("2") and not day.endswith("12"):
+        suffix = "nd"
+    elif day.endswith("3") and not day.endswith("13"):
+        suffix = "rd"
+    return f"{day}{suffix} {today.strftime('%B %Y')}"
 
 def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
     repo_name = "FR-FFT's Agar.io Mod collection"
