@@ -107,6 +107,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           clean: false
+          token: ${{ secrets.WORKFLOW_TOKEN }}
       
       - name: Restore files
         run: cp -R /tmp/backup/* ./
