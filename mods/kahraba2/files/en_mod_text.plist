@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>arena_speed_buttons_tag</key>
+	<string>Arena Speed Buttons</string>
+	<key>arena_zoom_tag</key>
+	<string>Arena Zoom</string>
+	<key>dynamic_zoom_tag</key>
+	<string>Dynamic Zoom</string>
+	<key>fire-on-stop_tag</key>
+	<string>Fire On Stop</string>
+	<key>macro_button_tag</key>
+	<string>Macro Button</string>
+	<key>macro_tag</key>
+	<string>Macro</string>
+	<key>rapid-fire_button_tag</key>
+	<string>Rapid-Fire Button</string>
+	<key>rapid-fire_tag</key>
+	<string>Rapid-Fire</string>
+	<key>rapid-split_button_tag</key>
+	<string>Rapid-Split Button</string>
+	<key>rapid-split_tag</key>
+	<string>Rapid-Split</string>
+	<key>using_split_button_tag</key>
+	<string>Using SplitButton</string>
+	<key>self-feed_button_tag</key>
+	<string>Self-Feed Button</string>
+	<key>self-feed_tag</key>
+	<string>Self-Feed</string>
+	<key>slider_max_macro_value_tag</key>
+	<string>Max Macro Value: %@</string>
+	<key>slider_max_rapid-fire_value_tag</key>
+	<string>Max Rapid-Fire Value: %@</string>
+	<key>slider_min_macro_value_tag</key>
+	<string>Macro Value: %@</string>
+	<key>slider_min_rapid-fire_value_tag</key>
+	<string>Rapid-Fire Value: %@</string>
+	<key>slider_opacity_value_tag</key>
+	<string>Opacity: %@</string>
+	<key>slider_positionx_value_tag</key>
+	<string>Position X: %@</string>
+	<key>slider_positiony_value_tag</key>
+	<string>Position Y: %@</string>
+	<key>slider_rapid-split_value_tag</key>
+	<string>Rapid-Split Value: %@</string>
+	<key>slider_scale_value_tag</key>
+	<string>Scale: %@</string>
+	<key>slider_self-feed_fire_value_tag</key>
+	<string>Self-Feed Fire Value: %@</string>
+	<key>slider_zoom_value_tag</key>
+	<string>Zoom Value: %@</string>
+	<key>stable_camera_tag</key>
+	<string>Stable Camera</string>
+	<key>stable_zoom_tag</key>
+	<string>Stable Zoom</string>
+	<key>using_joysitck_center_tag</key>
+	<string>Using JoystickCenter</string>
+	<key>using_pause_button_tag</key>
+	<string>Using PauseButton</string>
+	<key>using_shoot_button_tag</key>
+	<string>Using ShootButton</string>
+	<key>zoom_tag</key>
+	<string>Zoom</string>
+	<key>zoom_control_tag</key>
+	<string>Zoom Control</string>
+	<key>macro_control_tag</key>
+	<string>Macro Control</string>
+	<key>rapid-fire_control_tag</key>
+	<string>Rapid-Fire Control</string>
+	<key>rapid-split_control_tag</key>
+	<string>Rapid-Split Control</string>
+	<key>self-feed_control_tag</key>
+	<string>Self-Feed Control</string>
+	<key>advancedlabel_tag</key>
+	<string>AdvancedLabel</string>
+	<key>indicators_tag</key>
+	<string>Indicators</string>
+	<key>indicators_container_tag</key>
+	<string>Indicators Container</string>
+	<key>no_zoom_selected_tag</key>
+	<string>No Zoom Selected</string>
+	<key>dynamic_score_tag</key>
+	<string>Dynamic Score</string>
+	<key>cells_counter_tag</key>
+	<string>Cells Counter</string>
+	<key>merging_timer_tag</key>
+	<string>Merging Timer</string>
+	<key>ping_counter_tag</key>
+	<string>Ping Counter</string>
+	<key>cells_tag</key>
+	<string>Cells</string>
+	<key>merging_in_tag</key>
+	<string>Merging In</string>
+	<key>ping_tag</key>
+	<string>Ping</string>
+	<key>choose_mod_language_tag</key>
+	<string>Choose Mod Language</string>
+	<key>hud-editor_tag</key>
+	<string>HUD-Editor</string>
+	<key>extra-subscriptions_tag</key>
+	<string>Extra-Subscriptions</string>
+	<key>kahraba_tag</key>
+	<string>Kahraba</string>
+	<key>open_editor_tag</key>
+	<string>Open Editor</string>
+	<key>settings_button_tag</key>
+	<string>Settings Button</string>
+	<key>value_changer_tag</key>
+	<string>Value Changer</string>
+	<key>exclusive_skins_tag</key>
+	<string>Exclusive Skins</string>
+	<key>premium_skins_tag</key>
+	<string>Premium Skins</string>
+	<key>poopemoji-deal_tag</key>
+	<string>PoopEmoji-Deal</string>
+	<key>youtube_tag</key>
+	<string>Youtube</string>
+	<key>instagram_tag</key>
+	<string>Instagram</string>
+	<key>discord_tag</key>
+	<string>Discord</string>
+	<key>gameplay_tag</key>
+	<string>Gameplay</string>
+	<key>cell_view_tag</key>
+	<string>Cell View</string>
+	<key>force_cell_animations_tag</key>
+	<string>Force Cell Animations</string>
+	<key>show_enemy_score_tag</key>
+	<string>Show Enemy Score</string>
+	<key>in-party_mode_tag</key>
+	<string>In-Party Mode</string>
+	<key>player_avatar_tag</key>
+	<string>Player Avatar</string>
+	<key>joystick_tag</key>
+	<string>Joystick</string>
+	<key>delay_tag</key>
+	<string>Delay</string>
+	<key>only_one-touch_tag</key>
+	<string>Only One-Touch</string>
+	<key>arena_tag</key>
+	<string>Arena</string>
+	<key>grid_lines_tag</key>
+	<string>Grid Lines</string>
+	<key>dark_theme_tag</key>
+	<string>Dark Theme</string>
+	<key>mystery_skins_tag</key>
+	<string>Mystery Skins</string>
+	<key>exchange_classic_and_burst_tag</key>
+	<string>Classic ⥂ Burst</string>
+	<key>120-fps_mode_tag</key>
+	<string>120-FPS Mode</string>
+	<key>misc_tag</key>
+	<string>Misc</string>
+	<key>HUD_tag</key>
+	<string>HUD</string>
+	<key>no_bundles_available_tag</key>
+	<string>No bundles available</string>
+	<key>max_bundles_tag</key>
+	<string>max bundles</string>
+	<key>price_tag</key>
+	<string>Price</string>
+	<key>buy_tag</key>
+	<string>Buy</string>
+	<key>copy_tag</key>
+	<string>Copy</string>
+	<key>back_tag</key>
+	<string>Back</string>
+	<key>continue_tag</key>
+	<string>Continue</string>
+	<key>exclusive_skins_shop_tag</key>
+	<string>Exclusive Skins Shop</string>
+	<key>membership_tag</key>
+	<string>Membership</string>
+	<key>please_verifiy_tag</key>
+	<string>Please Verify!</string>
+	<key>status_tag</key>
+	<string>Status</string>
+	<key>verify_tag</key>
+	<string>Verify</string>
+	<key>UID_tag</key>
+	<string>UID</string>
+	<key>copy_UID_tag</key>
+	<string>Copy UID</string>
+	<key>go_to_shop_tag</key>
+	<string>Go To Shop</string>
+	<key>activate_tag</key>
+	<string>Activate</string>
+	<key>deals_tag</key>
+	<string>Deals</string>
+	<key>coming_soon_tag</key>
+	<string>Coming Soon...</string>
+	<key>reset_tag</key>
+	<string>Reset</string>
+	<key>premium_skins_shop_tag</key>
+	<string>Premium Skins Shop</string>
+	<key>upload_tag</key>
+	<string>Upload</string>
+	<key>arena_update_rate_tag</key>
+	<string>Update rate</string>
+	<key>device_supports_120_fps_tag</key>
+	<string>Device supports 120 FPS</string>
+	<key>device_doesnt_supports_120_fps_tag</key>
+	<string>Device doesnt support 120 FPS</string>
+	<key>FPS_tag</key>
+	<string>FPS</string>
+	<key>FPS-limit_tag</key>
+	<string>FPS-Limit</string>
+	<key>fps-settings_tag</key>
+	<string>FPS-Settings</string>
+	<key>MS_tag</key>
+	<string>MS</string>
+	<key>OK_tag</key>
+	<string>OK</string>
+	<key>leave_tag</key>
+	<string>Leave</string>
+	<key>max._score_tag</key>
+	<string>Max. Score</string>
+	<key>min._score_tag</key>
+	<string>Min. Score</string>
+	<key>cellanimation-settings_tag</key>
+	<string>CellAnimation-Settings</string>
+	<key>only_my_cell_tag</key>
+	<string>Only my Cell</string>
+	<key>macro_in_classic_tag</key>
+	<string>Macro in Classic</string>
+	<key>lobby_tag</key>
+	<string>Lobby</string>
+	<key>skins_tag</key>
+	<string>Skins</string>
+	<key>custom_skins_tag</key>
+	<string>Custom Skins</string>
+	<key>emoji_selector_tag</key>
+	<string>Emoji Selector</string>
+	<key>close_on_click_tag</key>
+	<string>Close on Click</string>
+	<key>save_last_emoji_tag</key>
+	<string>Save last Emoji</string>
+	<key>only_favourites_tag</key>
+	<string>Only Favourites</string>
+	<key>edit_favourites_tag</key>
+	<string>Edit Favourites</string>
+	<key>popup_tag</key>
+	<string>Popup</string>
+	<key>continue_game_tag</key>
+	<string>ContinueGame</string>
+	<key>party-notifications_tag</key>
+	<string>Party-Notifications</string>
+	<key>daily_rewards_tag</key>
+	<string>Daily Rewards</string>
+	<key>shoot_button_settings_tag</key>
+	<string>Shoot Button Settings</string>
+	<key>split_button_settings_tag</key>
+	<string>Split Button Settings</string>
+	<key>shoot_and_split_tag</key>
+	<string>Shoot &amp; Split</string>
+	<key>classic-macro_button_tag</key>
+	<string>Classic-Macro Button</string>
+	<key>auto_classic-macro_tag</key>
+	<string>Auto Classic-Macro</string>
+	<key>enable_macro_tag</key>
+	<string>Enable Macro</string>
+	<key>code-expiration_tag</key>
+	<string>Code-Expiration</string>
+	<key>close_now_tag</key>
+	<string>Close Now</string>
+	<key>renew_code_tag</key>
+	<string>Renew Code</string>
+	<key>game_closes_soon</key>
+	<string>Game closes soon</string>
+	<key>collect_all_tag</key>
+	<string>Collect All</string>
+	<key>unlock_coin_and_dna_tag</key>
+	<string>Unlock Coin &amp; Dna</string>
+	<key>unlock_skins_tag</key>
+	<string>Unlock Skins</string>
+	<key>unlock_emojis_tag</key>
+	<string>Unlock Emojis</string>
+	<key>unlock_inventory_tag</key>
+	<string>Unlock Inventory</string>
+	<key>inventory_tag</key>
+	<string>Inventory</string>
+	<key>membership_verification_failed_please_try_again_later_tag</key>
+	<string>Membership verification failed! Please try later again...</string>
+	<key>vip-membership_is_required_tag</key>
+	<string>VIP-Membership is required!</string>
+	<key>verification_failed_tag</key>
+	<string>Verification Failed</string>
+	<key>upgrade_membership_tag</key>
+	<string>Upgrade Membership</string>
+	<key>ok_tag</key>
+	<string>OK</string>
+	<key>contact_developer_tag</key>
+	<string>Contact Developer</string>
+	<key>retry_tag</key>
+	<string>Retry</string>
+	<key>missing_tag</key>
+	<string>Missing</string>
+	<key>no_enough_currency_tag</key>
+	<string>No enough currency</string>
+	<key>fake_currency_lock_inventory_tag</key>
+	<string>Fake currency lock inventory!</string>
+	<key>currency_tag</key>
+	<string>Currency</string>
+	<key>enough_currency_tag</key>
+	<string>Enough currency</string>
+	<key>encrypted_tag</key>
+	<string>Encrypted</string>
+	<key>accounttoken_tag</key>
+	<string>AccountToken</string>
+	<key>requirements_tag</key>
+	<string>Requirements</string>
+	<key>collect_tag</key>
+	<string>Collect</string>
+	<key>click_to_copy_tag</key>
+	<string>Click to copy</string>
+	<key>adventure_collecting_glitch_enabled_tag</key>
+	<string>Adventure Collecting Glitch Enabled</string>
+	<key>adventurereward_tag</key>
+	<string>AdventureReward</string>
+	<key>close_tag</key>
+	<string>Close</string>
+	<key>collect_1000x_tag</key>
+	<string>Collect 1000x</string>
+</dict>
+</plist>

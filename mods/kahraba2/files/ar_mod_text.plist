@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>arena_speed_buttons_tag</key>
+	<string>أزرار سرعة الساحة</string>
+	<key>arena_zoom_tag</key>
+	<string>تكبير الساحة</string>
+	<key>dynamic_zoom_tag</key>
+	<string>التكبير الديناميكي</string>
+	<key>fire-on-stop_tag</key>
+	<string>الإطلاق عند التوقف</string>
+	<key>macro_button_tag</key>
+	<string>زر الماكرو</string>
+	<key>macro_tag</key>
+	<string>الماكرو</string>
+	<key>rapid-fire_button_tag</key>
+	<string>زر الإطلاق السريع</string>
+	<key>rapid-fire_tag</key>
+	<string>الإطلاق السريع</string>
+	<key>rapid-split_button_tag</key>
+	<string>زر الانقسام السريع</string>
+	<key>rapid-split_tag</key>
+	<string>الانقسام السريع</string>
+	<key>using_split_button_tag</key>
+	<string>استخدام زر الانقسام</string>
+	<key>self-feed_button_tag</key>
+	<string>زر التغذية الذاتية</string>
+	<key>self-feed_tag</key>
+	<string>التغذية الذاتية</string>
+	<key>slider_max_macro_value_tag</key>
+	<string>القيمة القصوى للماكرو: %@</string>
+	<key>slider_max_rapid-fire_value_tag</key>
+	<string>القيمة القصوى للإطلاق السريع: %@</string>
+	<key>slider_min_macro_value_tag</key>
+	<string>القيمة الدنيا للماكرو: %@</string>
+	<key>slider_min_rapid-fire_value_tag</key>
+	<string>القيمة الدنيا للإطلاق السريع: %@</string>
+	<key>slider_opacity_value_tag</key>
+	<string>الشفافية: %@</string>
+	<key>slider_positionx_value_tag</key>
+	<string>موقع X: %@</string>
+	<key>slider_positiony_value_tag</key>
+	<string>موقع Y: %@</string>
+	<key>slider_rapid-split_value_tag</key>
+	<string>قيمة الانقسام السريع: %@</string>
+	<key>slider_scale_value_tag</key>
+	<string>المقياس: %@</string>
+	<key>slider_self-feed_fire_value_tag</key>
+	<string>قيمة التغذية الذاتية: %@</string>
+	<key>slider_zoom_value_tag</key>
+	<string>قيمة التكبير: %@</string>
+	<key>stable_camera_tag</key>
+	<string>الكاميرا الثابتة</string>
+	<key>stable_zoom_tag</key>
+	<string>التكبير الثابت</string>
+	<key>using_joysitck_center_tag</key>
+	<string>استخدام مركز عصا التحكم</string>
+	<key>using_pause_button_tag</key>
+	<string>استخدام زر الإيقاف المؤقت</string>
+	<key>using_shoot_button_tag</key>
+	<string>استخدام زر الإطلاق</string>
+	<key>zoom_tag</key>
+	<string>التكبير</string>
+	<key>zoom_control_tag</key>
+	<string>التحكم في التكبير</string>
+	<key>macro_control_tag</key>
+	<string>التحكم في الماكرو</string>
+	<key>rapid-fire_control_tag</key>
+	<string>التحكم في الإطلاق السريع</string>
+	<key>rapid-split_control_tag</key>
+	<string>التحكم في الانقسام السريع</string>
+	<key>self-feed_control_tag</key>
+	<string>التحكم في التغذية الذاتية</string>
+	<key>advancedlabel_tag</key>
+	<string>تسمية متقدمة</string>
+	<key>indicators_tag</key>
+	<string>المؤشرات</string>
+	<key>indicators_container_tag</key>
+	<string>حاوية المؤشرات</string>
+	<key>no_zoom_selected_tag</key>
+	<string>لم يتم تحديد تكبير</string>
+	<key>dynamic_score_tag</key>
+	<string>النقاط الديناميكية</string>
+	<key>cells_counter_tag</key>
+	<string>عداد الخلايا</string>
+	<key>merging_timer_tag</key>
+	<string>عداد الدمج</string>
+	<key>ping_counter_tag</key>
+	<string>عداد البنغ</string>
+	<key>cells_tag</key>
+	<string>الخلايا</string>
+	<key>merging_in_tag</key>
+	<string>الدمج خلال</string>
+	<key>ping_tag</key>
+	<string>البنغ</string>
+	<key>choose_mod_language_tag</key>
+	<string>اختر لغة التعديل</string>
+	<key>hud-editor_tag</key>
+	<string>محرر الشاشة</string>
+	<key>extra-subscriptions_tag</key>
+	<string>اشتراكات إضافية</string>
+	<key>kahraba_tag</key>
+	<string>كهرباء</string>
+	<key>open_editor_tag</key>
+	<string>فتح المحرر</string>
+	<key>settings_button_tag</key>
+	<string>زر الإعدادات</string>
+	<key>value_changer_tag</key>
+	<string>تغيير القيمة</string>
+	<key>exclusive_skins_tag</key>
+	<string>الأشكال الحصرية</string>
+	<key>premium_skins_tag</key>
+	<string>الأشكال المميزة</string>
+	<key>poopemoji-deal_tag</key>
+	<string>عرض الرموز التعبيرية</string>
+	<key>youtube_tag</key>
+	<string>يوتيوب</string>
+	<key>instagram_tag</key>
+	<string>إنستغرام</string>
+	<key>discord_tag</key>
+	<string>ديسكورد</string>
+	<key>gameplay_tag</key>
+	<string>أسلوب اللعب</string>
+	<key>cell_view_tag</key>
+	<string>عرض الخلية</string>
+	<key>force_cell_animations_tag</key>
+	<string>فرض رسوم الخلية المتحركة</string>
+	<key>show_enemy_score_tag</key>
+	<string>عرض نقاط العدو</string>
+	<key>in-party_mode_tag</key>
+	<string>في وضع الحفلة</string>
+	<key>player_avatar_tag</key>
+	<string>صورة اللاعب</string>
+	<key>joystick_tag</key>
+	<string>عصا التحكم</string>
+	<key>delay_tag</key>
+	<string>التأخير</string>
+	<key>only_one-touch_tag</key>
+	<string>لمسة واحدة فقط</string>
+	<key>arena_tag</key>
+	<string>الساحة</string>
+	<key>grid_lines_tag</key>
+	<string>خطوط الشبكة</string>
+	<key>dark_theme_tag</key>
+	<string>الوضع الداكن</string>
+	<key>mystery_skins_tag</key>
+	<string>الأشكال الغامضة</string>
+	<key>exchange_classic_and_burst_tag</key>
+	<string>الكلاسيكي ⥂ المتفجر</string>
+	<key>120-fps_mode_tag</key>
+	<string>وضع 120 إطار</string>
+	<key>misc_tag</key>
+	<string>منوعات</string>
+	<key>HUD_tag</key>
+	<string>الشاشة</string>
+	<key>no_bundles_available_tag</key>
+	<string>لا توجد حزم متاحة</string>
+	<key>max_bundles_tag</key>
+	<string>الحد الأقصى للحزم</string>
+	<key>price_tag</key>
+	<string>السعر</string>
+	<key>buy_tag</key>
+	<string>شراء</string>
+	<key>copy_tag</key>
+	<string>نسخ</string>
+	<key>back_tag</key>
+	<string>رجوع</string>
+	<key>continue_tag</key>
+	<string>متابعة</string>
+	<key>exclusive_skins_shop_tag</key>
+	<string>متجر الأشكال الحصرية</string>
+	<key>membership_tag</key>
+	<string>العضوية</string>
+	<key>please_verifiy_tag</key>
+	<string>يرجى التحقق!</string>
+	<key>status_tag</key>
+	<string>الحالة</string>
+	<key>verify_tag</key>
+	<string>تحقق</string>
+	<key>UID_tag</key>
+	<string>رقم التعريف</string>
+	<key>copy_UID_tag</key>
+	<string>نسخ رقم التعريف</string>
+	<key>go_to_shop_tag</key>
+	<string>اذهب إلى المتجر</string>
+	<key>activate_tag</key>
+	<string>تفعيل</string>
+	<key>deals_tag</key>
+	<string>عروض</string>
+	<key>coming_soon_tag</key>
+	<string>قريباً...</string>
+	<key>reset_tag</key>
+	<string>إعادة ضبط</string>
+	<key>premium_skins_shop_tag</key>
+	<string>متجر الأشكال المميزة</string>
+	<key>upload_tag</key>
+	<string>اختيار السكن</string>
+	<key>arena_update_rate_tag</key>
+	<string>معدل التحديث</string>
+	<key>device_supports_120_fps_tag</key>
+	<string>الجهاز يدعم 120 إطارًا في الثانية</string>
+	<key>device_doesnt_supports_120_fps_tag</key>
+	<string>الجهاز لا يدعم 120 إطارًا في الثانية</string>
+	<key>FPS_tag</key>
+	<string>إطار</string>
+	<key>FPS-limit_tag</key>
+	<string>حد الإطارات</string>
+	<key>fps-settings_tag</key>
+	<string>إعدادات الإطارات</string>
+	<key>MS_tag</key>
+	<string>ميلي ثانية</string>
+	<key>OK_tag</key>
+	<string>حسنا</string>
+	<key>leave_tag</key>
+	<string>الخروج</string>
+	<key>max._score_tag</key>
+	<string>أقصى درجة</string>
+	<key>min._score_tag</key>
+	<string>أدنى درجة</string>
+	<key>cellanimation-settings_tag</key>
+	<string>إعدادات الرسوم المتحركة للخلايا</string>
+	<key>only_my_cell_tag</key>
+	<string>خليتي فقط</string>
+	<key>macro_in_classic_tag</key>
+	<string>ماكرو بوضع الكلاسيكي</string>
+        <key>lobby_tag</key>
+<string>لوبي</string>
+<key>skins_tag</key>
+<string>السكنات</string>
+<key>custom_skins_tag</key>
+<string>سكنات مخصصة</string>
+<key>emoji_selector_tag</key>
+<string>محدد الإيموجي</string>
+<key>close_on_click_tag</key>
+<string>إغلاق بالنقر</string>
+<key>save_last_emoji_tag</key>
+<string>حفظ آخر إيموجي</string>
+<key>only_favourites_tag</key>
+<string>المفضلة فقط</string>
+<key>edit_favourites_tag</key>
+<string>تحرير المفضلة</string>
+<key>popup_tag</key>
+<string>نافذة منبثقة</string>
+<key>continue_game_tag</key>
+<string>مواصلة اللعبة</string>
+<key>party-notifications_tag</key>
+<string>إشعارات الحفلة</string>
+<key>daily_rewards_tag</key>
+<string>المكافآت اليومية</string>
+<key>shoot_button_settings_tag</key>
+<string>إعدادات زر الإطلاق</string>
+<key>split_button_settings_tag</key>
+<string>إعدادات زر الانقسام</string>
+<key>shoot_and_split_tag</key>
+<string>إطلاق وانقسام</string>
+<key>classic-macro_button_tag</key>
+<string>زر ماكرو كلاسيكي</string>
+<key>auto_classic-macro_tag</key>
+<string>ماكرو كلاسيكي تلقائي</string>
+<key>enable_macro_tag</key>
+<string>تفعيل الماكرو</string>
+<key>code-expiration_tag</key>
+<string>انتهاء صلاحية الكود</string>
+<key>close_now_tag</key>
+<string>إغلاق الآن</string>
+<key>renew_code_tag</key>
+<string>تجديد الكود</string>
+<key>game_closes_soon</key>
+<string>اللعبة ستغلق قريبًا</string>
+<key>collect_all_tag</key>
+<string>جمع الكل</string>
+<key>unlock_coin_and_dna_tag</key>
+<string>فتح العملات والـ DNA</string>
+<key>unlock_skins_tag</key>
+<string>فتح السكنات</string>
+<key>unlock_emojis_tag</key>
+<string>فتح الإيموجيات</string>
+<key>unlock_inventory_tag</key>
+<string>فتح المخزن</string>
+<key>inventory_tag</key>
+<string>المخزن</string>
+<key>membership_verification_failed_please_try_again_later_tag</key>
+<string>فشل التحقق من العضوية! يرجى المحاولة مرة أخرى لاحقًا...</string>
+<key>vip-membership_is_required_tag</key>
+<string>العضوية VIP مطلوبة!</string>
+<key>verification_failed_tag</key>
+<string>فشل التحقق</string>
+<key>upgrade_membership_tag</key>
+<string>ترقية العضوية</string>
+<key>ok_tag</key>
+<string>موافق</string>
+<key>contact_developer_tag</key>
+<string>اتصل بالمطور</string>
+<key>retry_tag</key>
+<string>إعادة المحاولة</string>
+<key>missing_tag</key>
+<string>مفقود</string>
+<key>no_enough_currency_tag</key>
+<string>لا توجد عملة كافية</string>
+<key>fake_currency_lock_inventory_tag</key>
+<string>عملة مزيفة قفل المخزون!</string>
+<key>currency_tag</key>
+<string>العملة</string>
+<key>enough_currency_tag</key>
+<string>عملة كافية</string>
+<key>encrypted_tag</key>
+<string>مشفرة</string>
+<key>accounttoken_tag</key>
+<string>رمز الحساب</string>
+<key>requirements_tag</key>
+<string>المتطلبات</string>
+<key>collect_tag</key>
+<string>جمع</string>
+<key>click_to_copy_tag</key>
+<string>اضغط للنسخ</string>
+<key>adventure_collecting_glitch_enabled_tag</key>
+<string>تم تمكين خطأ جمع المغامرة</string>
+<key>adventurereward_tag</key>
+<string>مكافأة المغامرة</string>
+<key>close_tag</key>
+<string>إغلاق</string>
+<key>collect_1000x_tag</key>
+<string>جمع 1000 مرة</string>
+</dict>
+</plist>
