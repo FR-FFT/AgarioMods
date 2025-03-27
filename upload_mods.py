@@ -28,7 +28,7 @@ def fetch_version():
     response = requests.get(url)
     return response.text.strip()
 
-def get_formatted_date():
+def get_current_date():
     today = datetime.datetime.now()
     # Get day with ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
     day = today.strftime("%d").lstrip("0")  # Remove leading zero
