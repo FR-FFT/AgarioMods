@@ -40,7 +40,7 @@ options:
   """
 
 def flatten_name(name):
-    return "".join([c for c in name if c.isalpha()]).lower()
+    return "".join([c for c in name if c.isalpha() or c.isdigit()]).lower()
 
 def inject_files(mod_type, working_path):
     if os.path.isdir(f"mods/{mod_type}/files"):
