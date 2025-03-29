@@ -10,6 +10,7 @@
     <a href="https://github.com/FR-FFT/AgarioMods/releases"><img src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/total?color=%23007BFF&label=Total%20Downloads" alt="Total Downloads Badge"></a>
     <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fitunes.apple.com%2Flookup%3Fid%3D995999703%26country%3Dus%26ia%3Dweb&query=%24.results.0.version&label=Agar.io%20version">
     <img alt="Dynamic YAML Badge" src="https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fgithub.com%2FFR-FFT%2FAgarioMods%2Fraw%2Frefs%2Fheads%2Fmain%2Fversion.txt&query=%24&label=Mods%20version">
+    <img alt="Dynamic YAML Badge" src="https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fgithub.com%2FFR-FFT%2FAgarioMods%2Fraw%2Frefs%2Fheads%2Fmain%2Flast_updated.txt&query=%24&label=Updated">
 </p>
 
 <p align="center">
