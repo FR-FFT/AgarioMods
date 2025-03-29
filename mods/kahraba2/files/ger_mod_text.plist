@@ -332,9 +332,17 @@
 
 <key>close_tag</key>
 <string>Schließen</string>
-
 <key>collect_1000x_tag</key>
 <string>1000x sammeln</string>
-
+<key>scalefactor_tag</key>
+<string>Skalierungsfaktor</string>
+<key>delay_before_splitting_tag</key>
+<string>Verzögerung vor dem Teilen</string>
+<key>scaleable_selffeed_button_tag</key>
+<string>Skalierbare Selbstzufuhr-Taste</string>
+<key>mark_splitablecells_tag</key>
+<string>Markiere teilbare Zellen</string>
+<key>click_to_activate_tag</key>
+<string>Klicken zum Aktivieren</string>
 </dict>
 </plist>

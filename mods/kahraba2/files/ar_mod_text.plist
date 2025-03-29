@@ -322,5 +322,15 @@
 <string>إغلاق</string>
 <key>collect_1000x_tag</key>
 <string>جمع 1000 مرة</string>
+<key>scalefactor_tag</key>
+<string>عامل المقياس</string>
+<key>delay_before_splitting_tag</key>
+<string>التأخير قبل التقسيم</string>
+<key>scaleable_selffeed_button_tag</key>
+<string>زر التغذية الذاتية القابل للتحجيم</string>
+<key>mark_splitablecells_tag</key>
+<string>علامة على الخلايا القابلة للتقسيم</string>
+<key>click_to_activate_tag</key>
+<string>انقر للتفعيل</string>
 </dict>
 </plist>

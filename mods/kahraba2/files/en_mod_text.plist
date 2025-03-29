@@ -322,5 +322,15 @@
 	<string>Close</string>
 	<key>collect_1000x_tag</key>
 	<string>Collect 1000x</string>
+	<key>scalefactor_tag</key>
+	<string>ScaleFactor</string>
+	<key>delay_before_splitting_tag</key>
+	<string>Delay Before Splitting</string>
+	<key>scaleable_selffeed_button_tag</key>
+	<string>Scalable Selffeed Button</string>
+	<key>mark_splitablecells_tag</key>
+	<string>Mark SplitableCells</string>
+	<key>click_to_activate_tag</key>
+	<string>Click to Activate</string>
 </dict>
 </plist>
