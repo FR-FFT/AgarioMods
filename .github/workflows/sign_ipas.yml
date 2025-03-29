@@ -1,0 +1,484 @@
+name: IPA Signing
+
+on:
+  schedule:
+    # - cron: '0 3 * * *' # Run daily at 3:00 AM UTC 
+  workflow_dispatch: # Allow manual triggering
+
+# Grant permissions to commit status file and manage releases
+permissions:
+  contents: write
+  actions: read # Needed for gh release commands
+
+env:
+  CERT_REPO: "loyahdev/certificates"
+  CERT_STATUS_FILE: "certificate_status.json"
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token
+  SIGNING_INPUT_DIR: "signing_input"
+  SIGNING_OUTPUT_DIR: "signing_output"
+  SIGNED_IPAS_DIR: "signed_ipas" # Final location within output dir
+  BETA_RELEASE_TAG: "signed-ipas-beta"
+
+jobs:
+  sign_and_distribute:
+    runs-on: ubuntu-latest
+    outputs:
+      signed_links: ${{ steps.generate_links.outputs.markdown_links }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies (gh, jq, curl, unzip, python, pip)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh jq curl unzip python3 python3-pip git
+          pip3 install Pillow argparse patoolib
+
+      - name: Authenticate gh CLI
+        run: gh auth setup-git
+
+      - name: Initialize Certificate Status File
+        run: |
+          if [ ! -f "$CERT_STATUS_FILE" ]; then
+            echo '{}' > "$CERT_STATUS_FILE"
+            echo "Initialized empty $CERT_STATUS_FILE"
+          else
+            echo "$CERT_STATUS_FILE already exists."
+            # Ensure it's valid JSON or handle error
+            if ! jq empty "$CERT_STATUS_FILE"; then
+              echo "Error: $CERT_STATUS_FILE is not valid JSON. Resetting."
+              echo '{}' > "$CERT_STATUS_FILE"
+            fi
+          fi
+
+      - name: Fetch Latest Certificate Info from ${{ env.CERT_REPO }}
+        id: cert_info
+        run: |
+          echo "Fetching latest release info from ${{ env.CERT_REPO }}..."
+          # Get latest release JSON (not necessarily tagged 'latest')
+          LATEST_RELEASE_JSON=$(gh release view --repo ${{ env.CERT_REPO }} --json tagName,body,assets)
+          if [ -z "$LATEST_RELEASE_JSON" ]; then
+            echo "Error: Could not fetch release info from ${{ env.CERT_REPO }}"
+            exit 1
+          fi
+
+          echo "::group::Latest Release JSON"
+          echo "$LATEST_RELEASE_JSON"
+          echo "::endgroup::"
+
+          # Parse details using jq
+          TAG_NAME=$(echo "$LATEST_RELEASE_JSON" | jq -r '.tagName')
+          BODY=$(echo "$LATEST_RELEASE_JSON" | jq -r '.body')
+
+          # Extract UID and Revoked status from Body using grep/sed
+          # Assuming UID is the only alphanumeric string after "UID=" on its line
+          # Assuming Revoked is on its own line "Revoked: <value>"
+          CERT_UID=$(echo "$BODY" | grep 'Subject:.*UID=' | sed -n 's/.*UID=\([a-zA-Z0-9]*\).*/\1/p')
+          CERT_REVOKED_STR=$(echo "$BODY" | grep '^Revoked:' | sed 's/^Revoked: //')
+          CERT_REVOKED=false
+          if [[ "$CERT_REVOKED_STR" == "true" ]]; then
+            CERT_REVOKED=true
+          fi
+          CERT_VALID_UNTIL=$(echo "$BODY" | grep '^Valid Until:' | sed 's/^Valid Until: //') # Optional but nice to have
+
+          # Find the .zip asset URL (assuming only one .zip)
+          CERT_ASSET_ZIP_URL=$(echo "$LATEST_RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".zip")) | .url')
+          CERT_ASSET_ZIP_NAME=$(echo "$LATEST_RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".zip")) | .name')
+
+          # Validate extracted info
+          if [ -z "$CERT_UID" ] || [ -z "$CERT_ASSET_ZIP_URL" ]; then
+            echo "Error: Could not parse required certificate details (UID or Asset URL) from release body/assets."
+            echo "Body: $BODY"
+            exit 1
+          fi
+
+          echo "Fetched Cert UID: $CERT_UID"
+          echo "Fetched Cert Revoked: $CERT_REVOKED"
+          echo "Fetched Cert Asset URL: $CERT_ASSET_ZIP_URL"
+          echo "Fetched Cert Valid Until: $CERT_VALID_UNTIL"
+
+          echo "cert_uid=$CERT_UID" >> $GITHUB_OUTPUT
+          echo "cert_revoked=$CERT_REVOKED" >> $GITHUB_OUTPUT
+          echo "cert_asset_zip_url=$CERT_ASSET_ZIP_URL" >> $GITHUB_OUTPUT
+          echo "cert_asset_zip_name=$CERT_ASSET_ZIP_NAME" >> $GITHUB_OUTPUT
+          echo "cert_valid_until=$CERT_VALID_UNTIL" >> $GITHUB_OUTPUT
+          echo "cert_tag=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Check Certificate Status and Decide Action
+        id: cert_check
+        run: |
+          CURRENT_UID="${{ steps.cert_info.outputs.cert_uid }}"
+          IS_REVOKED="${{ steps.cert_info.outputs.cert_revoked }}"
+          STORED_JSON=$(cat "$CERT_STATUS_FILE")
+          STORED_UID=$(echo "$STORED_JSON" | jq -r '.uid // empty')
+          STORED_REVOKED=$(echo "$STORED_JSON" | jq -r '.revoked // empty')
+
+          echo "Current Cert UID: $CURRENT_UID, Revoked: $IS_REVOKED"
+          echo "Stored Cert UID: $STORED_UID, Revoked: $STORED_REVOKED"
+
+          NEEDS_UPDATE=false
+          PROCEED_WITH_SIGNING=false
+
+          if [[ "$IS_REVOKED" == "true" ]]; then
+            echo "Certificate $CURRENT_UID is REVOKED."
+            if [[ "$STORED_UID" != "$CURRENT_UID" || "$STORED_REVOKED" != "true" ]]; then
+              echo "Updating status file to reflect revocation."
+              NEEDS_UPDATE=true
+            else
+              echo "Status file already reflects revocation. No action needed."
+            fi
+            PROCEED_WITH_SIGNING=false # Do not sign with a revoked certificate
+          else
+            echo "Certificate $CURRENT_UID is valid (not revoked)."
+            PROCEED_WITH_SIGNING=true
+            if [[ "$STORED_UID" != "$CURRENT_UID" || "$STORED_REVOKED" != "false" ]]; then
+               echo "New certificate or status change detected. Status file needs update after signing."
+               # We'll mark for update, but only commit *after* successful signing.
+               NEEDS_UPDATE=true # Mark that an update is potentially needed
+            else
+               echo "Certificate status matches stored record. Proceeding with daily signing."
+               # Even if the same cert, we proceed because it's a daily run
+            fi
+          fi
+
+          echo "needs_update=$NEEDS_UPDATE" >> $GITHUB_OUTPUT
+          echo "proceed_signing=$PROCEED_WITH_SIGNING" >> $GITHUB_OUTPUT
+
+      - name: Stop Workflow if Certificate is Revoked
+        if: steps.cert_check.outputs.proceed_signing == 'false' && steps.cert_check.outputs.needs_update == 'false'
+        run: |
+          echo "Certificate is revoked and status file is up-to-date. Stopping workflow."
+          exit 0 # Exit successfully, no signing needed
+
+      - name: Update Status File for Revoked Cert (if needed) and Stop
+        if: steps.cert_check.outputs.proceed_signing == 'false' && steps.cert_check.outputs.needs_update == 'true'
+        run: |
+          echo "Certificate is revoked. Updating status file and stopping."
+          jq -n \
+            --arg uid "${{ steps.cert_info.outputs.cert_uid }}" \
+            --arg revoked "${{ steps.cert_info.outputs.cert_revoked }}" \
+            --arg until "${{ steps.cert_info.outputs.cert_valid_until }}" \
+            --arg tag "${{ steps.cert_info.outputs.cert_tag }}" \
+            '{uid: $uid, revoked: ($revoked == "true"), valid_until: $until, last_checked_tag: $tag, last_update: (now | strftime("%Y-%m-%dT%H:%M:%SZ"))}' > "$CERT_STATUS_FILE"
+
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add "$CERT_STATUS_FILE"
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+             echo "No changes to commit to $CERT_STATUS_FILE."
+          else
+             git commit -m "Update certificate status: ${{ steps.cert_info.outputs.cert_uid }} (Revoked)"
+             git push
+             echo "Committed status file update."
+          fi
+          echo "Workflow stopped due to revoked certificate."
+          # Use exit 1 to make the job fail clearly, indicating signing didn't happen
+          exit 1
+
+      # --- Steps below only run if proceed_signing is true ---
+
+      - name: Download and Prepare Certificate Files
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        id: prep_cert_files
+        run: |
+          echo "Proceeding with signing using certificate ${{ steps.cert_info.outputs.cert_uid }}"
+          CERT_ZIP_URL="${{ steps.cert_info.outputs.cert_asset_zip_url }}"
+          CERT_ZIP_NAME="${{ steps.cert_info.outputs.cert_asset_zip_name }}"
+          TEMP_CERT_DIR=$(mktemp -d)
+          echo "Temporary certificate directory: $TEMP_CERT_DIR"
+
+          echo "Downloading certificate asset: $CERT_ZIP_NAME from $CERT_ZIP_URL"
+          curl -L -o "$TEMP_CERT_DIR/$CERT_ZIP_NAME" "$CERT_ZIP_URL"
+          if [ $? -ne 0 ]; then echo "Error downloading certificate zip"; exit 1; fi
+
+          echo "Unzipping certificate asset..."
+          unzip -q "$TEMP_CERT_DIR/$CERT_ZIP_NAME" -d "$TEMP_CERT_DIR"
+          if [ $? -ne 0 ]; then echo "Error unzipping certificate asset"; exit 1; fi
+
+          # Find .p12, .mobileprovision, and password.txt
+          P12_FILE=$(find "$TEMP_CERT_DIR" -maxdepth 1 -name '*.p12' | head -n 1)
+          PROFILE_FILE=$(find "$TEMP_CERT_DIR" -maxdepth 1 -name '*.mobileprovision' | head -n 1)
+          PASSWORD_FILE=$(find "$TEMP_CERT_DIR" -maxdepth 1 -name 'password.txt' | head -n 1)
+
+          if [ -z "$P12_FILE" ] || [ -z "$PROFILE_FILE" ] || [ -z "$PASSWORD_FILE" ]; then
+            echo "Error: Missing .p12, .mobileprovision, or password.txt in the downloaded zip."
+            ls -l "$TEMP_CERT_DIR"
+            exit 1
+          fi
+
+          CERT_PASSWORD=$(cat "$PASSWORD_FILE")
+          if [ -z "$CERT_PASSWORD" ]; then
+            echo "Error: password.txt is empty."
+            exit 1
+          fi
+          # Mask the password in logs
+          echo "::add-mask::$CERT_PASSWORD"
+
+          # Prepare input directory for signing tool
+          mkdir -p "$SIGNING_INPUT_DIR"
+          cp "$P12_FILE" "$SIGNING_INPUT_DIR/"
+          cp "$PROFILE_FILE" "$SIGNING_INPUT_DIR/"
+
+          echo "Certificate files prepared in $SIGNING_INPUT_DIR"
+          echo "p12_file=$(basename "$P12_FILE")" >> $GITHUB_OUTPUT
+          echo "profile_file=$(basename "$PROFILE_FILE")" >> $GITHUB_OUTPUT
+          echo "cert_password=$CERT_PASSWORD" >> $GITHUB_OUTPUT # Output password for use in next step
+
+      - name: Download IPAs from Latest Release
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        run: |
+          echo "Downloading required IPA files..."
+          # Get assets from the *latest* release of the current repo
+          # Using `--latest` flag might not be reliable if you use pre-releases frequently.
+          # Fetching the most recent non-prerelease, non-draft release:
+          LATEST_RELEASE_ASSETS_JSON=$(gh release list --repo ${{ github.repository }} --exclude-drafts --exclude-preleases --limit 1 --json assets)
+
+          if [ -z "$LATEST_RELEASE_ASSETS_JSON" ]; then
+             echo "Warning: Could not find a suitable latest release in ${{ github.repository }} to download IPAs from."
+             # Decide if this is an error or if signing should proceed with no IPAs
+             # For now, let's allow proceeding, but the signing step will likely do nothing.
+             touch .no_ipas_found # Create a marker file
+             exit 0 # Continue workflow
+          fi
+
+          echo "::group::Latest Release Assets JSON (for IPAs)"
+          echo "$LATEST_RELEASE_ASSETS_JSON"
+          echo "::endgroup::"
+
+          # Download .ipa files, excluding Foo.ipa
+          IPA_URLS=$(echo "$LATEST_RELEASE_ASSETS_JSON" | jq -r '.[] | .assets[]? | select(.name | endswith(".ipa") and (.name != "Agario.ipa")) | .url')
+
+          if [ -z "$IPA_URLS" ]; then
+            echo "Warning: No .ipa files (excluding Agario.ipa) found in the latest release assets."
+            touch .no_ipas_found # Create a marker file
+          else
+            echo "Found IPAs to download:"
+            echo "$IPA_URLS"
+            cd "$SIGNING_INPUT_DIR"
+            echo "$IPA_URLS" | xargs -n 1 curl -L -O --fail -#
+            if [ $? -ne 0 ]; then echo "Error downloading one or more IPAs"; exit 1; fi
+            cd ..
+            echo "IPAs downloaded to $SIGNING_INPUT_DIR"
+          fi
+
+      - name: Install zsign
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        id: install_zsign
+        run: |
+          echo "Fetching latest zsign release info..."
+          ZSIGN_RELEASE_JSON=$(gh release view --repo zhlynn/zsign --json assets)
+          if [ -z "$ZSIGN_RELEASE_JSON" ]; then echo "Error fetching zsign release info"; exit 1; fi
+
+          ZSIGN_ASSET_URL=$(echo "$ZSIGN_RELEASE_JSON" | jq -r '.assets[] | select(.name | contains("ubuntu-x64.zip")) | .url')
+          ZSIGN_ASSET_NAME=$(echo "$ZSIGN_RELEASE_JSON" | jq -r '.assets[] | select(.name | contains("ubuntu-x64.zip")) | .name')
+
+          if [ -z "$ZSIGN_ASSET_URL" ]; then echo "Error finding zsign ubuntu-x64 asset URL"; exit 1; fi
+
+          echo "Downloading zsign asset: $ZSIGN_ASSET_NAME"
+          curl -L -o "$ZSIGN_ASSET_NAME" "$ZSIGN_ASSET_URL"
+          if [ $? -ne 0 ]; then echo "Error downloading zsign"; exit 1; fi
+
+          ZSIGN_DIR="zsign_bin"
+          mkdir "$ZSIGN_DIR"
+          unzip -q "$ZSIGN_ASSET_NAME" -d "$ZSIGN_DIR"
+          if [ $? -ne 0 ]; then echo "Error unzipping zsign"; exit 1; fi
+
+          ZSIGN_BIN_PATH=$(find "$ZSIGN_DIR" -name 'zsign' -type f | head -n 1)
+          if [ -z "$ZSIGN_BIN_PATH" ]; then echo "Error: zsign binary not found after unzip"; exit 1; fi
+
+          chmod +x "$ZSIGN_BIN_PATH"
+          echo "Adding $(dirname "$ZSIGN_BIN_PATH") to PATH"
+          echo "$(dirname "$ZSIGN_BIN_PATH")" >> $GITHUB_PATH
+          # Verify
+          which zsign
+          zsign -v
+
+      - name: Download iPA-Edit Script
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        run: |
+          IPAEDIT_URL="https://raw.githubusercontent.com/binnichtaktiv/iPA-Edit/main/ipaedit.py"
+          echo "Downloading iPA-Edit script from $IPAEDIT_URL"
+          curl -L -O "$IPAEDIT_URL"
+          if [ $? -ne 0 ]; then echo "Error downloading ipaedit.py"; exit 1; fi
+          chmod +x ipaedit.py
+
+      - name: Sign IPAs using iPA-Edit and zsign
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        run: |
+          # Check if we actually downloaded any IPAs
+          if [ -f ".no_ipas_found" ]; then
+            echo "Skipping signing step as no IPAs were downloaded."
+            exit 0
+          fi
+
+          # Check if input directory exists and has IPAs
+          if [ ! -d "$SIGNING_INPUT_DIR" ] || [ -z "$(find "$SIGNING_INPUT_DIR" -maxdepth 1 -name '*.ipa')" ]; then
+              echo "Error: Input directory '$SIGNING_INPUT_DIR' is missing or contains no IPA files."
+              ls -l . # List current dir content for debugging
+              exit 1
+          fi
+
+          echo "Running iPA-Edit..."
+          # Pipe the password to the script's stdin
+          echo "${{ steps.prep_cert_files.outputs.cert_password }}" | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR"
+
+          if [ $? -ne 0 ]; then
+            echo "Error running ipaedit.py"
+            # Add more debug info if needed, e.g., list output dir contents
+            ls -l "$SIGNING_OUTPUT_DIR"
+            exit 1
+          fi
+
+          # Verify output directory exists
+          if [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ]; then
+            echo "Error: Expected output directory '$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR' not found after running ipaedit.py."
+            ls -l "$SIGNING_OUTPUT_DIR"
+            exit 1
+          fi
+
+          echo "Signing complete. Signed IPAs are in $SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"
+
+      - name: Create or Update Beta Release and Upload Signed IPAs
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        run: |
+          # Check if signing produced output
+           if [ -f ".no_ipas_found" ]; then
+            echo "Skipping release upload as no IPAs were processed."
+            exit 0
+          fi
+          if [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ] || [ -z "$(ls -A "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR")" ]; then
+            echo "Skipping release upload as no signed IPAs were found in $SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"
+            exit 0
+          fi
+
+          echo "Creating/Updating beta release: $BETA_RELEASE_TAG"
+          # Check if release exists, create if not
+          gh release view "$BETA_RELEASE_TAG" --repo ${{ github.repository }} > /dev/null 2>&1 || \
+            gh release create "$BETA_RELEASE_TAG" \
+              --repo ${{ github.repository }} \
+              --title "Daily Signed IPAs (Beta)" \
+              --notes "Automatically signed IPAs using certificate ${{ steps.cert_info.outputs.cert_uid }}. Updated: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+              --prerelease
+
+          echo "Uploading signed IPAs to release $BETA_RELEASE_TAG..."
+          # Use --clobber to overwrite existing assets with the same name
+          gh release upload "$BETA_RELEASE_TAG" "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/* --clobber --repo ${{ github.repository }}
+          if [ $? -ne 0 ]; then echo "Error uploading signed IPAs"; exit 1; fi
+          echo "IPAs uploaded successfully."
+
+      - name: Generate Installation Links
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        id: generate_links
+        run: |
+          if [ -f ".no_ipas_found" ] || [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ] || [ -z "$(ls -A "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR")" ]; then
+            echo "Skipping installation link generation."
+            echo "markdown_links=No IPAs were signed or uploaded." >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Fetching asset URLs from release $BETA_RELEASE_TAG..."
+          RELEASE_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
+          if [ $? -ne 0 ]; then echo "Error fetching assets from beta release"; exit 1; fi
+
+          SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
+          MARKDOWN_LINKS_CONTENT=""
+
+          echo "Generating links using ipa.s0n1c.ca..."
+          for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
+            ipa_filename=$(basename "$ipa_file_path")
+            echo "Processing $ipa_filename..."
+
+            # Find the download URL for this specific IPA asset
+            # Note: GitHub asset URLs usually require auth or are temporary.
+            # Using browser_download_url which is typically stable and public for public repos.
+            ipa_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .browser_download_url')
+
+            if [ -z "$ipa_url" ]; then
+              echo "  Warning: Could not find download URL for $ipa_filename in release assets. Skipping link generation for this file."
+              continue
+            fi
+            echo "  Found download URL: $ipa_url"
+
+            # Call ipa.s0n1c.ca/preflight
+            echo "  Calling preflight service..."
+            response=$(curl --request POST \
+              --silent --show-error --fail \
+              --url https://ipa.s0n1c.ca/preflight \
+              --header 'Content-Type: application/json' \
+              --data "{\"url\": \"$ipa_url\"}")
+
+            if [ $? -ne 0 ]; then
+              echo "  Error calling preflight service for $ipa_filename. Response: $response"
+              continue
+            fi
+
+            # Extract the ID
+            install_id=$(echo "$response" | jq -r '.id')
+
+            if [ -z "$install_id" ] || [ "$install_id" == "null" ]; then
+              echo "  Error: Could not get 'id' from preflight response for $ipa_filename. Response: $response"
+              continue
+            fi
+            echo "  Received ID: $install_id"
+
+            # Construct URLs
+            itms_url="itms-services://?action=download-manifest&url=https://ipa.s0n1c.ca/${install_id}/manifest.plist"
+            markdown_link_url="https://fwuf.in/#/${itms_url}"
+
+            # Append to markdown output string (ensure proper formatting)
+            MARKDOWN_LINKS_CONTENT="${MARKDOWN_LINKS_CONTENT}- [Install ${ipa_filename}](${markdown_link_url})\n"
+            echo "  Generated link: ${markdown_link_url}"
+          done
+
+          if [ -z "$MARKDOWN_LINKS_CONTENT" ]; then
+             echo "markdown_links=Failed to generate any installation links." >> $GITHUB_OUTPUT
+          else
+             # Make the multi-line string safe for output
+             MARKDOWN_LINKS_CONTENT="${MARKDOWN_LINKS_CONTENT//$'\n'/'%0A'}" # URL-encode newlines
+             echo "markdown_links=${MARKDOWN_LINKS_CONTENT}" >> $GITHUB_OUTPUT
+             echo "--- Generated Markdown Links ---"
+             echo "${MARKDOWN_LINKS_CONTENT//'%0A'/$'\n'}" # Decode for logging
+             echo "-------------------------------"
+          fi
+
+
+      - name: Update Certificate Status File (After Success)
+        # Only run if signing was attempted and needed update OR if it's a new cert
+        if: steps.cert_check.outputs.proceed_signing == 'true' && steps.cert_check.outputs.needs_update == 'true'
+        run: |
+          echo "Updating status file with latest successful signing info for ${{ steps.cert_info.outputs.cert_uid }}."
+          jq -n \
+            --arg uid "${{ steps.cert_info.outputs.cert_uid }}" \
+            --arg revoked "${{ steps.cert_info.outputs.cert_revoked }}" \
+            --arg until "${{ steps.cert_info.outputs.cert_valid_until }}" \
+            --arg tag "${{ steps.cert_info.outputs.cert_tag }}" \
+            '{uid: $uid, revoked: ($revoked == "true"), valid_until: $until, last_checked_tag: $tag, last_update: (now | strftime("%Y-%m-%dT%H:%M:%SZ"))}' > "$CERT_STATUS_FILE"
+
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add "$CERT_STATUS_FILE"
+           # Check if there are changes to commit
+          if git diff --staged --quiet; then
+             echo "No changes to commit to $CERT_STATUS_FILE."
+          else
+             git commit -m "Update certificate status: ${{ steps.cert_info.outputs.cert_uid }} (Valid/Used)"
+             git push
+             echo "Committed status file update."
+          fi
+
+      - name: Update README (Placeholder)
+        # This step demonstrates where you would put the README update logic
+        # You'll need a script or tool to parse the README, find a placeholder, and insert the links
+        if: steps.cert_check.outputs.proceed_signing == 'true' && steps.generate_links.outputs.markdown_links != '' && steps.generate_links.outputs.markdown_links != 'No IPAs were signed or uploaded.' && steps.generate_links.outputs.markdown_links != 'Failed to generate any installation links.'
+        run: |
+          echo "Placeholder for updating README.md with generated links:"
+          # Decode the links back from URL encoding for display/use in script
+          DECODED_LINKS="${{ steps.generate_links.outputs.markdown_links }}"
+          DECODED_LINKS="${DECODED_LINKS//'%0A'/$'\n'}"
+          echo -e "$DECODED_LINKS"
+          # In a real scenario, use sed, awk, or a Python script to replace a marker in README.md
+          # Example marker: <!-- IPA_INSTALL_LINKS_START --> ... <!-- IPA_INSTALL_LINKS_END -->
+          # Then commit and push README.md similar to the status file update step.
+          echo "README update logic would go here."
