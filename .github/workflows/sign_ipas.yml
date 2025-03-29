@@ -227,7 +227,7 @@ jobs:
           # Get assets from the *latest* release of the current repo
           # Using `--latest` flag might not be reliable if you use pre-releases frequently.
           # Fetching the most recent non-prerelease, non-draft release:
-          LATEST_RELEASE_ASSETS_JSON=$(gh release list --repo ${{ github.repository }} --exclude-drafts --exclude-preleases --limit 1 --json assets)
+          LATEST_RELEASE_ASSETS_JSON=$(gh release list --repo ${{ github.repository }} --exclude-drafts --exclude-pre-releases --limit 1 --json assets)
 
           if [ -z "$LATEST_RELEASE_ASSETS_JSON" ]; then
              echo "Warning: Could not find a suitable latest release in ${{ github.repository }} to download IPAs from."
