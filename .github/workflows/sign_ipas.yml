@@ -29,15 +29,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Dependencies (gh, jq, curl, unzip, python, pip)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh jq curl unzip python3 python3-pip git
-          pip3 install Pillow argparse patoolib
-
-      - name: Authenticate gh CLI
-        run: gh auth setup-git
-
+      - name: Install Dependencies
+        run: pip install Pillow argparse patool
+        
       - name: Initialize Certificate Status File
         run: |
           if [ ! -f "$CERT_STATUS_FILE" ]; then
