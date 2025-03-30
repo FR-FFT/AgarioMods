@@ -476,7 +476,7 @@ jobs:
             # The replacement string is the *insertion text* followed by the *original target text*.
             # We need to escape '|' and '\' within this combined string.
             replacement_string="${install_link_text_to_insert}${target_direct_download_link}"
-            escaped_replacement=$(printf '%s\n' "$replacement_string" | sed -e 's/\\/\\\\/g' -e 's/|/\\|/g' -e 's/\&/\\&/g' -e 's/+/%2B/g')
+            escaped_replacement=$(printf '%s\n' "$replacement_string" | sed -e 's/\\/\\\\/g' -e 's/|/\\|/g' -e 's/\&/\\&/g')
             if [ -z "$escaped_replacement" ]; then
                 echo "  Error: Failed to escape the replacement string. Skipping."
                 continue
