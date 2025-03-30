@@ -264,15 +264,14 @@ jobs:
           unzip -q "$ZSIGN_ASSET_NAME" -d "$ZSIGN_DIR"
           if [ $? -ne 0 ]; then echo "Error unzipping zsign"; exit 1; fi
 
-          ZSIGN_BIN_PATH=~+/$ZSIGN_DIR
+          ZSIGN_BIN_PATH=$(find "$ZSIGN_DIR" -name 'zsign' -type f | head -n 1)
           if [ -z "$ZSIGN_BIN_PATH" ]; then echo "Error: zsign binary not found after unzip"; exit 1; fi
 
           chmod +x "$ZSIGN_BIN_PATH"
-          echo "Adding $ZSIGN_BIN_PATH to PATH"
-          echo "$ZSIGN_BIN_PATH" >> $GITHUB_PATH
+          echo "zsign_bin_path=$ZSIGN_BIN_PATH" >> $GITHUB_OUTPUT
           # Verify
-          which zsign
-          zsign -v
+          which $ZSIGN_BIN_PATH
+          $ZSIGN_BIN_PATH -v
 
       - name: Download iPA-Edit Script
         if: steps.cert_check.outputs.proceed_signing == 'true'
@@ -300,8 +299,8 @@ jobs:
           fi
 
           echo "Running iPA-Edit..."
-          # Pipe the password to the script's stdin
-          echo "${{ steps.prep_cert_files.outputs.cert_password }}" | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR"
+          # Pipe the path and password to the script's stdin
+          echo "${{ steps.install_zsign.outputs.zsign_bin_path }} \n ${{ steps.prep_cert_files.outputs.cert_password }}" | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR"
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
