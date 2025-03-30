@@ -351,7 +351,7 @@ jobs:
           gh release view "$BETA_RELEASE_TAG" --repo ${{ github.repository }} > /dev/null 2>&1 || \
             gh release create "$BETA_RELEASE_TAG" \
               --repo ${{ github.repository }} \
-              --title "Daily Signed IPAs (Beta)" \
+              --title "Signed IPAs" \
               --notes "Automatically signed IPAs using certificate ${{ steps.cert_info.outputs.cert_name }}. Updated: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
               --prerelease
 
@@ -386,7 +386,7 @@ jobs:
             # Find the download URL for this specific IPA asset
             # Note: GitHub asset URLs usually require auth or are temporary.
             # Using browser_download_url which is typically stable and public for public repos.
-            ipa_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .browser_download_url')
+            ipa_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .url')
 
             if [ -z "$ipa_url" ]; then
               echo "  Warning: Could not find download URL for $ipa_filename in release assets. Skipping link generation for this file."
