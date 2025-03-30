@@ -235,7 +235,7 @@ jobs:
           gh release download $LATEST_TAG -R FR-FFT/AgarioMods --pattern "*.ipa"
           rm Agario.ipa
           
-          if [  -n "$(ls -A)" ]; then
+          if ! [  -n "$(ls -A)" ]; then
             echo "Warning: No .ipa files (excluding Agario.ipa) downloaded."
             touch .no_ipas_found # Create a marker file
           else
@@ -269,7 +269,7 @@ jobs:
 
           chmod +x "$ZSIGN_BIN_PATH"
           echo "Adding $(dirname "$ZSIGN_BIN_PATH") to PATH"
-          echo "$(dirname "$ZSIGN_BIN_PATH")" >> $GITHUB_PATH
+          echo "$ZSIGN_BIN_PATH" >> $GITHUB_PATH
           # Verify
           which zsign
           zsign -v
