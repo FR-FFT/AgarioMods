@@ -133,8 +133,8 @@ jobs:
                # We'll mark for update, but only commit *after* successful signing.
                NEEDS_UPDATE=true # Mark that an update is potentially needed
             else
-               echo "Certificate status matches stored record. Proceeding with daily signing."
-               # Even if the same cert, we proceed because it's a daily run
+               echo "Certificate status matches stored record. Exiting."
+               # exit 1
             fi
           fi
 
@@ -233,7 +233,7 @@ jobs:
           LATEST_TAG=$(gh release list --repo ${{ github.repository }} --exclude-drafts --exclude-pre-releases --limit 1 --json tagName | jq -r '.[0].tagName')
           echo "Latest tag:"
           echo $LATEST_TAG
-          echo "latest_tag=$LATEST_TAG" >> $GITHU_OUTPUT
+          echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
 
           cd "$SIGNING_INPUT_DIR"
           gh release download $LATEST_TAG -R ${{ github.repository }} --pattern "*.ipa"
