@@ -16,7 +16,7 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token
   SIGNING_INPUT_DIR: "signing_input"
   SIGNING_OUTPUT_DIR: "signing_output"
-  SIGNED_IPAS_DIR: "igned_iPAs" # Final location within output dir
+  SIGNED_IPAS_DIR: "signed_iPAs" # Final location within output dir
   BETA_RELEASE_TAG: "signed-ipas-beta"
 
 jobs:
