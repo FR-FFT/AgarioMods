@@ -361,80 +361,158 @@ jobs:
           if [ $? -ne 0 ]; then echo "Error uploading signed IPAs"; exit 1; fi
           echo "IPAs uploaded successfully."
 
-      - name: Generate Installation Links
+      - name: Generate Installation Links and Update README
+        # Only run if the previous steps indicate signing should proceed
         if: steps.cert_check.outputs.proceed_signing == 'true'
-        id: generate_links
+        id: update_readme_links
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Make sure the token is available
         run: |
+          # === Initial Checks ===
           if [ -f ".no_ipas_found" ] || [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ] || [ -z "$(ls -A "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR")" ]; then
-            echo "Skipping installation link generation."
-            echo "markdown_links=No IPAs were signed or uploaded." >> $GITHUB_OUTPUT
+            echo "No signed IPAs found or output directory is empty. Skipping README update."
             exit 0
           fi
 
+          # === Fetch Release Asset Info ===
+          # We still need the asset URLs to submit to the preflight service
           echo "Fetching asset URLs from release $BETA_RELEASE_TAG..."
           RELEASE_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
-          if [ $? -ne 0 ]; then echo "Error fetching assets from beta release"; exit 1; fi
+          if [ $? -ne 0 ]; then
+             echo "Error fetching assets from beta release $BETA_RELEASE_TAG. Cannot generate links."
+             # Decide if this is a fatal error or if the workflow should continue without links
+             # exit 1 # Uncomment if this should stop the workflow
+             exit 0 # Exit step successfully but without doing anything
+          fi
+          if [ -z "$RELEASE_ASSETS_JSON" ] || [ "$(echo "$RELEASE_ASSETS_JSON" | jq '.assets | length')" -eq 0 ]; then
+            echo "No assets found in release $BETA_RELEASE_TAG. Cannot generate links."
+            exit 0
+          fi
 
+          # === Process IPAs and Modify README ===
           SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
-          MARKDOWN_LINKS_CONTENT=""
+          readme_modified=false # Flag to track if README was changed
 
-          echo "Generating links using ipa.s0n1c.ca..."
+          echo "Processing IPAs and updating README.md..."
           for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
             ipa_filename=$(basename "$ipa_file_path")
             echo "Processing $ipa_filename..."
 
-            # Find the download URL for this specific IPA asset
-            # Note: GitHub asset URLs usually require auth or are temporary.
-            # Using browser_download_url which is typically stable and public for public repos.
-            ipa_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .url')
+            # --- Get Download URL for Preflight Service ---
+            # Find the *asset API URL* for this specific IPA asset from the release
+            # The preflight service needs a URL it can fetch from.
+            # Using browser_download_url might be better if the service can handle redirects
+            # Let's try browser_download_url first as it's more stable/public
+            ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .browser_download_url')
 
-            if [ -z "$ipa_url" ]; then
-              echo "  Warning: Could not find download URL for $ipa_filename in release assets. Skipping link generation for this file."
-              continue
+            if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
+              echo "  Warning: Could not find browser_download_url for $ipa_filename in release assets. Trying asset URL..."
+              # Fallback to API asset URL (might require auth for the service)
+              ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .url')
+              if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
+                 echo "  Error: Could not find any download URL for $ipa_filename in release assets. Skipping link generation for this file."
+                 continue # Skip to the next IPA
+              fi
+               echo "  Using API asset URL: $ipa_download_url"
+            else
+              echo "  Found browser download URL: $ipa_download_url"
             fi
-            echo "  Found download URL: $ipa_url"
 
-            # Call ipa.s0n1c.ca/preflight
-            echo "  Calling preflight service..."
+
+            # --- Call Preflight Service ---
+            echo "  Calling preflight service (ipa.s0n1c.ca)..."
             response=$(curl --request POST \
               --silent --show-error --fail \
               --url https://ipa.s0n1c.ca/preflight \
               --header 'Content-Type: application/json' \
-              --data "{\"url\": \"$ipa_url\"}")
+              --data "{\"url\": \"$ipa_download_url\"}") # Use the URL found above
 
             if [ $? -ne 0 ]; then
               echo "  Error calling preflight service for $ipa_filename. Response: $response"
-              continue
+              # Consider logging the response body for debugging even on failure
+              echo "  Response body: $response"
+              continue # Skip to the next IPA
             fi
 
-            # Extract the ID
+            # --- Extract ID and Construct Links ---
             install_id=$(echo "$response" | jq -r '.id')
-
             if [ -z "$install_id" ] || [ "$install_id" == "null" ]; then
               echo "  Error: Could not get 'id' from preflight response for $ipa_filename. Response: $response"
-              continue
+              continue # Skip to the next IPA
             fi
             echo "  Received ID: $install_id"
 
-            # Construct URLs
             itms_url="itms-services://?action=download-manifest&url=https://ipa.s0n1c.ca/${install_id}/manifest.plist"
-            markdown_link_url="https://fwuf.in/#/${itms_url}"
+            # URL for the install link in Markdown
+            install_markdown_link_url="https://fwuf.in/#/${itms_url}"
+            # Text to insert into README.md
+            install_link_text_to_insert="[Install](${install_markdown_link_url}) / "
 
-            # Append to markdown output string (ensure proper formatting)
-            MARKDOWN_LINKS_CONTENT="${MARKDOWN_LINKS_CONTENT}- [Install ${ipa_filename}](${markdown_link_url})\n"
-            echo "  Generated link: ${markdown_link_url}"
-          done
+            # --- Define Target Link in README ---
+            # The exact markdown for the direct download link we want to prepend to
+            target_direct_download_link="[Direct download](https://github.com/${{ github.repository }}/releases/download/${BETA_RELEASE_TAG}/${ipa_filename})"
 
-          if [ -z "$MARKDOWN_LINKS_CONTENT" ]; then
-             echo "markdown_links=Failed to generate any installation links." >> $GITHUB_OUTPUT
+            # --- Check if Install Link Already Exists ---
+            # Construct the pattern of the already modified line to avoid duplicate insertions
+            already_inserted_pattern="${install_link_text_to_insert}${target_direct_download_link}"
+
+            # Use grep -F for fixed string matching, -- for safety if a filename starts with '-'
+            if grep -qF -- "$already_inserted_pattern" README.md; then
+                echo "  Install link already seems to exist for $ipa_filename in README.md. Skipping modification."
+                continue # Skip to next IPA
+            fi
+
+            # --- Modify README.md using sed ---
+            echo "  Adding install link to README.md..."
+            # Use a temporary file for sed inplace editing for better compatibility (esp. macOS sed vs GNU sed)
+            sed "s|${target_direct_download_link}|${install_link_text_to_insert}${target_direct_download_link}|" README.md > README.md.tmp
+
+            # Check if sed succeeded and actually made a change
+            if [ $? -eq 0 ] && cmp -s README.md README.md.tmp; then
+               echo "  Warning: sed command succeeded but did not modify README.md. Target link '${target_direct_download_link}' might not exist exactly as specified."
+               rm README.md.tmp # Clean up temp file
+            elif [ $? -eq 0 ]; then
+               echo "  Successfully inserted link into temporary file."
+               mv README.md.tmp README.md # Replace original with modified file
+               readme_modified=true       # Mark that we need to commit
+            else
+               echo "  Error: sed command failed while processing $ipa_filename."
+               rm README.md.tmp # Clean up temp file
+               # Decide how to handle sed failure - continue or exit?
+               # continue # Continue to next IPA for now
+               # exit 1 # Or exit the script with an error
+            fi
+          done # End of for loop iterating through IPAs
+
+          # === Commit and Push Changes ===
+          if [ "$readme_modified" = true ]; then
+            echo "README.md was modified. Committing changes..."
+
+            # Configure Git user
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+            # Add, commit, and push
+            git add README.md
+            # Check if there are staged changes before committing
+            if git diff --staged --quiet; then
+               echo "No changes staged, skipping commit."
+            else
+               git commit -m "docs: Update README with install links for ${BETA_RELEASE_TAG}" -m "Generated by GitHub Actions workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+               echo "Pushing changes to branch ${{ github.ref_name }}..."
+               git push origin HEAD:${{ github.ref_name }} # Push to the same branch the workflow is running on
+               if [ $? -ne 0 ]; then
+                   echo "Error: Failed to push README.md changes."
+                   exit 1
+               else
+                   echo "README.md update pushed successfully."
+               fi
+            fi
           else
-             # Make the multi-line string safe for output
-             MARKDOWN_LINKS_CONTENT="${MARKDOWN_LINKS_CONTENT//$'\n'/'%0A'}" # URL-encode newlines
-             echo "markdown_links=${MARKDOWN_LINKS_CONTENT}" >> $GITHUB_OUTPUT
-             echo "--- Generated Markdown Links ---"
-             echo "${MARKDOWN_LINKS_CONTENT//'%0A'/$'\n'}" # Decode for logging
-             echo "-------------------------------"
+            echo "No changes were made to README.md."
           fi
+
+          echo "README update process finished."
 
 
       - name: Update Certificate Status File (After Success)
@@ -460,18 +538,3 @@ jobs:
              git push
              echo "Committed status file update."
           fi
-
-      - name: Update README (Placeholder)
-        # This step demonstrates where you would put the README update logic
-        # You'll need a script or tool to parse the README, find a placeholder, and insert the links
-        if: steps.cert_check.outputs.proceed_signing == 'true' && steps.generate_links.outputs.markdown_links != '' && steps.generate_links.outputs.markdown_links != 'No IPAs were signed or uploaded.' && steps.generate_links.outputs.markdown_links != 'Failed to generate any installation links.'
-        run: |
-          echo "Placeholder for updating README.md with generated links:"
-          # Decode the links back from URL encoding for display/use in script
-          DECODED_LINKS="${{ steps.generate_links.outputs.markdown_links }}"
-          DECODED_LINKS="${DECODED_LINKS//'%0A'/$'\n'}"
-          echo -e "$DECODED_LINKS"
-          # In a real scenario, use sed, awk, or a Python script to replace a marker in README.md
-          # Example marker: <!-- IPA_INSTALL_LINKS_START --> ... <!-- IPA_INSTALL_LINKS_END -->
-          # Then commit and push README.md similar to the status file update step.
-          echo "README update logic would go here."
