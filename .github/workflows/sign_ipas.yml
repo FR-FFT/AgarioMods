@@ -363,233 +363,233 @@ jobs:
           if [ $? -ne 0 ]; then echo "Error uploading signed IPAs"; exit 1; fi
           echo "IPAs uploaded successfully."
 
-          - name: Update Download Count and Generate Installation Links/Update README
-          # Only run if the previous steps indicate signing should proceed
-          if: steps.cert_check.outputs.proceed_signing == 'true'
-          id: update_readme_and_count
-          env:
-            DOWNLOAD_COUNT_FILE: signed_ipas_downloads_count.txt # Define filename
-            # Inherit other necessary env vars like SIGNING_OUTPUT_DIR, SIGNED_IPAS_DIR, BETA_RELEASE_TAG
-          run: |
-            # === 1. Update Total Download Count ===
-            echo "Fetching existing assets for download count from release $BETA_RELEASE_TAG..."
-            EXISTING_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
-            if [ $? -ne 0 ]; then
-               # Non-fatal: maybe the release was *just* created or has no assets yet.
-               echo "Warning: Could not fetch assets from beta release $BETA_RELEASE_TAG to get download counts. Proceeding without count update."
+      - name: Update Download Count and Generate Installation Links/Update README
+        # Only run if the previous steps indicate signing should proceed
+        if: steps.cert_check.outputs.proceed_signing == 'true'
+        id: update_readme_and_count
+        env:
+          DOWNLOAD_COUNT_FILE: signed_ipas_downloads_count.txt # Define filename
+          # Inherit other necessary env vars like SIGNING_OUTPUT_DIR, SIGNED_IPAS_DIR, BETA_RELEASE_TAG
+        run: |
+          # === 1. Update Total Download Count ===
+          echo "Fetching existing assets for download count from release $BETA_RELEASE_TAG..."
+          EXISTING_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
+          if [ $? -ne 0 ]; then
+             # Non-fatal: maybe the release was *just* created or has no assets yet.
+             echo "Warning: Could not fetch assets from beta release $BETA_RELEASE_TAG to get download counts. Proceeding without count update."
+             latest_download_count=0
+          else
+             latest_download_count=$(echo "$EXISTING_ASSETS_JSON" | jq '[ .assets[]? | .downloadCount? // 0 ] | add') # Calculate sum, handle null/missing assets/counts
+             if ! [[ "$latest_download_count" =~ ^[0-9]+$ ]]; then
+               echo "Warning: Could not extract valid numeric download count. Got '$latest_download_count'. Setting to 0."
                latest_download_count=0
+             else
+               echo "Download count for assets in release $BETA_RELEASE_TAG: $latest_download_count"
+             fi
+          fi
+
+          # Fetch existing total count from file
+          existing_total_count=0
+          if [ -f "$DOWNLOAD_COUNT_FILE" ]; then
+            # Ensure file exists and read its content, default to 0 if invalid
+            count_from_file=$(cat "$DOWNLOAD_COUNT_FILE")
+            if [[ "$count_from_file" =~ ^[0-9]+$ ]]; then
+              existing_total_count=$count_from_file
+              echo "Existing total count from $DOWNLOAD_COUNT_FILE: $existing_total_count"
             else
-               latest_download_count=$(echo "$EXISTING_ASSETS_JSON" | jq '[ .assets[]? | .downloadCount? // 0 ] | add') # Calculate sum, handle null/missing assets/counts
-               if ! [[ "$latest_download_count" =~ ^[0-9]+$ ]]; then
-                 echo "Warning: Could not extract valid numeric download count. Got '$latest_download_count'. Setting to 0."
-                 latest_download_count=0
-               else
-                 echo "Download count for assets in release $BETA_RELEASE_TAG: $latest_download_count"
-               fi
+              echo "Warning: $DOWNLOAD_COUNT_FILE contained non-numeric data ('$count_from_file'). Resetting to 0."
+              existing_total_count=0
             fi
-  
-            # Fetch existing total count from file
-            existing_total_count=0
-            if [ -f "$DOWNLOAD_COUNT_FILE" ]; then
-              # Ensure file exists and read its content, default to 0 if invalid
-              count_from_file=$(cat "$DOWNLOAD_COUNT_FILE")
-              if [[ "$count_from_file" =~ ^[0-9]+$ ]]; then
-                existing_total_count=$count_from_file
-                echo "Existing total count from $DOWNLOAD_COUNT_FILE: $existing_total_count"
-              else
-                echo "Warning: $DOWNLOAD_COUNT_FILE contained non-numeric data ('$count_from_file'). Resetting to 0."
-                existing_total_count=0
+          else
+            echo "$DOWNLOAD_COUNT_FILE not found. Starting count from 0."
+          fi
+
+          # Calculate new total and write to file
+          new_total_count=$((existing_total_count + latest_download_count))
+          echo "New total download count: $new_total_count"
+          echo "$new_total_count" > "$DOWNLOAD_COUNT_FILE"
+
+          # Commit and push the download count file
+          # Configure Git user (might be redundant if done elsewhere, but safe)
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Check if the count file actually changed before committing
+          git add "$DOWNLOAD_COUNT_FILE"
+          if git diff --staged --quiet -- "$DOWNLOAD_COUNT_FILE"; then
+             echo "$DOWNLOAD_COUNT_FILE unchanged or newly created with 0 count. Skipping commit for count file."
+          else
+             echo "Committing updated download count..."
+             git commit -m "chore: Update total signed IPA download count" -m "Total count updated to $new_total_count based on release $BETA_RELEASE_TAG before potential asset replacement."
+             echo "Pushing download count update to branch ${{ github.ref_name }}..."
+             git push origin HEAD:${{ github.ref_name }}
+             if [ $? -ne 0 ]; then
+                 echo "Error: Failed to push $DOWNLOAD_COUNT_FILE changes. Continuing with README update, but count might be outdated."
+                 # Decide if this is fatal, for now we continue
+             else
+                 echo "Download count file updated and pushed successfully."
+             fi
+          fi
+
+          # === 2. Initial Checks for README Update ===
+          if [ -f ".no_ipas_found" ] || [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ] || [ -z "$(ls -A "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR")" ]; then
+            echo "No signed IPAs found or output directory is empty. Skipping README update."
+            exit 0
+          fi
+
+          # === 3. Fetch Release Asset Info for Preflight ===
+          # Note: This fetches asset info again. Could potentially reuse EXISTING_ASSETS_JSON if structure is guaranteed identical.
+          # Fetching again ensures we have the latest URLs if asset upload happened between count check and here (unlikely in same step).
+          echo "Fetching asset URLs from release $BETA_RELEASE_TAG for preflight service..."
+          RELEASE_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
+          if [ $? -ne 0 ] || [ -z "$RELEASE_ASSETS_JSON" ] || [ "$(echo "$RELEASE_ASSETS_JSON" | jq '.assets | length')" -eq 0 ]; then
+             echo "Warning: Error fetching assets or no assets found in release $BETA_RELEASE_TAG after count update. Cannot generate installation links."
+             exit 0 # Exit step successfully but without doing the README update part
+          fi
+
+          # === 4. Process IPAs and Modify README ===
+          SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
+          readme_modified=false # Flag to track if README was changed
+
+          # Create a temporary file for modifications
+          temp_readme=$(mktemp)
+          cp README.md "$temp_readme"
+
+          echo "Processing IPAs and updating README.md..."
+          for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
+            ipa_filename=$(basename "$ipa_file_path")
+            echo "Processing $ipa_filename..."
+
+            # --- Get Download URL for Preflight Service ---
+            ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .browser_download_url')
+            if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
+              echo "  Warning: Could not find browser_download_url for $ipa_filename in release assets. Trying asset URL..."
+              ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .url')
+              if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
+                 echo "  Error: Could not find any download URL for $ipa_filename in release assets. Skipping link generation for this file."
+                 continue # Skip to the next IPA
               fi
+               echo "  Using API asset URL: $ipa_download_url"
             else
-              echo "$DOWNLOAD_COUNT_FILE not found. Starting count from 0."
+              echo "  Found browser download URL: $ipa_download_url"
             fi
-  
-            # Calculate new total and write to file
-            new_total_count=$((existing_total_count + latest_download_count))
-            echo "New total download count: $new_total_count"
-            echo "$new_total_count" > "$DOWNLOAD_COUNT_FILE"
-  
-            # Commit and push the download count file
-            # Configure Git user (might be redundant if done elsewhere, but safe)
-            git config --global user.name 'github-actions[bot]'
-            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-  
-            # Check if the count file actually changed before committing
-            git add "$DOWNLOAD_COUNT_FILE"
-            if git diff --staged --quiet -- "$DOWNLOAD_COUNT_FILE"; then
-               echo "$DOWNLOAD_COUNT_FILE unchanged or newly created with 0 count. Skipping commit for count file."
+
+            # --- Call Preflight Service ---
+            echo "  Calling preflight service (ipa.s0n1c.ca)..."
+            response=$(curl --request POST \
+              --silent --show-error --fail --location \ # Added --location to handle potential redirects like from browser_download_url
+              --url https://ipa.s0n1c.ca/preflight \
+              --header 'Content-Type: application/json' \
+              --data "{\"url\": \"$ipa_download_url\"}")
+
+            if [ $? -ne 0 ]; then
+              echo "  Error calling preflight service for $ipa_filename."
+              echo "  Response body (if any): $response" # Log response body on error
+              continue # Skip to the next IPA
+            fi
+
+            # --- Extract ID and Construct Links ---
+            install_id=$(echo "$response" | jq -r '.id')
+            if [ -z "$install_id" ] || [ "$install_id" == "null" ]; then
+              echo "  Error: Could not get 'id' from preflight response for $ipa_filename. Response: $response"
+              continue # Skip to the next IPA
+            fi
+            echo "  Received ID: $install_id"
+
+            itms_url="itms-services://?action=download-manifest&url=https://ipa.s0n1c.ca/${install_id}/manifest.plist"
+            install_markdown_link_url="https://fwuf.in/#/${itms_url}"
+            install_link_text_to_insert="[Install](${install_markdown_link_url}) / "
+
+            # --- Define Target Link in README ---
+            # *** IMPORTANT: Ensure this tag matches the tag used when assets were ACTUALLY uploaded ***
+            # If assets are uploaded *later* in the workflow, this tag might need adjustment or be passed as output from upload step
+            # Assuming steps.download_ipas.outputs.latest_tag holds the correct tag for the *current* assets.
+            target_direct_download_link="[Direct download](https://github.com/${{ github.repository }}/releases/download/${{ steps.download_ipas.outputs.latest_tag }}/${ipa_filename})"
+
+            # --- Escape the target link for use in sed pattern ---
+            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][\\/.^$*]/\\&/g' -e 's/|/\\|/g' -e 's/+/%2B/g') # Added + escaping for URLs
+            if [ -z "$escaped_target" ]; then
+                echo "  Error: Failed to escape the target string. Skipping."
+                continue
+            fi
+
+            # --- Construct the full new replacement string ---
+            # This is what we want the final output to look like
+            replacement_string="${install_link_text_to_insert}${target_direct_download_link}"
+            escaped_replacement=$(printf '%s\n' "$replacement_string" | sed -e 's/[\/&|]/\\&/g') # Escape only sed delimiters and backslash/ampersand for RHS
+             if [ -z "$escaped_replacement" ]; then
+                 echo "  Error: Failed to escape the replacement string. Skipping."
+                 continue
+             fi
+
+            # --- Modify README.md ---
+            # MODIFIED LOGIC: Don't skip if exists. Instead, use sed to replace the line segment.
+            # We will replace '[Optional Install Link / ]Direct Download Link' with 'New Install Link / Direct Download Link'
+
+            # Pattern to match: Optional '[Install](...) / ' followed by the direct download link.
+            # Using extended regex (-E) for the optional group '?' and better readability.
+            # Need to escape characters special to ERE inside the pattern part.
+            install_prefix_pattern='\[Install\]([^)]*) */ *' # Matches '[Install](...) / ' with optional spaces
+            combined_pattern_ere="(${install_prefix_pattern})?${escaped_target}"
+
+            echo "  Updating install link in temporary README ($temp_readme)..."
+            # Use sed -E. Use a different delimiter (#) to avoid clash with URLs.
+            # The goal is to replace the optional old prefix AND the target, with the new replacement string.
+            sed -E "s#${combined_pattern_ere}#${escaped_replacement}#" "$temp_readme" > "$temp_readme.next"
+
+            if [ $? -eq 0 ]; then
+               # Check if a change actually occurred before marking readme_modified
+               if ! cmp -s "$temp_readme" "$temp_readme.next"; then
+                  echo "  Successfully updated link in temporary file."
+                  mv "$temp_readme.next" "$temp_readme" # Update the temporary file for the next iteration
+                  # Mark modified only once we are sure at the end
+               else
+                  echo "  Warning: sed command succeeded but did not modify the temp README. Target link pattern may not exist exactly as specified: ${target_direct_download_link}"
+                  rm -f "$temp_readme.next" # Clean up unused file
+               fi
             else
-               echo "Committing updated download count..."
-               git commit -m "chore: Update total signed IPA download count" -m "Total count updated to $new_total_count based on release $BETA_RELEASE_TAG before potential asset replacement."
-               echo "Pushing download count update to branch ${{ github.ref_name }}..."
+               echo "  Error: sed command failed while processing $ipa_filename."
+               rm -f "$temp_readme.next" # Clean up potentially corrupt file
+               # Decide how to handle sed failure - continue or exit?
+               # continue # Continue to next IPA for now
+               # exit 1 # Or exit the script with an error
+            fi
+
+          done # End of for loop iterating through IPAs
+
+          # === 5. Final Check and Commit README ===
+          # Check if the final temp file is actually different from the original README
+          if ! cmp -s README.md "$temp_readme"; then
+            echo "README.md was modified. Committing changes..."
+            mv "$temp_readme" README.md # Replace original with modified temp file
+            readme_modified=true # Mark that we need to commit
+
+            # Git configuration should be done already by the count update part
+            # git config --global user.name 'github-actions[bot]'
+            # git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+            # Add, commit, and push README
+            git add README.md
+            if git diff --staged --quiet; then
+               echo "No changes staged for README.md, skipping commit (this shouldn't happen if cmp detected changes)."
+            else
+               git commit -m "docs: Update README with install links for ${BETA_RELEASE_TAG}" -m "Generated by GitHub Actions workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+               echo "Pushing README changes to branch ${{ github.ref_name }}..."
                git push origin HEAD:${{ github.ref_name }}
                if [ $? -ne 0 ]; then
-                   echo "Error: Failed to push $DOWNLOAD_COUNT_FILE changes. Continuing with README update, but count might be outdated."
-                   # Decide if this is fatal, for now we continue
+                   echo "Error: Failed to push README.md changes."
+                   # Consider reverting README change? `git checkout HEAD -- README.md`?
+                   exit 1
                else
-                   echo "Download count file updated and pushed successfully."
+                   echo "README.md update pushed successfully."
                fi
             fi
-  
-            # === 2. Initial Checks for README Update ===
-            if [ -f ".no_ipas_found" ] || [ ! -d "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR" ] || [ -z "$(ls -A "$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR")" ]; then
-              echo "No signed IPAs found or output directory is empty. Skipping README update."
-              exit 0
-            fi
-  
-            # === 3. Fetch Release Asset Info for Preflight ===
-            # Note: This fetches asset info again. Could potentially reuse EXISTING_ASSETS_JSON if structure is guaranteed identical.
-            # Fetching again ensures we have the latest URLs if asset upload happened between count check and here (unlikely in same step).
-            echo "Fetching asset URLs from release $BETA_RELEASE_TAG for preflight service..."
-            RELEASE_ASSETS_JSON=$(gh release view "$BETA_RELEASE_TAG" --json assets --repo ${{ github.repository }})
-            if [ $? -ne 0 ] || [ -z "$RELEASE_ASSETS_JSON" ] || [ "$(echo "$RELEASE_ASSETS_JSON" | jq '.assets | length')" -eq 0 ]; then
-               echo "Warning: Error fetching assets or no assets found in release $BETA_RELEASE_TAG after count update. Cannot generate installation links."
-               exit 0 # Exit step successfully but without doing the README update part
-            fi
-  
-            # === 4. Process IPAs and Modify README ===
-            SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
-            readme_modified=false # Flag to track if README was changed
-  
-            # Create a temporary file for modifications
-            temp_readme=$(mktemp)
-            cp README.md "$temp_readme"
-  
-            echo "Processing IPAs and updating README.md..."
-            for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
-              ipa_filename=$(basename "$ipa_file_path")
-              echo "Processing $ipa_filename..."
-  
-              # --- Get Download URL for Preflight Service ---
-              ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .browser_download_url')
-              if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
-                echo "  Warning: Could not find browser_download_url for $ipa_filename in release assets. Trying asset URL..."
-                ipa_download_url=$(echo "$RELEASE_ASSETS_JSON" | jq -r --arg name "$ipa_filename" '.assets[] | select(.name == $name) | .url')
-                if [ -z "$ipa_download_url" ] || [ "$ipa_download_url" == "null" ]; then
-                   echo "  Error: Could not find any download URL for $ipa_filename in release assets. Skipping link generation for this file."
-                   continue # Skip to the next IPA
-                fi
-                 echo "  Using API asset URL: $ipa_download_url"
-              else
-                echo "  Found browser download URL: $ipa_download_url"
-              fi
-  
-              # --- Call Preflight Service ---
-              echo "  Calling preflight service (ipa.s0n1c.ca)..."
-              response=$(curl --request POST \
-                --silent --show-error --fail --location \ # Added --location to handle potential redirects like from browser_download_url
-                --url https://ipa.s0n1c.ca/preflight \
-                --header 'Content-Type: application/json' \
-                --data "{\"url\": \"$ipa_download_url\"}")
-  
-              if [ $? -ne 0 ]; then
-                echo "  Error calling preflight service for $ipa_filename."
-                echo "  Response body (if any): $response" # Log response body on error
-                continue # Skip to the next IPA
-              fi
-  
-              # --- Extract ID and Construct Links ---
-              install_id=$(echo "$response" | jq -r '.id')
-              if [ -z "$install_id" ] || [ "$install_id" == "null" ]; then
-                echo "  Error: Could not get 'id' from preflight response for $ipa_filename. Response: $response"
-                continue # Skip to the next IPA
-              fi
-              echo "  Received ID: $install_id"
-  
-              itms_url="itms-services://?action=download-manifest&url=https://ipa.s0n1c.ca/${install_id}/manifest.plist"
-              install_markdown_link_url="https://fwuf.in/#/${itms_url}"
-              install_link_text_to_insert="[Install](${install_markdown_link_url}) / "
-  
-              # --- Define Target Link in README ---
-              # *** IMPORTANT: Ensure this tag matches the tag used when assets were ACTUALLY uploaded ***
-              # If assets are uploaded *later* in the workflow, this tag might need adjustment or be passed as output from upload step
-              # Assuming steps.download_ipas.outputs.latest_tag holds the correct tag for the *current* assets.
-              target_direct_download_link="[Direct download](https://github.com/${{ github.repository }}/releases/download/${{ steps.download_ipas.outputs.latest_tag }}/${ipa_filename})"
-  
-              # --- Escape the target link for use in sed pattern ---
-              escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][\\/.^$*]/\\&/g' -e 's/|/\\|/g' -e 's/+/%2B/g') # Added + escaping for URLs
-              if [ -z "$escaped_target" ]; then
-                  echo "  Error: Failed to escape the target string. Skipping."
-                  continue
-              fi
-  
-              # --- Construct the full new replacement string ---
-              # This is what we want the final output to look like
-              replacement_string="${install_link_text_to_insert}${target_direct_download_link}"
-              escaped_replacement=$(printf '%s\n' "$replacement_string" | sed -e 's/[\/&|]/\\&/g') # Escape only sed delimiters and backslash/ampersand for RHS
-               if [ -z "$escaped_replacement" ]; then
-                   echo "  Error: Failed to escape the replacement string. Skipping."
-                   continue
-               fi
-  
-              # --- Modify README.md ---
-              # MODIFIED LOGIC: Don't skip if exists. Instead, use sed to replace the line segment.
-              # We will replace '[Optional Install Link / ]Direct Download Link' with 'New Install Link / Direct Download Link'
-  
-              # Pattern to match: Optional '[Install](...) / ' followed by the direct download link.
-              # Using extended regex (-E) for the optional group '?' and better readability.
-              # Need to escape characters special to ERE inside the pattern part.
-              install_prefix_pattern='\[Install\]([^)]*) */ *' # Matches '[Install](...) / ' with optional spaces
-              combined_pattern_ere="(${install_prefix_pattern})?${escaped_target}"
-  
-              echo "  Updating install link in temporary README ($temp_readme)..."
-              # Use sed -E. Use a different delimiter (#) to avoid clash with URLs.
-              # The goal is to replace the optional old prefix AND the target, with the new replacement string.
-              sed -E "s#${combined_pattern_ere}#${escaped_replacement}#" "$temp_readme" > "$temp_readme.next"
-  
-              if [ $? -eq 0 ]; then
-                 # Check if a change actually occurred before marking readme_modified
-                 if ! cmp -s "$temp_readme" "$temp_readme.next"; then
-                    echo "  Successfully updated link in temporary file."
-                    mv "$temp_readme.next" "$temp_readme" # Update the temporary file for the next iteration
-                    # Mark modified only once we are sure at the end
-                 else
-                    echo "  Warning: sed command succeeded but did not modify the temp README. Target link pattern may not exist exactly as specified: ${target_direct_download_link}"
-                    rm -f "$temp_readme.next" # Clean up unused file
-                 fi
-              else
-                 echo "  Error: sed command failed while processing $ipa_filename."
-                 rm -f "$temp_readme.next" # Clean up potentially corrupt file
-                 # Decide how to handle sed failure - continue or exit?
-                 # continue # Continue to next IPA for now
-                 # exit 1 # Or exit the script with an error
-              fi
-  
-            done # End of for loop iterating through IPAs
-  
-            # === 5. Final Check and Commit README ===
-            # Check if the final temp file is actually different from the original README
-            if ! cmp -s README.md "$temp_readme"; then
-              echo "README.md was modified. Committing changes..."
-              mv "$temp_readme" README.md # Replace original with modified temp file
-              readme_modified=true # Mark that we need to commit
-  
-              # Git configuration should be done already by the count update part
-              # git config --global user.name 'github-actions[bot]'
-              # git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-  
-              # Add, commit, and push README
-              git add README.md
-              if git diff --staged --quiet; then
-                 echo "No changes staged for README.md, skipping commit (this shouldn't happen if cmp detected changes)."
-              else
-                 git commit -m "docs: Update README with install links for ${BETA_RELEASE_TAG}" -m "Generated by GitHub Actions workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                 echo "Pushing README changes to branch ${{ github.ref_name }}..."
-                 git push origin HEAD:${{ github.ref_name }}
-                 if [ $? -ne 0 ]; then
-                     echo "Error: Failed to push README.md changes."
-                     # Consider reverting README change? `git checkout HEAD -- README.md`?
-                     exit 1
-                 else
-                     echo "README.md update pushed successfully."
-                 fi
-              fi
-            else
-              echo "No effective changes were made to README.md or no IPAs required updates."
-              rm "$temp_readme" # Clean up unused temp file
-            fi
-  
-            echo "README update process finished."
+          else
+            echo "No effective changes were made to README.md or no IPAs required updates."
+            rm "$temp_readme" # Clean up unused temp file
+          fi
+
+          echo "README update process finished."
 
 
       - name: Update Certificate Status File (After Success)
