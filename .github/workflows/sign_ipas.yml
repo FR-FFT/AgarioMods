@@ -477,7 +477,7 @@ jobs:
             # --- Call Preflight Service ---
             echo "  Calling preflight service (ipa.s0n1c.ca)..."
             response=$(curl --request POST \
-              --silent --show-error --fail \ 
+              --silent --show-error --fail \
               --url https://ipa.s0n1c.ca/preflight \
               --header 'Content-Type: application/json' \
               --data "{\"url\": \"$ipa_download_url\"}")
