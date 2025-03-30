@@ -298,7 +298,7 @@ jobs:
               exit 1
           fi
           
-          ZSIGN_PATH="${{ steps.install_zsign.outputs.zsign_path }}" # Get zsign binary path
+          ZSIGN_PATH="${{ steps.install_zsign.outputs.zsign_bin_path }}" # Get zsign binary path
           CERT_PASSWORD="${{ steps.prep_cert_files.outputs.cert_password }}" # Get cert password
           
           if [ -z "$ZSIGN_PATH" ]; then echo "Error: ZSIGN_PATH is empty."; exit 1; fi
