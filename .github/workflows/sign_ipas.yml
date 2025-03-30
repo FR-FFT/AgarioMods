@@ -297,14 +297,14 @@ jobs:
               ls -l . # List current dir content for debugging
               exit 1
           fi
-
+          
+          ZSIGN_PATH="${{ steps.install_zsign.outputs.zsign_path }}" # Get zsign binary path
+          CERT_PASSWORD="${{ steps.prep_cert_files.outputs.cert_password }}" # Get cert password
+          
           echo "Running iPA-Edit..."
           # Pipe the path and password to the script's stdin
-          {
-            echo "${{ steps.install_zsign.outputs.zsign_bin_path }}" | dd bs=256 conv=sync
-            echo "Y" | dd bs=256 conv=sync
-            echo "${{ steps.prep_cert_files.outputs.cert_password }}"  | dd bs=256 conv=sync
-          } 2>/dev/null | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR" -s
+          printf "%s\n%s\n%s\n" "$ZSIGN_PATH" "Y" "$CERT_PASSWORD" | \
+            python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
