@@ -307,13 +307,13 @@ jobs:
 
           echo "Running iPA-Edit..."
           echo "  zsign path: $ZSIGN_PATH"
-          echo "  Input Dir: $INPUT_DIR"
-          echo "  Output Dir: $OUTPUT_DIR"
+          echo "  Input Dir: $SIGNING_INPUT_DIR"
+          echo "  Output Dir: $SIGNING_OUTPUT_DIR"
           echo "  Using signing option: -s"
           
           # Pipe the path and password to the script's stdin
           printf "%s\n%s\n%s\n" "$ZSIGN_PATH" "Y" "$CERT_PASSWORD" | \
-            python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s
+            python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR" -s
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
