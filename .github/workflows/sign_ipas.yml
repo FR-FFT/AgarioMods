@@ -393,6 +393,10 @@ jobs:
           SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
           readme_modified=false # Flag to track if README was changed
 
+          # Create a temporary file for the modified README
+          temp_readme="README.md.tmp.$$" # Use PID for uniqueness
+          cp README.md "$temp_readme"
+
           echo "Processing IPAs and updating README.md..."
           for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
             ipa_filename=$(basename "$ipa_file_path")
@@ -462,31 +466,64 @@ jobs:
                 continue # Skip to next IPA
             fi
 
-            # --- Modify README.md using sed ---
-            echo "  Adding install link to README.md..."
-            # Use a temporary file for sed inplace editing for better compatibility (esp. macOS sed vs GNU sed)
-            sed "s|${target_direct_download_link}|${install_link_text_to_insert}${target_direct_download_link}|" README.md > README.md.tmp
+            # --- Modify README using awk for literal replacement (safer than shell loop for edge cases) ---
+            # awk script:
+            # - v_target: Variable holding the exact string to find
+            # - v_insert: Variable holding the string to insert before the target
+            # - index(\$0, v_target): Finds the first occurrence of the literal string v_target in the current line (\$0)
+            # - If found (index > 0) and it's not already preceded by v_insert:
+            #   - print the part before, the insert text, and the rest of the line
+            #   - set replaced=1 and skip to next line (nextfile would be better but not posix)
+            # - If not found or already replaced, print the line as is (the '1' at the end)
+            # We process the current temp file and output to a new temp file for this specific IPA modification
+            current_mod_temp="README.md.tmp.mod.$$"
+            awk -v v_target="$target_direct_download_link" \
+                -v v_insert="$install_link_text_to_insert" \
+            '
+            BEGIN { replaced = 0 }
+            {
+                line = $0
+                target_pos = index(line, v_target)
+                already_inserted_check = v_insert v_target
 
-            # Check if sed succeeded and actually made a change
-            if [ $? -eq 0 ] && cmp -s README.md README.md.tmp; then
-               echo "  Warning: sed command succeeded but did not modify README.md. Target link '${target_direct_download_link}' might not exist exactly as specified."
-               rm README.md.tmp # Clean up temp file
-            elif [ $? -eq 0 ]; then
-               echo "  Successfully inserted link into temporary file."
-               mv README.md.tmp README.md # Replace original with modified file
-               readme_modified=true       # Mark that we need to commit
+                # Check if target exists AND the already_inserted pattern doesn't start at the calculated position
+                # This prevents duplicate insertions if the script runs weirdly, complementing the initial grep check.
+                # Also check the 'replaced' flag to only modify the FIRST occurrence in the entire file.
+                if (target_pos > 0 && index(line, already_inserted_check) != (target_pos - length(v_insert)) && replaced == 0) {
+                    # Reconstruct the line: part before + insertion + original target + part after
+                    # Note: The original target IS included in the print statement here.
+                    print substr(line, 1, target_pos - 1) v_insert substr(line, target_pos)
+                    replaced = 1 # Mark that we made a replacement
+                } else {
+                    print line # Print original line if no match or already replaced
+                }
+            }
+            END { exit !replaced } # Exit with 0 if replacement happened, 1 otherwise
+            ' "$temp_readme" > "$current_mod_temp"
+
+            awk_exit_code=$?
+            if [ $awk_exit_code -eq 0 ]; then
+               echo "  Successfully inserted link using awk."
+               # Replace the main temp file with the newly modified one
+               mv "$current_mod_temp" "$temp_readme"
+               readme_needs_commit=true # Mark that a change happened
+            elif [ $awk_exit_code -eq 1 ]; then
+               echo "  Target direct download link not found for $ipa_filename in the expected format. No changes made by awk."
+               rm "$current_mod_temp" # Clean up the intermediate temp file
             else
-               echo "  Error: sed command failed while processing $ipa_filename."
-               rm README.md.tmp # Clean up temp file
-               # Decide how to handle sed failure - continue or exit?
-               # continue # Continue to next IPA for now
-               # exit 1 # Or exit the script with an error
+               echo "  Error: awk command failed with exit code $awk_exit_code while processing $ipa_filename."
+               rm "$current_mod_temp" # Clean up
+               # Decide if this is fatal
+               # exit 1 # Or continue
             fi
+
           done # End of for loop iterating through IPAs
 
-          # === Commit and Push Changes ===
-          if [ "$readme_modified" = true ]; then
+           # === Final Check and Commit ===
+          # Check if the final temp file is actually different from the original README
+          if [ "$readme_needs_commit" = true ] && ! cmp -s README.md "$temp_readme"; then
             echo "README.md was modified. Committing changes..."
+            mv "$temp_readme" README.md # Overwrite original README with the final modified temp file
 
             # Configure Git user
             git config --global user.name 'github-actions[bot]'
@@ -494,22 +531,23 @@ jobs:
 
             # Add, commit, and push
             git add README.md
-            # Check if there are staged changes before committing
             if git diff --staged --quiet; then
-               echo "No changes staged, skipping commit."
+               echo "No changes staged, skipping commit (this shouldn't happen if cmp detected changes)."
             else
-               git commit -m "docs: Update README with install links for ${{ steps.download_ipas.outputs.latest_tag }}" -m "Generated by GitHub Actions workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+               git commit -m "docs: Update README with install links for ${BETA_RELEASE_TAG}" -m "Generated by GitHub Actions workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
                echo "Pushing changes to branch ${{ github.ref_name }}..."
-               git push origin HEAD:${{ github.ref_name }} # Push to the same branch the workflow is running on
+               git push origin HEAD:${{ github.ref_name }}
                if [ $? -ne 0 ]; then
                    echo "Error: Failed to push README.md changes."
+                   rm -f "$temp_readme" # Clean up just in case
                    exit 1
                else
                    echo "README.md update pushed successfully."
                fi
             fi
           else
-            echo "No changes were made to README.md."
+            echo "No effective changes were made to README.md or no IPAs required updates."
+            rm "$temp_readme" # Clean up the unmodified temp file
           fi
 
           echo "README update process finished."
