@@ -264,7 +264,7 @@ jobs:
           unzip -q "$ZSIGN_ASSET_NAME" -d "$ZSIGN_DIR"
           if [ $? -ne 0 ]; then echo "Error unzipping zsign"; exit 1; fi
 
-          ZSIGN_BIN_PATH=$(find "$ZSIGN_DIR" -name 'zsign' -type f | head -n 1)
+          ZSIGN_BIN_PATH=~+/$ZSIGN_DIR
           if [ -z "$ZSIGN_BIN_PATH" ]; then echo "Error: zsign binary not found after unzip"; exit 1; fi
 
           chmod +x "$ZSIGN_BIN_PATH"
