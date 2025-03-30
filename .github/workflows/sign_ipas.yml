@@ -87,12 +87,13 @@ jobs:
             exit 1
           fi
 
+          echo "Fetched Cert Name: ${CERT_ASSET_ZIP_NAME%.zip}"
           echo "Fetched Cert UID: $CERT_UID"
           echo "Fetched Cert Revoked: $CERT_REVOKED"
           echo "Fetched Cert Asset URL: $CERT_ASSET_ZIP_URL"
           echo "Fetched Cert Valid Until: $CERT_VALID_UNTIL"
 
-          echo "cert_name=${CERT_ASSET_ZIP_NAME%.zip} >> $GITHUB_OUTPUT
+          echo "cert_name=${CERT_ASSET_ZIP_NAME%.zip}" >> $GITHUB_OUTPUT
           echo "cert_uid=$CERT_UID" >> $GITHUB_OUTPUT
           echo "cert_revoked=$CERT_REVOKED" >> $GITHUB_OUTPUT
           echo "cert_asset_zip_url=$CERT_ASSET_ZIP_URL" >> $GITHUB_OUTPUT
