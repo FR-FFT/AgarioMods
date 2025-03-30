@@ -276,7 +276,7 @@ jobs:
       - name: Download iPA-Edit Script
         if: steps.cert_check.outputs.proceed_signing == 'true'
         run: |
-          IPAEDIT_URL="https://raw.githubusercontent.com/binnichtaktiv/iPA-Edit/main/ipaedit.py"
+          IPAEDIT_URL="https://raw.githubusercontent.com/binnichtaktiv/iPA-Edit/8d2cd9dafc7f890ffb59f4bb20bc93fced736593/ipaedit.py"
           echo "Downloading iPA-Edit script from $IPAEDIT_URL"
           curl -L -O "$IPAEDIT_URL"
           if [ $? -ne 0 ]; then echo "Error downloading ipaedit.py"; exit 1; fi
@@ -303,8 +303,7 @@ jobs:
           
           echo "Running iPA-Edit..."
           # Pipe the path and password to the script's stdin
-          printf "%s\n%s\n%s\n" "$ZSIGN_PATH" "Y" "$CERT_PASSWORD" | \
-            python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s
+          python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s <<< "$ZSIGN_PATH"$'\n'"Y"$'\n'"$CERT_PASSWORD"
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
