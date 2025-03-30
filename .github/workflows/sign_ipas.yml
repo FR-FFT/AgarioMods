@@ -300,7 +300,7 @@ jobs:
 
           echo "Running iPA-Edit..."
           # Pipe the path and password to the script's stdin
-          echo "${{ steps.install_zsign.outputs.zsign_bin_path }} \n ${{ steps.prep_cert_files.outputs.cert_password }}" | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR -s"
+          echo "${{ steps.install_zsign.outputs.zsign_bin_path }} \n \n ${{ steps.prep_cert_files.outputs.cert_password }}" | python3 ./ipaedit.py -i "$SIGNING_INPUT_DIR" -o "$SIGNING_OUTPUT_DIR" -s
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
