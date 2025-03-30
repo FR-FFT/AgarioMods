@@ -268,8 +268,8 @@ jobs:
           if [ -z "$ZSIGN_BIN_PATH" ]; then echo "Error: zsign binary not found after unzip"; exit 1; fi
 
           chmod +x "$ZSIGN_BIN_PATH"
-          echo "Adding $(dirname "$ZSIGN_BIN_PATH") to PATH"
-          echo "$ZSIGN_BIN_PATH" >> $GITHUB_PATH
+          echo "Adding ~+/$ZSIGN_DIR to PATH"
+          echo "~+/$ZSIGN_DIR" >> $GITHUB_PATH
           # Verify
           which zsign
           zsign -v
