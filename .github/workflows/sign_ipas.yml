@@ -301,9 +301,19 @@ jobs:
           ZSIGN_PATH="${{ steps.install_zsign.outputs.zsign_path }}" # Get zsign binary path
           CERT_PASSWORD="${{ steps.prep_cert_files.outputs.cert_password }}" # Get cert password
           
+          if [ -z "$ZSIGN_PATH" ]; then echo "Error: ZSIGN_PATH is empty."; exit 1; fi
+          if [ ! -x "$ZSIGN_PATH" ]; then echo "Error: zsign binary not found or not executable at '$ZSIGN_PATH'"; exit 1; fi
+          if [ -z "$CERT_PASSWORD" ]; then echo "Error: CERT_PASSWORD is empty."; exit 1; fi # Should be masked in logs
+
           echo "Running iPA-Edit..."
+          echo "  zsign path: $ZSIGN_PATH"
+          echo "  Input Dir: $INPUT_DIR"
+          echo "  Output Dir: $OUTPUT_DIR"
+          echo "  Using signing option: -s"
+          
           # Pipe the path and password to the script's stdin
-          python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s <<< "$ZSIGN_PATH"$'\n'"Y"$'\n'"$CERT_PASSWORD"
+          printf "%s\n%s\n%s\n" "$ZSIGN_PATH" "Y" "$CERT_PASSWORD" | \
+            python3 ./ipaedit.py -i "$INPUT_DIR" -o "$OUTPUT_DIR" -s
 
           if [ $? -ne 0 ]; then
             echo "Error running ipaedit.py"
