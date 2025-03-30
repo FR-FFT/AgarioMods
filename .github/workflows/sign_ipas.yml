@@ -508,9 +508,8 @@ jobs:
 
            # === Final Check and Commit ===
           # Check if the final temp file is actually different from the original README
-          if [ "$readme_needs_commit" = true ] && ! cmp -s README.md "$temp_readme"; then
+          if [ "$readme_modified" = true ]; then
             echo "README.md was modified. Committing changes..."
-            mv "$temp_readme" README.md # Overwrite original README with the final modified temp file
 
             # Configure Git user
             git config --global user.name 'github-actions[bot]'
@@ -534,7 +533,6 @@ jobs:
             fi
           else
             echo "No effective changes were made to README.md or no IPAs required updates."
-            rm "$temp_readme" # Clean up the unmodified temp file
           fi
 
           echo "README update process finished."
