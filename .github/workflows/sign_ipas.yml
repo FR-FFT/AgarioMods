@@ -393,10 +393,6 @@ jobs:
           SIGNED_IPA_FILES=("$SIGNING_OUTPUT_DIR/$SIGNED_IPAS_DIR"/*.ipa)
           readme_modified=false # Flag to track if README was changed
 
-          # Create a temporary file for the modified README
-          temp_readme="README.md.tmp.$$" # Use PID for uniqueness
-          cp README.md "$temp_readme"
-
           echo "Processing IPAs and updating README.md..."
           for ipa_file_path in "${SIGNED_IPA_FILES[@]}"; do
             ipa_filename=$(basename "$ipa_file_path")
@@ -466,92 +462,46 @@ jobs:
                 continue # Skip to next IPA
             fi
 
-            # --- Modify README using awk for literal replacement (safer than shell loop for edge cases) ---
-            # awk script:
-            # - v_target: Variable holding the exact string to find
-            # - v_insert: Variable holding the string to insert before the target
-            # - index(\$0, v_target): Finds the first occurrence of the literal string v_target in the current line (\$0)
-            # - If found (index > 0) and it's not already preceded by v_insert:
-            #   - print the part before, the insert text, and the rest of the line
-            #   - set replaced=1 and skip to next line (nextfile would be better but not posix)
-            # - If not found or already replaced, print the line as is (the '1' at the end)
-            # We process the current temp file and output to a new temp file for this specific IPA modification
-            current_mod_temp="README.md.tmp.mod.$$"
-            awk -v v_target="$target_direct_download_link" \
-                -v v_insert="$install_link_text_to_insert" \
-            '
-            # --- Modify README using awk for literal replacement (safer than shell loop for edge cases) ---
-            current_mod_temp="README.md.tmp.mod.$$"
-            echo "  Applying awk transformation..." # Added logging
+             # --- Escape the target link for use in sed pattern ---
+            # Characters to escape: . * [ ] \ ^ $ and the chosen delimiter |
+            # Use sed itself to perform the escaping on the variable content
+            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][\\/.^$*]/\\&/g' -e 's/|/\\|/g')
+            if [ -z "$escaped_target" ]; then
+                echo "  Error: Failed to escape the target string. Skipping."
+                continue
+            fi
+            # echo "  DEBUG: Escaped target: $escaped_target" # Optional debugging
 
-            # Use awk -f - to read the script from stdin via a heredoc <<'AWK_SCRIPT'
-            # The single quotes around 'AWK_SCRIPT' prevent shell expansion within the script block.
-            awk -v v_target="$target_direct_download_link" \
-                -v v_insert="$install_link_text_to_insert" \
-                -f - "$temp_readme" > "$current_mod_temp" <<'AWK_SCRIPT'
-            BEGIN {
-                replaced = 0
-                # Optional: Debug print the variables awk received
-                print "AWK: Target = <" v_target ">" > "/dev/stderr"
-                print "AWK: Insert = <" v_insert ">" > "/dev/stderr"
-            }
-            {
-                line = $0
-                target_pos = index(line, v_target)
-                # Construct the pattern that would exist if already inserted
-                already_inserted_check_string = v_insert v_target
-            
-                # Check if target exists AND the already_inserted pattern isn't exactly there AND we haven't replaced yet
-                # Using index > 0 correctly checks for existence.
-                # index(line, already_inserted_check_string) != target_pos - length(v_insert) is complex;
-                # simpler: check if the target exists AND the "already inserted" string does NOT exist at the same spot.
-                # Let's refine the check slightly for clarity and robustness:
-            
-                # Does the target string exist on this line?
-                if (target_pos > 0) {
-                    # If it exists, does the *already inserted* pattern ALSO start exactly where it should?
-                    # Calculate expected start position of the 'v_insert' part if it were there
-                    expected_insert_pos = target_pos - length(v_insert)
-            
-                    # Check if the combined string exists and starts at the calculated position
-                    already_present = (index(line, already_inserted_check_string) == expected_insert_pos)
-            
-                    # Proceed only if the target is found, it's not already present, and we haven't replaced yet in the file
-                    if (!already_present && replaced == 0) {
-                        # print "AWK: Modifying line: " NR > "/dev/stderr" # Debugging
-                        # Reconstruct the line: part before + insertion + the rest (including original target)
-                        print substr(line, 1, target_pos - 1) v_insert substr(line, target_pos)
-                        replaced = 1 # Mark that we made a replacement (for the whole file)
-                    } else {
-                        # Target found, but already modified OR we already replaced elsewhere in the file
-                        print line
-                    }
-                } else {
-                    # Target not found on this line, print original line
-                    print line
-                }
-            }
-            END {
-                print "AWK: Finished processing. Replaced flag = " replaced > "/dev/stderr" # Debugging
-                # Exit with 0 if replacement happened (replaced=1), 1 otherwise (!1 is 0, !0 is 1)
-                exit !replaced
-            }
-            AWK_SCRIPT
+            # --- Escape the replacement string *only* for delimiter and backslash ---
+            # The replacement string is the *insertion text* followed by the *original target text*.
+            # We need to escape '|' and '\' within this combined string.
+            replacement_string="${install_link_text_to_insert}${target_direct_download_link}"
+            escaped_replacement=$(printf '%s\n' "$replacement_string" | sed -e 's/\\/\\\\/g' -e 's/|/\\|/g')
+            if [ -z "$escaped_replacement" ]; then
+                echo "  Error: Failed to escape the replacement string. Skipping."
+                continue
+            fi
+            # echo "  DEBUG: Escaped replacement: $escaped_replacement" # Optional debugging
 
-            awk_exit_code=$?
-            if [ $awk_exit_code -eq 0 ]; then
-               echo "  Successfully inserted link using awk."
-               # Replace the main temp file with the newly modified one
-               mv "$current_mod_temp" "$temp_readme"
-               readme_needs_commit=true # Mark that a change happened
-            elif [ $awk_exit_code -eq 1 ]; then
-               echo "  Target direct download link not found for $ipa_filename in the expected format. No changes made by awk."
-               rm "$current_mod_temp" # Clean up the intermediate temp file
+
+            # --- Modify README.md using sed with escaped strings and '|' delimiter ---
+            echo "  Adding install link to README.md using sed..."
+            sed "s|${escaped_target}|${escaped_replacement}|" README.md > README.md.tmp
+
+            # Check if sed succeeded and actually made a change
+            if [ $? -eq 0 ] && ! cmp -s README.md README.md.tmp; then
+               echo "  Successfully inserted link into temporary file."
+               mv README.md.tmp README.md # Replace original with modified file
+               readme_modified=true       # Mark that we need to commit
+            elif [ $? -eq 0 ]; then
+               echo "  Warning: sed command succeeded but did not modify README.md. Target link '${target_direct_download_link}' might not exist exactly as specified, or file unchanged."
+               rm README.md.tmp # Clean up temp file
             else
-               echo "  Error: awk command failed with exit code $awk_exit_code while processing $ipa_filename."
-               rm "$current_mod_temp" # Clean up
-               # Decide if this is fatal
-               # exit 1 # Or continue
+               echo "  Error: sed command failed while processing $ipa_filename."
+               rm -f README.md.tmp # Clean up temp file (use -f to ignore error if it doesn't exist)
+               # Decide how to handle sed failure - continue or exit?
+               # continue # Continue to next IPA for now
+               # exit 1 # Or exit the script with an error
             fi
 
           done # End of for loop iterating through IPAs
