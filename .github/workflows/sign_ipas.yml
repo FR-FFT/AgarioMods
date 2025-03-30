@@ -227,34 +227,19 @@ jobs:
           # Get assets from the *latest* release of the current repo
           # Using `--latest` flag might not be reliable if you use pre-releases frequently.
           # Fetching the most recent non-prerelease, non-draft release:
-          LATEST_RELEASE_ASSETS_JSON=$(gh release list --repo ${{ github.repository }} --exclude-drafts --exclude-pre-releases --limit 1 --json assets)
+          LATEST_TAG=$(gh release list --repo FR-FFT/AgarioMods --exclude-drafts --exclude-pre-releases --limit 1 --json tagName | jq -r '.[0].tagName')
+          echo "Latest tag:"
+          echo $LATEST_TAG
 
-          if [ -z "$LATEST_RELEASE_ASSETS_JSON" ]; then
-             echo "Warning: Could not find a suitable latest release in ${{ github.repository }} to download IPAs from."
-             # Decide if this is an error or if signing should proceed with no IPAs
-             # For now, let's allow proceeding, but the signing step will likely do nothing.
-             touch .no_ipas_found # Create a marker file
-             exit 0 # Continue workflow
-          fi
-
-          echo "::group::Latest Release Assets JSON (for IPAs)"
-          echo "$LATEST_RELEASE_ASSETS_JSON"
-          echo "::endgroup::"
-
-          # Download .ipa files, excluding Foo.ipa
-          IPA_URLS=$(echo "$LATEST_RELEASE_ASSETS_JSON" | jq -r '.[] | .assets[]? | select(.name | endswith(".ipa") and (.name != "Agario.ipa")) | .url')
-
-          if [ -z "$IPA_URLS" ]; then
-            echo "Warning: No .ipa files (excluding Agario.ipa) found in the latest release assets."
+          cd "$SIGNING_INPUT_DIR"
+          gh release download $LATEST_TAG -R FR-FFT/AgarioMods --pattern "*.ipa"
+          rm Agario.ipa
+          
+          if [  -n "$(ls -A)" ]; then
+            echo "Warning: No .ipa files (excluding Agario.ipa) downloaded."
             touch .no_ipas_found # Create a marker file
           else
-            echo "Found IPAs to download:"
-            echo "$IPA_URLS"
-            cd "$SIGNING_INPUT_DIR"
-            echo "$IPA_URLS" | xargs -n 1 curl -L -O --fail -#
-            if [ $? -ne 0 ]; then echo "Error downloading one or more IPAs"; exit 1; fi
-            cd ..
-            echo "IPAs downloaded to $SIGNING_INPUT_DIR"
+            echo "Found IPAs to download"
           fi
 
       - name: Install zsign
