@@ -6,11 +6,14 @@
 <p align="center">If you want me to add any other Agar.io mods / combinations, open an issue.</p>
 
 <p align="center">
-    <a href="https://github.com/FR-FFT/AgarioMods/releases/latest"><img src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/latest/total?color=%23007BFF&label=Downloads%20(Latest%20Release)" alt="Downloads (Latest Release) Badge"></a>
+    <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/latest/total">
+    <img alt="GitHub Downloads (all assets, specific tag)" src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/signed-ipas-beta/total?label=Direct%20installs">
     <a href="https://github.com/FR-FFT/AgarioMods/releases"><img src="https://img.shields.io/github/downloads/FR-FFT/AgarioMods/total?color=%23007BFF&label=Total%20Downloads" alt="Total Downloads Badge"></a>
     <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fitunes.apple.com%2Flookup%3Fid%3D995999703%26country%3Dus%26ia%3Dweb&query=%24.results.0.version&label=Agar.io%20version">
     <img alt="Dynamic YAML Badge" src="https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fgithub.com%2FFR-FFT%2FAgarioMods%2Fraw%2Frefs%2Fheads%2Fmain%2Fversion.txt&query=%24&label=Mods%20version">
     <img alt="Dynamic YAML Badge" src="https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fgithub.com%2FFR-FFT%2FAgarioMods%2Fraw%2Frefs%2Fheads%2Fmain%2Flast_updated.txt&query=%24&label=Updated">
+    <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFR-FFT%2FAgarioMods%2Frefs%2Fheads%2Fmain%2Fcertificate_status.json&query=%24.revoked&label=Revoked">
+    <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFR-FFT%2FAgarioMods%2Frefs%2Fheads%2Fmain%2Fcertificate_status.json&query=%24.last_checked_tag&label=Certificate">
 </p>
 
 <p align="center">
