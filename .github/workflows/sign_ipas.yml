@@ -507,7 +507,7 @@ jobs:
             target_direct_download_link="[Direct download](https://github.com/${{ github.repository }}/releases/download/${{ steps.download_ipas.outputs.latest_tag }}/${ipa_filename})"
 
             # --- Escape the target link for use in sed pattern ---
-            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][\\/.^$*]/\\&/g' -e 's/|/\\|/g' -e 's/+/(%2B|+)/g') # Added + escaping for URLs
+            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][)(|\\/.^$*]/\\&/g' -e 's/+/(%2B|+)/g') # Added + escaping for URLs
             if [ -z "$escaped_target" ]; then
                 echo "  Error: Failed to escape the target string. Skipping."
                 continue
@@ -529,7 +529,7 @@ jobs:
             # Pattern to match: Optional '[Install](...) / ' followed by the direct download link.
             # Using extended regex (-E) for the optional group '?' and better readability.
             # Need to escape characters special to ERE inside the pattern part.
-            install_prefix_pattern='\[Install\]([^)]*) */ *' # Matches '[Install](...) / ' with optional spaces
+            install_prefix_pattern='\[Install\]\([^)]*\) */ *' # Matches '[Install](...) / ' with optional spaces
             combined_pattern_ere="(${install_prefix_pattern})?${escaped_target}"
 
             echo "  Updating install link in temporary README ($temp_readme)..."
