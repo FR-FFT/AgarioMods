@@ -1,8 +1,8 @@
 name: IPA Signing
 
 on:
-  # schedule:
-    # - cron: '0 3 * * *' # Run daily at 3:00 AM UTC 
+  schedule:
+    - cron: '0 3 * * *' # Run daily at 3:00 AM UTC 
   workflow_dispatch: # Allow manual triggering
 
 # Grant permissions to commit status file and manage releases
@@ -133,8 +133,11 @@ jobs:
                # We'll mark for update, but only commit *after* successful signing.
                NEEDS_UPDATE=true # Mark that an update is potentially needed
             else
-               echo "Certificate status matches stored record. Exiting."
-               # exit 1
+               echo "Certificate status matches stored record."
+               if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
+                 echo "Exiting."
+                 exit 0
+               fi  
             fi
           fi
 
