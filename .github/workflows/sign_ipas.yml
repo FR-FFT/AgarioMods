@@ -507,7 +507,7 @@ jobs:
             target_direct_download_link="[Direct download](https://github.com/${{ github.repository }}/releases/download/${{ steps.download_ipas.outputs.latest_tag }}/${ipa_filename})"
 
             # --- Escape the target link for use in sed pattern ---
-            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][)(|\\/.^$*]/\\&/g' -e 's/+/(%2B|+)/g') # Added + escaping for URLs
+            escaped_target=$(printf '%s\n' "$target_direct_download_link" | sed -e 's/[][)(|\\/.^$*]/\\&/g' -e 's/+/(%2B|\+)/g') # Added + escaping for URLs
             if [ -z "$escaped_target" ]; then
                 echo "  Error: Failed to escape the target string. Skipping."
                 continue
