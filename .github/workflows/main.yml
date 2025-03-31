@@ -180,3 +180,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python upload_mods.py $GITHUB_TOKEN "${{ github.event.inputs.release_title }}" "${{ github.event.inputs.release_description }}" "${{ github.event.inputs.release_tag }}"
+
+      - name: Sign IPAs
+        run: gh workflow run "IPA Signing"
+        env:
+          GH_TOKEN: ${{ github.token }}
