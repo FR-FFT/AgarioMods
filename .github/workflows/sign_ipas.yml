@@ -533,6 +533,7 @@ jobs:
             combined_pattern_ere="(${install_prefix_pattern})?${escaped_target}"
 
             echo "  Updating install link in temporary README ($temp_readme)..."
+            echo " Debug: sed replacement is \"s@${combined_pattern_ere}@${escaped_replacement}@\""
             # Use sed -E. Use a different delimiter (@) to avoid clash with URLs.
             # The goal is to replace the optional old prefix AND the target, with the new replacement string.
             sed -E "s@${combined_pattern_ere}@${escaped_replacement}@" "$temp_readme" > "$temp_readme.next"
