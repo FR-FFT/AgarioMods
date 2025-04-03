@@ -27,6 +27,10 @@ def fetch_version():
     url = "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/version.txt"
     response = requests.get(url)
     return response.text.strip()
+    
+def get_ymd_date():
+    today = datetime.datetime.now()
+     return today.strftime("%Y-%M-%d")
 
 def get_current_date():
     today = datetime.datetime.now()
@@ -52,13 +56,13 @@ def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
         "Agar.io mods": [{
             "name": get_config(mods_config, asset_upload_url, 'app_name'),
             "version": version,
-            "icon": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url))}.png",
+            "icon": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace("+%2B+", "%20%2B%20")}.png",
             "down": asset_upload_url,
             "dev": get_config(mods_config, asset_upload_url, 'developer'),
             "category": "Agar.io Mods",
             "description": get_config(mods_config, asset_upload_url, 'description'),
             "bundleID": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
-            "appstore": "com.miniclip.agar.io",
+            "appstore": "com.miniclip.agar.io", # used to fetch screenshots
             "contact": {
                 "web": "",
                 "PayPal": ""
@@ -83,10 +87,10 @@ def construct_esign_repo_txt(asset_upload_urls, version, mods_config):
                 "bundleIdentifier": f"com.miniclip.agar.io.{flatten_name(parse_name(asset_upload_url))}",
                 "developerName": get_config(mods_config, asset_upload_url, 'developer'),
                 "version": version,
-                "versionDate": get_current_date(),
+                "versionDate": get_ymd_date(),
                 "downloadURL": asset_upload_url,
                 "localizedDescription": get_config(mods_config, asset_upload_url, 'description'),
-                "iconURL": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url))}.png",
+                "iconURL": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace("+%2B+", "%20%2B%20")}.png",
                 "tintColor": "FF0000",
                 "size": os.path.getsize(f"{folder}/{parse_name(asset_upload_url)}.ipa"),
                 "screenshotURLs": [
