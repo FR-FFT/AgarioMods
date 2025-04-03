@@ -21,7 +21,7 @@
         {
             "name": "CtrlXelaAgar",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl+%2B+Xelahot.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl%20%2B%20Xelahot.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Ctrl.%2B.Xelahot.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -36,7 +36,7 @@
         {
             "name": "SharkCtrl",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark+%2B+Ctrl.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Ctrl.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Shark.%2B.Ctrl.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -111,7 +111,7 @@
         {
             "name": "Sharkaba",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark+%2B+Kahraba.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Shark.%2B.Kahraba.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -126,7 +126,7 @@
         {
             "name": "KSXQ Agario",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba+%2B+Shark+%2B+Xelahot+%2B+QxAnarky.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20Shark%20%2B%20Xelahot%20%2B%20QxAnarky.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -141,7 +141,7 @@
         {
             "name": "AnSharky",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark+%2B+QxAnarky.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20QxAnarky.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Shark.%2B.QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -171,7 +171,7 @@
         {
             "name": "QCXAgar",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky+%2B+Ctrl+%2B+Xelahot.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Ctrl%20%2B%20Xelahot.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
             "dev": "",
             "category": "Agar.io Mods",
@@ -216,7 +216,7 @@
         {
             "name": "Sharkaba2",
             "version": "2.28.10",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark+%2B+Kahraba2.png",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba2.png",
             "down": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Shark.%2B.Kahraba2.ipa",
             "dev": "",
             "category": "Agar.io Mods",
