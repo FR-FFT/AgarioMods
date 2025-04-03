@@ -12,7 +12,7 @@
             "versionDate": "2025-10-03",
             "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/shark-v1.7.3/Ctrl.ipa",
             "localizedDescription": "Various UI options (e.g. claassic to burst, hide party icons).",
-            "iconURL": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl.png",
             "tintColor": "FF0000",
             "size": 51887443,
             "screenshotURLs": [],
