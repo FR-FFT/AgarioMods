@@ -13,8 +13,8 @@ on:
         required: false
       new_version:
         required: true
-        type: boolean
-        default: false
+        type: string
+        default: "false"
 
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: check_version
-    if: needs.check_version.outputs.new_version != 'false' && (github.event_name != 'workflow_dispatch' || ${{ inputs.new_version }} )
+    if: needs.check_version.outputs.new_version != 'false' && (github.event_name != 'workflow_dispatch' || ${{ inputs.new_version }} == "true" )
     steps:
       - name: Debugging
         run: |
