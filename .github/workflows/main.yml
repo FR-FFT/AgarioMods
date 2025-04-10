@@ -87,7 +87,7 @@ jobs:
   upload_old_agario_ipa:
     runs-on: ubuntu-latest
     needs: check_version
-    if: github.event_name == 'workflow_dispatch' && ! ${{ inputs.new_version }}
+    if: github.event_name == 'workflow_dispatch' && inputs.new_version != 'true'
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
