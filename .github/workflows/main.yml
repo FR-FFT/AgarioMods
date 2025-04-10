@@ -2,7 +2,7 @@ name: ModInjector
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily at midnight UTC
+    - cron: '56 9 * * *' # Run daily at midnight UTC
   workflow_dispatch: # Allow manual runs
     inputs:
       release_title:
