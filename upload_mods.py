@@ -56,7 +56,7 @@ def construct_scarlet_repo_txt(asset_upload_urls, version, mods_config):
         "Agar.io mods": [{
             "name": get_config(mods_config, asset_upload_url, 'app_name'),
             "version": version,
-            "icon": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace("+%2B+", "%20%2B%20")}.png",
+            "icon": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace('+%2B+', '%20%2B%20')}.png",
             "down": asset_upload_url,
             "dev": get_config(mods_config, asset_upload_url, 'developer'),
             "category": "Agar.io Mods",
@@ -90,7 +90,7 @@ def construct_esign_repo_txt(asset_upload_urls, version, mods_config):
                 "versionDate": get_ymd_date(),
                 "downloadURL": asset_upload_url,
                 "localizedDescription": get_config(mods_config, asset_upload_url, 'description'),
-                "iconURL": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace("+%2B+", "%20%2B%20")}.png",
+                "iconURL": f"https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/{uriencode(parse_name(asset_upload_url)).replace('+%2B+', '%20%2B%20')}.png",
                 "tintColor": "FF0000",
                 "size": os.path.getsize(f"{folder}/{parse_name(asset_upload_url)}.ipa"),
                 "screenshotURLs": [
