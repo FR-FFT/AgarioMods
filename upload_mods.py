@@ -198,7 +198,7 @@ def upload_assets_and_update_files(repo_name, token, tag_name, release_name, bod
 
     try:
         file = repo.get_contents("last_updated.txt", ref="main")
-        repo.update_file("last_updated.txt", "Updated last_updated.txt", get_current_date(), branch="main")
+        repo.update_file("last_updated.txt", "Updated last_updated.txt", get_current_date(), file.sha, branch="main")
     except:
         repo.create_file("last_updated.txt", "Updated last_updated.txt", get_current_date(), branch="main")
 
