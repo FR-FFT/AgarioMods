@@ -30,7 +30,7 @@ def fetch_version():
     
 def get_ymd_date():
     today = datetime.datetime.now()
-     return today.strftime("%Y-%M-%d")
+    return today.strftime("%Y-%M-%d")
 
 def get_current_date():
     today = datetime.datetime.now()
