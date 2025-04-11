@@ -38,6 +38,7 @@ jobs:
         id: check
         run: |
           python check_version.py
+          echo "${{ needs.check_version.outputs.new_version }}"
       - name: Commit and push changes
         if: needs.check_version.outputs.new_version != 'false'
         uses: EndBug/add-and-commit@v9
