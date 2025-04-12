@@ -4,8 +4,9 @@ import os
 import sys
 
 def save_run_status(status):
+    print("Saving status:", status)
     with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-        print(f'new_version={str(status).lower()}', file=fh)
+        print(f'\nnew_version={str(status).lower()}', file=fh)
 
 def get_latest_version(app_id, country="us"):
     """Fetch the latest app version from the iTunes Search API."""
