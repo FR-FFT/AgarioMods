@@ -38,7 +38,7 @@ jobs:
         id: check
         run: python check_version.py
         
-      - name: Debug:
+      - name: Debug
         run: echo "New version: ${{ steps.check.outputs.new_version }}"
       
       - name: Commit and push changes
