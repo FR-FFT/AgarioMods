@@ -344,5 +344,23 @@
 <string>Markiere teilbare Zellen</string>
 <key>click_to_activate_tag</key>
 <string>Klicken zum Aktivieren</string>
+<key>backgroundsectors_tag</key>
+<string>Hintergrundsektoren</string>
+<key>custom_tag</key>
+<string>Benutzerdefiniert</string>
+<key>static_zoom_tag</key>
+<string>Statischer Zoom</string>
+<key>classic-macro_using_settingsbutton_tag</key>
+<string>Klassisches Makro über die Einstellungen-Schaltfläche</string>
+<key>stop_after_limit_tag</key>
+<string>Stopp nach Limit</string>
+<key>joystickscale_tag</key>
+<string>Joystick-Skala</string>
+<key>joysickflexibilityfactor_tag</key>
+<string>Flexibilitätsfaktor des Joysticks</string>
+<key>joysickdistancefactor_tag</key>
+<string>Entfernungsfaktor des Joysticks</string>
+<key>hide_tag</key>
+<string>Ausblenden</string>
 </dict>
 </plist>

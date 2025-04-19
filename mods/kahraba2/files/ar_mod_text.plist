@@ -332,5 +332,23 @@
 <string>علامة على الخلايا القابلة للتقسيم</string>
 <key>click_to_activate_tag</key>
 <string>انقر للتفعيل</string>
+<key>backgroundsectors_tag</key>
+<string>القطاعات الخلفية</string>
+<key>custom_tag</key>
+<string>مخصص</string>
+<key>static_zoom_tag</key>
+<string>تكبير ثابت</string>
+<key>classic-macro_using_settingsbutton_tag</key>
+<string>ماكرو كلاسيكي باستخدام زر الإعدادات</string>
+<key>stop_after_limit_tag</key>
+<string>توقف بعد الحد</string>
+<key>joystickscale_tag</key>
+<string>مقياس عصا التحكم</string>
+<key>joysickflexibilityfactor_tag</key>
+<string>عامل مرونة عصا التحكم</string>
+<key>joysickdistancefactor_tag</key>
+<string>عامل مسافة عصا التحكم</string>
+<key>hide_tag</key>
+<string>إخفاء</string>
 </dict>
 </plist>

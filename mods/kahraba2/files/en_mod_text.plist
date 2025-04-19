@@ -332,5 +332,23 @@
 	<string>Mark SplitableCells</string>
 	<key>click_to_activate_tag</key>
 	<string>Click to Activate</string>
+	<key>backgroundsectors_tag</key>
+	<string>BackgroundSectors</string>
+	<key>custom_tag</key>
+	<string>Custom</string>
+	<key>static_zoom_tag</key>
+	<string>Static Zoom</string>
+	<key>classic-macro_using_settingsbutton_tag</key>
+	<string>Classic-Macro Using SettingsButton</string>
+	<key>stop_after_limit_tag</key>
+	<string>Stop After Limit</string>
+	<key>joystickscale_tag</key>
+	<string>JoystickScale</string>
+	<key>joysickflexibilityfactor_tag</key>
+	<string>JoystickFlexibilityFactor</string>
+	<key>joysickdistancefactor_tag</key>
+	<string>JoystickDistanceFactor</string>
+	<key>hide_tag</key>
+	<string>Hide</string>
 </dict>
 </plist>
