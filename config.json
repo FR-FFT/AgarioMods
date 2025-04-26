@@ -39,21 +39,11 @@
         "description": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
         "developer": "Kahraba"
     },
-    "QxAnarky": {
-        "mods": ["ui"],
-        "app_name": "QxAgar",
-        "description": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
-        "developer": "QxAnarky"
-    },
     "Bite": {
         "mods": ["bite"],
         "app_name": "Bite Agar.io",
         "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
         "developer": "Bite"
-    },
-    "Kahraba + Shark + Xelahot + QxAnarky": {
-        "mods": ["kahraba", "shark", "xelahot", "ui"],
-        "app_name": "KSXQ Agario"
     },
     "Shark + Kahraba": {
         "mods": ["kahraba", "shark"],
@@ -62,14 +52,6 @@
     "Shark + Kahraba2": {
         "mods": ["kahraba2", "shark"],
         "app_name": "Sharkaba2"
-    },
-    "QxAnarky + Ctrl + Xelahot": {
-        "mods": ["ctrl", "xelahot", "ui"],
-        "app_name": "QCXAgar"
-    },
-    "Shark + QxAnarky": {
-        "mods": ["shark", "ui"],
-        "app_name": "AnSharky"
     },
     "Shark + Ctrl": {
         "mods": ["shark", "ctrl"],
