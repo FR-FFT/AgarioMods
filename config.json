@@ -51,6 +51,16 @@
         "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
         "developer": "Bite"
     },
+    "Amarillo": {
+        "mods": ["amarillo"],
+        "app_name": "Amarillo",
+        "descrition": "Adds various shortcuts to skin editor, settings, and region selector. Helps if QxAnarky's mod breaks the skin selector.",
+        "developer": "QxAngel"
+    },
+    "QxAnarky + Amarillo": {
+        "mods": ["amarillo2", "ui"],
+        "app_name": "QxAmarillo"
+    },
     "Kahraba + Shark + Xelahot + QxAnarky": {
         "mods": ["kahraba", "shark", "xelahot", "ui"],
         "app_name": "KSXQ Agario"
