@@ -23,6 +23,12 @@
         "description": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
         "developer": "shark.ytb"
     },
+    "SharkBeta": {
+        "mods": ["shark-beta"],
+        "app_name": "SharkMod (beta)",
+        "description": "",
+        "developer": "shark.ytb"
+    },
     "Ctrl + Xelahot": {
         "mods": ["ctrl", "xelahot"],
         "app_name": "CtrlXelaAgar"
@@ -69,9 +75,13 @@
         "mods": ["kahraba", "shark"],
         "app_name": "Sharkaba"
     },
+    "SharkBeta + Kahraba": {
+        "mods": ["kahraba", "shark-beta"],
+        "app_name": "Sharkaba (beta)"
+    },
     "Shark + Kahraba2": {
-        "mods": ["kahraba2", "shark"],
-        "app_name": "Sharkaba2"
+        "mods": ["kahraba2", "shark-beta"],
+        "app_name": "Sharkaba2 (beta)"
     },
     "QxAnarky + Ctrl + Xelahot": {
         "mods": ["ctrl", "xelahot", "ui"],
@@ -81,8 +91,16 @@
         "mods": ["shark", "ui"],
         "app_name": "AnSharky"
     },
+    "SharkBeta + QxAnarky": {
+        "mods": ["shark-beta", "ui"],
+        "app_name": "AnSharky (beta)"
+    },
     "Shark + Ctrl": {
         "mods": ["shark", "ctrl"],
         "app_name": "SharkCtrl"
+    },
+    "SharkBeta + Ctrl": {
+        "mods": ["shark-beta", "ctrl"],
+        "app_name": "SharkCtrl (beta)"
     }
 }
