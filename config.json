@@ -80,6 +80,10 @@
         "app_name": "Sharkaba (beta)"
     },
     "Shark + Kahraba2": {
+        "mods": ["kahraba2", "shark"],
+        "app_name": "Sharkaba2"
+    },
+    "SharkBeta + Kahraba2": {
         "mods": ["kahraba2", "shark-beta"],
         "app_name": "Sharkaba2 (beta)"
     },
