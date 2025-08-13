@@ -71,6 +71,10 @@
         "mods": ["kahraba", "shark", "xelahot", "ui"],
         "app_name": "KSXQ Agario"
     },
+    "Kahraba + SharkBeta + Xelahot + QxAnarky": {
+        "mods": ["kahraba", "shark-beta", "xelahot", "ui"],
+        "app_name": "KSbXQ Agario"
+    },
     "Shark + Kahraba": {
         "mods": ["kahraba", "shark"],
         "app_name": "Sharkaba"
