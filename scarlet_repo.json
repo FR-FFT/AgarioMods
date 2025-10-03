@@ -4,145 +4,10 @@
     },
     "Agar.io mods": [
         {
-            "name": "Sharkaba",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Shark.%2B.Kahraba.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkkahraba",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "SharkCtrl (beta)",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Ctrl.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/SharkBeta.%2B.Ctrl.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkbetactrl",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "XelaAgar",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Xelahot.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Xelahot.ipa",
-            "dev": "Xelahot",
-            "category": "Agar.io Mods",
-            "description": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
-            "bundleID": "com.miniclip.agar.io.xelahot",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "KSXQ Agario",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20Shark%20%2B%20Xelahot%20%2B%20QxAnarky.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Flex Agar.io",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Flex.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Flex.ipa",
-            "dev": "FLEXTool",
-            "category": "Agar.io Mods",
-            "description": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
-            "bundleID": "com.miniclip.agar.io.flex",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "SharkMod",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Shark.ipa",
-            "dev": "shark.ytb",
-            "category": "Agar.io Mods",
-            "description": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
-            "bundleID": "com.miniclip.agar.io.shark",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "QCXAgar",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Ctrl%20%2B%20Xelahot.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.qxanarkyctrlxelahot",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Sharkaba (beta)",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/SharkBeta.%2B.Kahraba.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkbetakahraba",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "CtrlAgar",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Ctrl.ipa",
-            "dev": "QxAnarky",
-            "category": "Agar.io Mods",
-            "description": "Various UI options (e.g. claassic to burst, hide party icons).",
-            "bundleID": "com.miniclip.agar.io.ctrl",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
             "name": "KSbXQ Agario",
             "version": "2.30.8",
             "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20SharkBeta%20%2B%20Xelahot%20%2B%20QxAnarky.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Kahraba.%2B.SharkBeta.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Kahraba.%2B.SharkBeta.%2B.Xelahot.%2B.QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "",
@@ -154,145 +19,10 @@
             }
         },
         {
-            "name": "Kahraba2",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba2.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Kahraba2.ipa",
-            "dev": "Kahraba",
-            "category": "Agar.io Mods",
-            "description": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
-            "bundleID": "com.miniclip.agar.io.kahraba2",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Amarillo",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Amarillo.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Amarillo.ipa",
-            "dev": "QxAngel",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.amarillo",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "QxAgar",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/QxAnarky.ipa",
-            "dev": "QxAnarky",
-            "category": "Agar.io Mods",
-            "description": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
-            "bundleID": "com.miniclip.agar.io.qxanarky",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Bite Agar.io",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Bite.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Bite.ipa",
-            "dev": "Bite",
-            "category": "Agar.io Mods",
-            "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
-            "bundleID": "com.miniclip.agar.io.bite",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Sharkaba2",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba2.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Shark.%2B.Kahraba2.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkkahraba2",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "QxAmarillo",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Amarillo.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/QxAnarky.%2B.Amarillo.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.qxanarkyamarillo",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "Kahraba",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Kahraba.ipa",
-            "dev": "Kahraba",
-            "category": "Agar.io Mods",
-            "description": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
-            "bundleID": "com.miniclip.agar.io.kahraba",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "SharkMod (beta)",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/SharkBeta.ipa",
-            "dev": "shark.ytb",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkbeta",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
-            "name": "AnSharky (beta)",
-            "version": "2.30.8",
-            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20QxAnarky.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/SharkBeta.%2B.QxAnarky.ipa",
-            "dev": "",
-            "category": "Agar.io Mods",
-            "description": "",
-            "bundleID": "com.miniclip.agar.io.sharkbetaqxanarky",
-            "appstore": "com.miniclip.agar.io",
-            "contact": {
-                "web": "",
-                "PayPal": ""
-            }
-        },
-        {
             "name": "Sharkaba2 (beta)",
             "version": "2.30.8",
             "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba2.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/SharkBeta.%2B.Kahraba2.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/SharkBeta.%2B.Kahraba2.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "",
@@ -304,10 +34,40 @@
             }
         },
         {
+            "name": "XelaAgar",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Xelahot.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Xelahot.ipa",
+            "dev": "Xelahot",
+            "category": "Agar.io Mods",
+            "description": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
+            "bundleID": "com.miniclip.agar.io.xelahot",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "SharkCtrl (beta)",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Ctrl.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/SharkBeta.%2B.Ctrl.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkbetactrl",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
             "name": "SharkCtrl",
             "version": "2.30.8",
             "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Ctrl.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Shark.%2B.Ctrl.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Shark.%2B.Ctrl.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "",
@@ -322,7 +82,7 @@
             "name": "AnSharky",
             "version": "2.30.8",
             "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20QxAnarky.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Shark.%2B.QxAnarky.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Shark.%2B.QxAnarky.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "",
@@ -334,14 +94,254 @@
             }
         },
         {
+            "name": "Flex Agar.io",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Flex.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Flex.ipa",
+            "dev": "FLEXTool",
+            "category": "Agar.io Mods",
+            "description": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
+            "bundleID": "com.miniclip.agar.io.flex",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "AnSharky (beta)",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20QxAnarky.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/SharkBeta.%2B.QxAnarky.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkbetaqxanarky",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Kahraba",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Kahraba.ipa",
+            "dev": "Kahraba",
+            "category": "Agar.io Mods",
+            "description": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
+            "bundleID": "com.miniclip.agar.io.kahraba",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Sharkaba",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Shark.%2B.Kahraba.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkkahraba",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "KSXQ Agario",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20Shark%20%2B%20Xelahot%20%2B%20QxAnarky.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Kahraba2",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba2.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Kahraba2.ipa",
+            "dev": "Kahraba",
+            "category": "Agar.io Mods",
+            "description": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
+            "bundleID": "com.miniclip.agar.io.kahraba2",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Bite Agar.io",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Bite.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Bite.ipa",
+            "dev": "Bite",
+            "category": "Agar.io Mods",
+            "description": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
+            "bundleID": "com.miniclip.agar.io.bite",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "QxAmarillo",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Amarillo.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/QxAnarky.%2B.Amarillo.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.qxanarkyamarillo",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "CtrlAgar",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Ctrl.ipa",
+            "dev": "QxAnarky",
+            "category": "Agar.io Mods",
+            "description": "Various UI options (e.g. claassic to burst, hide party icons).",
+            "bundleID": "com.miniclip.agar.io.ctrl",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Sharkaba2",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba2.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Shark.%2B.Kahraba2.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkkahraba2",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "SharkMod (beta)",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/SharkBeta.ipa",
+            "dev": "shark.ytb",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkbeta",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Amarillo",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Amarillo.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Amarillo.ipa",
+            "dev": "QxAngel",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.amarillo",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "QxAgar",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/QxAnarky.ipa",
+            "dev": "QxAnarky",
+            "category": "Agar.io Mods",
+            "description": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
+            "bundleID": "com.miniclip.agar.io.qxanarky",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "Sharkaba (beta)",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/SharkBeta.%2B.Kahraba.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.sharkbetakahraba",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
             "name": "CtrlXelaAgar",
             "version": "2.30.8",
             "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl%20%2B%20Xelahot.png",
-            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8/Ctrl.%2B.Xelahot.ipa",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Ctrl.%2B.Xelahot.ipa",
             "dev": "",
             "category": "Agar.io Mods",
             "description": "",
             "bundleID": "com.miniclip.agar.io.ctrlxelahot",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "SharkMod",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/Shark.ipa",
+            "dev": "shark.ytb",
+            "category": "Agar.io Mods",
+            "description": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
+            "bundleID": "com.miniclip.agar.io.shark",
+            "appstore": "com.miniclip.agar.io",
+            "contact": {
+                "web": "",
+                "PayPal": ""
+            }
+        },
+        {
+            "name": "QCXAgar",
+            "version": "2.30.8",
+            "icon": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Ctrl%20%2B%20Xelahot.png",
+            "down": "https://github.com/FR-FFT/AgarioMods/releases/download/v2.30.8-shark-v1%2C8%2C0/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
+            "dev": "",
+            "category": "Agar.io Mods",
+            "description": "",
+            "bundleID": "com.miniclip.agar.io.qxanarkyctrlxelahot",
             "appstore": "com.miniclip.agar.io",
             "contact": {
                 "web": "",
