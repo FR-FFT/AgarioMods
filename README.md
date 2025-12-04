@@ -14,6 +14,7 @@
     <img alt="Dynamic YAML Badge" src="https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fgithub.com%2FFR-FFT%2FAgarioMods%2Fraw%2Frefs%2Fheads%2Fmain%2Flast_updated.txt&query=%24&label=Updated">
     <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFR-FFT%2FAgarioMods%2Frefs%2Fheads%2Fmain%2Fcertificate_status.json&query=%24.revoked&label=Revoked">
     <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFR-FFT%2FAgarioMods%2Frefs%2Fheads%2Fmain%2Fcertificate_status.json&query=%24.last_checked_tag&label=Certificate">
+    <img alt="ModInjector" src="https://github.com/FR-FFT/AgarioMods/actions/workflows/main.yml/badge.svg">
 </p>
 
 <p align="center">
