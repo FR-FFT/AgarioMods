@@ -5,85 +5,16 @@
     "sourceURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/esign_repo.json",
     "apps": [
         {
-            "name": "Bite Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io.bite",
-            "developerName": "Bite",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Bite.ipa",
-            "localizedDescription": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Bite.png",
-            "tintColor": "FF0000",
-            "size": 65946081,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "XelaAgar",
-            "bundleIdentifier": "com.miniclip.agar.io.xelahot",
-            "developerName": "Xelahot",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Xelahot.ipa",
-            "localizedDescription": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Xelahot.png",
-            "tintColor": "FF0000",
-            "size": 63486033,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
             "name": "KSXQ Agario",
             "bundleIdentifier": "com.miniclip.agar.io.kahrabasharkxelahotqxanarky",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Kahraba.%2B.Shark.%2B.Xelahot.%2B.QxAnarky.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20Shark%20%2B%20Xelahot%20%2B%20QxAnarky.png",
             "tintColor": "FF0000",
-            "size": 62564252,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "QxAgar",
-            "bundleIdentifier": "com.miniclip.agar.io.qxanarky",
-            "developerName": "QxAnarky",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/QxAnarky.ipa",
-            "localizedDescription": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky.png",
-            "tintColor": "FF0000",
-            "size": 61661056,
+            "size": 62718713,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -100,13 +31,13 @@
             "name": "Sharkaba2",
             "bundleIdentifier": "com.miniclip.agar.io.sharkkahraba2",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Shark.%2B.Kahraba2.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Shark.%2B.Kahraba2.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba2.png",
             "tintColor": "FF0000",
-            "size": 68353207,
+            "size": 68587250,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -123,151 +54,13 @@
             "name": "SharkCtrl (beta)",
             "bundleIdentifier": "com.miniclip.agar.io.sharkbetactrl",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/SharkBeta.%2B.Ctrl.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/SharkBeta.%2B.Ctrl.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Ctrl.png",
             "tintColor": "FF0000",
-            "size": 63294939,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "CtrlXelaAgar",
-            "bundleIdentifier": "com.miniclip.agar.io.ctrlxelahot",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Ctrl.%2B.Xelahot.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl%20%2B%20Xelahot.png",
-            "tintColor": "FF0000",
-            "size": 63572982,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "Kahraba",
-            "bundleIdentifier": "com.miniclip.agar.io.kahraba",
-            "developerName": "Kahraba",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Kahraba.ipa",
-            "localizedDescription": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba.png",
-            "tintColor": "FF0000",
-            "size": 63580200,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "AnSharky",
-            "bundleIdentifier": "com.miniclip.agar.io.sharkqxanarky",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Shark.%2B.QxAnarky.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20QxAnarky.png",
-            "tintColor": "FF0000",
-            "size": 61784029,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "QxAmarillo",
-            "bundleIdentifier": "com.miniclip.agar.io.qxanarkyamarillo",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/QxAnarky.%2B.Amarillo.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Amarillo.png",
-            "tintColor": "FF0000",
-            "size": 61715446,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "KSbXQ Agario",
-            "bundleIdentifier": "com.miniclip.agar.io.kahrabasharkbetaxelahotqxanarky",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Kahraba.%2B.SharkBeta.%2B.Xelahot.%2B.QxAnarky.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20SharkBeta%20%2B%20Xelahot%20%2B%20QxAnarky.png",
-            "tintColor": "FF0000",
-            "size": 62500222,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "Sharkaba",
-            "bundleIdentifier": "com.miniclip.agar.io.sharkkahraba",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Shark.%2B.Kahraba.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba.png",
-            "tintColor": "FF0000",
-            "size": 63704447,
+            "size": 63529290,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -284,13 +77,13 @@
             "name": "AnSharky (beta)",
             "bundleIdentifier": "com.miniclip.agar.io.sharkbetaqxanarky",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/SharkBeta.%2B.QxAnarky.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/SharkBeta.%2B.QxAnarky.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20QxAnarky.png",
             "tintColor": "FF0000",
-            "size": 61722823,
+            "size": 61877100,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -304,108 +97,16 @@
             }
         },
         {
-            "name": "Flex Agar.io",
-            "bundleIdentifier": "com.miniclip.agar.io.flex",
-            "developerName": "FLEXTool",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Flex.ipa",
-            "localizedDescription": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Flex.png",
-            "tintColor": "FF0000",
-            "size": 64128591,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "Sharkaba2 (beta)",
-            "bundleIdentifier": "com.miniclip.agar.io.sharkbetakahraba2",
+            "name": "AnSharky",
+            "bundleIdentifier": "com.miniclip.agar.io.sharkqxanarky",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/SharkBeta.%2B.Kahraba2.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Shark.%2B.QxAnarky.ipa",
             "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba2.png",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20QxAnarky.png",
             "tintColor": "FF0000",
-            "size": 68294086,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "QCXAgar",
-            "bundleIdentifier": "com.miniclip.agar.io.qxanarkyctrlxelahot",
-            "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Ctrl%20%2B%20Xelahot.png",
-            "tintColor": "FF0000",
-            "size": 62091675,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "CtrlAgar",
-            "bundleIdentifier": "com.miniclip.agar.io.ctrl",
-            "developerName": "QxAnarky",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Ctrl.ipa",
-            "localizedDescription": "Various UI options (e.g. claassic to burst, hide party icons).",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl.png",
-            "tintColor": "FF0000",
-            "size": 63221213,
-            "screenshotURLs": [],
-            "appPermissions": {
-                "entitlements": [
-                    "com.apple.developer.associated-domains",
-                    "aps-environment",
-                    "com.apple.developer.applesignin"
-                ],
-                "privacy": {
-                    "NSUserTrackingUsage-Description": "App tracks the user."
-                }
-            }
-        },
-        {
-            "name": "SharkMod",
-            "bundleIdentifier": "com.miniclip.agar.io.shark",
-            "developerName": "shark.ytb",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Shark.ipa",
-            "localizedDescription": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark.png",
-            "tintColor": "FF0000",
-            "size": 63268954,
+            "size": 61938310,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -422,13 +123,13 @@
             "name": "Amarillo",
             "bundleIdentifier": "com.miniclip.agar.io.amarillo",
             "developerName": "QxAngel",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Amarillo.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Amarillo.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Amarillo.png",
             "tintColor": "FF0000",
-            "size": 63071013,
+            "size": 63305595,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -442,16 +143,16 @@
             }
         },
         {
-            "name": "SharkMod (beta)",
-            "bundleIdentifier": "com.miniclip.agar.io.sharkbeta",
-            "developerName": "shark.ytb",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/SharkBeta.ipa",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta.png",
+            "name": "Flex Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.flex",
+            "developerName": "FLEXTool",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Flex.ipa",
+            "localizedDescription": "Press 3 fingers to open the debug tool. See https://github.com/FLEXTool/FLEX for a full list of its capabilities.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Flex.png",
             "tintColor": "FF0000",
-            "size": 63213672,
+            "size": 64362708,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -465,16 +166,62 @@
             }
         },
         {
-            "name": "SharkCtrl",
-            "bundleIdentifier": "com.miniclip.agar.io.sharkctrl",
+            "name": "XelaAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.xelahot",
+            "developerName": "Xelahot",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Xelahot.ipa",
+            "localizedDescription": "Features mastersplit (hold to split multiple times), zoom, and fast feed.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Xelahot.png",
+            "tintColor": "FF0000",
+            "size": 63720208,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "QxAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.qxanarky",
+            "developerName": "QxAnarky",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/QxAnarky.ipa",
+            "localizedDescription": "QxAnarky's UI mod, with zoom buttons, switch classic and burst buttons, mastersplit (hold emoji button to toggle), and more.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky.png",
+            "tintColor": "FF0000",
+            "size": 61815148,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "QxAmarillo",
+            "bundleIdentifier": "com.miniclip.agar.io.qxanarkyamarillo",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Shark.%2B.Ctrl.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/QxAnarky.%2B.Amarillo.ipa",
             "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Ctrl.png",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Amarillo.png",
             "tintColor": "FF0000",
-            "size": 63350148,
+            "size": 61869724,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -488,16 +235,16 @@
             }
         },
         {
-            "name": "Kahraba2",
-            "bundleIdentifier": "com.miniclip.agar.io.kahraba2",
+            "name": "Kahraba",
+            "bundleIdentifier": "com.miniclip.agar.io.kahraba",
             "developerName": "Kahraba",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/Kahraba2.ipa",
-            "localizedDescription": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
-            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba2.png",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Kahraba.ipa",
+            "localizedDescription": "This is a cracked version of Kahraba's mod (courtesy of Shark). It includes a new settings page with switch classic and burst buttons, macro, zoom buttons, mastersplit, and instantly claim mission rewards, and more.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba.png",
             "tintColor": "FF0000",
-            "size": 68239626,
+            "size": 63814279,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
@@ -514,13 +261,266 @@
             "name": "Sharkaba (beta)",
             "bundleIdentifier": "com.miniclip.agar.io.sharkbetakahraba",
             "developerName": "",
-            "version": "26.5.0",
-            "versionDate": "2026-16-03",
-            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.5.0/SharkBeta.%2B.Kahraba.ipa",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/SharkBeta.%2B.Kahraba.ipa",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba.png",
             "tintColor": "FF0000",
-            "size": 63639166,
+            "size": 63873517,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "Bite Agar.io",
+            "bundleIdentifier": "com.miniclip.agar.io.bite",
+            "developerName": "Bite",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Bite.ipa",
+            "localizedDescription": "Contains various functions that integrate with Bite's website, https://biteyt.com/biteyt-shop, mostly getting keys to upload skins / buy skins / glitches on his website.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Bite.png",
+            "tintColor": "FF0000",
+            "size": 66180173,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "SharkMod",
+            "bundleIdentifier": "com.miniclip.agar.io.shark",
+            "developerName": "shark.ytb",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Shark.ipa",
+            "localizedDescription": "Multiple macro buttons, auto classic macro, minimap, change game speed, and more.",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark.png",
+            "tintColor": "FF0000",
+            "size": 63503050,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "CtrlXelaAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.ctrlxelahot",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl%20%2B%20Xelahot.png",
+            "tintColor": "FF0000",
+            "size": 63807213,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "QCXAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.qxanarkyctrlxelahot",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/QxAnarky.%2B.Ctrl.%2B.Xelahot.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/QxAnarky%20%2B%20Ctrl%20%2B%20Xelahot.png",
+            "tintColor": "FF0000",
+            "size": 62245602,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "CtrlAgar",
+            "bundleIdentifier": "com.miniclip.agar.io.ctrl",
+            "developerName": "QxAnarky",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Ctrl.ipa",
+            "localizedDescription": "Various UI options (e.g. claassic to burst, hide party icons).",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Ctrl.png",
+            "tintColor": "FF0000",
+            "size": 63455388,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "SharkCtrl",
+            "bundleIdentifier": "com.miniclip.agar.io.sharkctrl",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Shark.%2B.Ctrl.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Ctrl.png",
+            "tintColor": "FF0000",
+            "size": 63584500,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "SharkMod (beta)",
+            "bundleIdentifier": "com.miniclip.agar.io.sharkbeta",
+            "developerName": "shark.ytb",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/SharkBeta.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta.png",
+            "tintColor": "FF0000",
+            "size": 63447763,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "Kahraba2",
+            "bundleIdentifier": "com.miniclip.agar.io.kahraba2",
+            "developerName": "Kahraba",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Kahraba2.ipa",
+            "localizedDescription": "Version 2 of Kahraba's mod, with various differences in UI and capability. It is not cracked, so you will need a license. Instagram: https://instagram.com/8tf_l",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba2.png",
+            "tintColor": "FF0000",
+            "size": 68473700,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "Sharkaba2 (beta)",
+            "bundleIdentifier": "com.miniclip.agar.io.sharkbetakahraba2",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/SharkBeta.%2B.Kahraba2.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/SharkBeta%20%2B%20Kahraba2.png",
+            "tintColor": "FF0000",
+            "size": 68528127,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "Sharkaba",
+            "bundleIdentifier": "com.miniclip.agar.io.sharkkahraba",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Shark.%2B.Kahraba.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Shark%20%2B%20Kahraba.png",
+            "tintColor": "FF0000",
+            "size": 63938643,
+            "screenshotURLs": [],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.developer.associated-domains",
+                    "aps-environment",
+                    "com.apple.developer.applesignin"
+                ],
+                "privacy": {
+                    "NSUserTrackingUsage-Description": "App tracks the user."
+                }
+            }
+        },
+        {
+            "name": "KSbXQ Agario",
+            "bundleIdentifier": "com.miniclip.agar.io.kahrabasharkbetaxelahotqxanarky",
+            "developerName": "",
+            "version": "26.6.0",
+            "versionDate": "2026-39-05",
+            "downloadURL": "https://github.com/FR-FFT/AgarioMods/releases/download/v26.6.0/Kahraba.%2B.SharkBeta.%2B.Xelahot.%2B.QxAnarky.ipa",
+            "localizedDescription": "",
+            "iconURL": "https://raw.githubusercontent.com/FR-FFT/AgarioMods/refs/heads/main/icons/Kahraba%20%2B%20SharkBeta%20%2B%20Xelahot%20%2B%20QxAnarky.png",
+            "tintColor": "FF0000",
+            "size": 62654348,
             "screenshotURLs": [],
             "appPermissions": {
                 "entitlements": [
